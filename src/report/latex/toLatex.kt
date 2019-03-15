@@ -30,10 +30,6 @@ class LatexConverter(val fpfResults: List<CPF.Iteration>) {
             iteration.isParallel,
             iteration.groupedOperators.map { namer.name(iteration.program, it).toLatex() }.toSet(),
             fpfResults.resultOfGroupOperators(i)?.let { namer.name(it).toLatex() } ?: ""
-//            if (i != fpfResults.core.getLastIndex)
-//                namer.name(fpfResults[i + 1].program, iteration.groupedOperators.first).toLatex()
-//            else
-//                ""
         )
     }
 
@@ -184,7 +180,3 @@ class LatexConverter(val fpfResults: List<CPF.Iteration>) {
 }
 
 fun List<LatexConverter.CPFCheck>.toLatex() = joinToString(doubleLineBreak) { it.toLatex() }
-
-//fun List<LatexConverter.Iteration>.toLatex() = map { it.toLatex() }.joinToString(singleLineBreak)
-
-
