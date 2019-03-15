@@ -38,8 +38,8 @@ private fun List<CPF.Iteration>.shortDesription() {
         println(
             """
             Iteration number:   ${i + 1}
-            core.Operator number:    ${it.program.size}
-            core.CPF check number:   ${it.fpfCheck.size}
+            Operator number:    ${it.program.size}
+            CPF check number:   ${it.fpfCheck.size}
 
         """.trimIndent()
         )

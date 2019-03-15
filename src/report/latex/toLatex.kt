@@ -75,8 +75,8 @@ class LatexConverter(val fpfResults: List<CPF.Iteration>) {
 
         fun toLatex() = listOf(
             name,
-            C._toLatex("core.C"),
-            R._toLatex("core.R"),
+            C._toLatex("C"),
+            R._toLatex("R"),
             I._toLatex("I"),
             O._toLatex("O")
         ).joinToString(singleLineBreak)
@@ -98,7 +98,7 @@ class LatexConverter(val fpfResults: List<CPF.Iteration>) {
             "SD = ${matrices.strongDependencyMatrix.toLatex(header, header)}",
             "WD = ${matrices.weekDependencyMatrix.toLatex(header, header)}",
             "SI = ${matrices.strongIndependencyMatrix.toLatex(header, header)}",
-            "core.C = ${matrices.weekIndependencyMatrix.toLatex(header, header)}"
+            "C = ${matrices.weekIndependencyMatrix.toLatex(header, header)}"
         )
 
         fun toLatex() = listOf(
