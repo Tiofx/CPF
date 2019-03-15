@@ -39,6 +39,8 @@ fun Matrix.sizeModifier() = when {
 fun Set<String>.toLatex() =
     if (isNotEmpty())
         reduce { acc, v -> "$acc, $v" }.let { "\\{$it\\}" }
-    else "\\O"
+    else emptySetSymbol
+
+private val emptySetSymbol = "\\varnothing"
 
 fun Set<String>.toLatex(name: String) = toLatex().let { "$name = $it" }
