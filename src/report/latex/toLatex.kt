@@ -1,16 +1,9 @@
 package report.latex
 
-import algorithm.C
-import algorithm.CPF
-import algorithm.CPFChecker
-import algorithm.Program
-import algorithm.R
-import algorithm.RelationsMatrix
-import algorithm.indices
+import algorithm.*
 import report.OperatorName
 import report.OperatorNamer
 import report.latex.LatexConverter.Companion.doubleLineBreak
-import algorithm.resultOfGroupOperators
 
 
 class LatexConverter(val fpfResults: List<CPF.Iteration>) {

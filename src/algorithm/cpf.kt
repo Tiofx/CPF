@@ -78,6 +78,7 @@ class CPF(val init: Program) {
             get() = if (isParallel) parallelCheck?.maxChain!! else sequentialCheck ?: IntRange.EMPTY
     }
 }
+
 fun List<CPF.Iteration>.finalResul() = map { it.program }.last().first()
 
 fun List<CPF.Iteration>.resultOfGroupOperators(iteration: Int) =

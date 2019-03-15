@@ -41,6 +41,6 @@ fun Set<String>.toLatex() =
         reduce { acc, v -> "$acc, $v" }.let { "\\{$it\\}" }
     else emptySetSymbol
 
-private val emptySetSymbol = "\\varnothing"
+private const val emptySetSymbol = "\\varnothing"
 
 fun Set<String>.toLatex(name: String) = toLatex().let { "$name = $it" }
