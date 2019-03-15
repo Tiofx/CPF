@@ -19,7 +19,8 @@ fun main() {
 
     val cpf = CPF(program)
     val result = cpf.form()
-    CPFUnfolding(result).iterate()
+    val cpfUnfolder = CPFUnfolding(result)
+    println(cpfUnfolder.toGraph())
 }
 
 class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
@@ -27,7 +28,7 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
     private val namer = OperatorNamer(cpfSteps)
     private fun IOperator.toName() = namer.name(this).toPlainString()
 
-    fun iterate() {
+    fun toConsole() {
         fun iterate(depth: Int = 0, operator: IOperator = cpfResult) {
             println("$depth: ${operator.toName()}")
             if (!operator.isBaseOperator) println(
@@ -41,4 +42,37 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
 
         return iterate()
     }
+
+    fun toGraph(): String {
+        fun wrapByGraph(body: String) =
+            """
+                |graph CPFUnfloding {
+                |   layout=osage;
+                |   style="rounded"
+                |   node [shape=circle, fontsize=14, fontname="Times New Roman", margin=".1,.01"]
+                |
+                |   ${body.replace("\n", "\n\t")}
+                |}
+            """.trimMargin()
+
+        fun IOperator.wrapBySubgraph(body: String) =
+            """
+                |subgraph "cluster_${toName()}" {
+                |   label = "${toName()}"
+                |
+                |   ${body.replace("\n", "\n\t")}
+                |}
+            """.trimMargin()
+
+        fun iterate(depth: Int = 0, operator: IOperator = cpfResult): String =
+            if (operator.isBaseOperator)
+                operator.toName()
+            else
+                operator.inner
+                    .joinToString("\n") { iterate(depth + 1, it) }
+                    .let { operator.wrapBySubgraph(it) }
+
+        return wrapByGraph(iterate())
+    }
+
 }
