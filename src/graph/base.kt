@@ -64,12 +64,12 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
                 |}
             """.trimMargin()
 
-        fun iterate(depth: Int = 0, operator: IOperator = cpfResult): String =
+        fun iterate(operator: IOperator = cpfResult): String =
             if (operator.isBaseOperator)
                 operator.toName()
             else
                 operator.inner
-                    .joinToString("\n") { iterate(depth + 1, it) }
+                    .joinToString("\n") { iterate(it) }
                     .let { operator.wrapBySubgraph(it) }
 
         return wrapByGraph(iterate())
