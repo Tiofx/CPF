@@ -22,13 +22,13 @@ fun main() {
     CPFUnfolding(result).iterate()
 }
 
-class CPFUnfolding(fpfSteps: List<CPF.Iteration>) {
-    private val fpfResult = fpfSteps.finalResul()
-    private val namer = OperatorNamer(fpfSteps)
+class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
+    private val cpfResult = cpfSteps.finalResul()
+    private val namer = OperatorNamer(cpfSteps)
     private fun IOperator.toName() = namer.name(this).toPlainString()
 
     fun iterate() {
-        fun iterate(depth: Int = 0, operator: IOperator = fpfResult) {
+        fun iterate(depth: Int = 0, operator: IOperator = cpfResult) {
             println("$depth: ${operator.toName()}")
             if (!operator.isBaseOperator) println(
                 "${operator.toName()} = ${operator.inner.map { it.toName() }}"

@@ -22,7 +22,7 @@ class TwoAppendixTemplate(val content: List<LatexConverter.Iteration>) : LatexRe
             """
             |$relations
             |%
-            |$fpfChecks
+            |$cpfChecks
             |%
             |${iterationType(iteration)}
         """.trimMargin()
@@ -68,7 +68,7 @@ open class ByIterationTemplate(val content: List<LatexConverter.Iteration>) : La
         |%
         |$relations
         |%
-        |$fpfChecks
+        |$cpfChecks
         |%
         |${iterationType(iteration)}
     """.trimMargin()
@@ -88,14 +88,14 @@ open class ByIterationTemplate(val content: List<LatexConverter.Iteration>) : La
         |${matrices.toLatex()}\\ \newline
     """.trimMargin()
 
-    protected val LatexConverter.Iteration.fpfChecks
+    protected val LatexConverter.Iteration.cpfChecks
         get() = """
         |Проверка условия приводимости программы к ППФ (${min(
             MAX_NUMBER_OF_CPF_CHECK,
-            fpfCheck.size
-        )} из ${fpfCheck.size}): \\
+            cpfCheck.size
+        )} из ${cpfCheck.size}): \\
         |\begin{math}\breakingcomma
-        |${fpfCheck.take(MAX_NUMBER_OF_CPF_CHECK).toLatex()}
+        |${cpfCheck.take(MAX_NUMBER_OF_CPF_CHECK).toLatex()}
         |\end{math}\\
         """.trimMargin()
 
@@ -130,7 +130,7 @@ class FullLatexGenerator(content: List<LatexConverter.Iteration>) : LatexReportT
 
     fun LatexConverter.Iteration.toLatex(): String = """
             |${program.toLatex()}
-            |${fpfCheck.joinToString(LatexConverter.doubleLineBreak) { it.toLatex() }}
+            |${cpfCheck.joinToString(LatexConverter.doubleLineBreak) { it.toLatex() }}
         """.trimMargin()
 
     fun List<LatexConverter.Iteration>.toLatex1() =

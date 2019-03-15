@@ -1,7 +1,7 @@
 package algorithm
 
 class CPF(val init: Program) {
-    private val fpfChecker = CPFChecker(init)
+    private val cpfChecker = CPFChecker(init)
     private val parallelGroupOperatorFormatter = ParallelGroupOperatorFormatter(init)
     private val sequentialGroupOperatorFormatter = SequentialGroupOperatorFormatter(init)
 
@@ -24,7 +24,7 @@ class CPF(val init: Program) {
                             i,
                             currentProgram,
                             parallelIteration,
-                            fpfChecker.CPFCheck(),
+                            cpfChecker.CPFCheck(),
                             parallelGroupOperatorFormatter.analysis
                         )
                     currentProgram = parallelGroupOperatorFormatter.transform(stepResult)
@@ -39,7 +39,7 @@ class CPF(val init: Program) {
                         i,
                         currentProgram,
                         parallelIteration,
-                        fpfChecker.CPFCheck(),
+                        cpfChecker.CPFCheck(),
                         parallelGroupOperatorFormatter.analysis,
                         sequentialCheck = maxChain
                     )
@@ -60,7 +60,7 @@ class CPF(val init: Program) {
     }
 
     private fun setUp(program: Program) {
-        fpfChecker.program = program
+        cpfChecker.program = program
         parallelGroupOperatorFormatter.program = program
         sequentialGroupOperatorFormatter.program = program
     }
@@ -69,7 +69,7 @@ class CPF(val init: Program) {
         val number: Int,
         val program: Program,
         val isParallel: Boolean,
-        val fpfCheck: List<CPFChecker.Result>,
+        val cpfCheck: List<CPFChecker.Result>,
         val parallelCheck: ParallelGroupOperatorFormatter.Result? = null,
         val sequentialCheck: IntRange? = null
     ) {

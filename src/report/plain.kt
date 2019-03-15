@@ -14,7 +14,7 @@ fun List<CPF.Iteration>.description(namer: OperatorNamer) {
 fun CPF.Iteration.description(program: Program, namer: OperatorNamer) {
     println("================== $number ===========================")
     println(namer.names(program).map(OperatorName::toPlainString))
-//            fpfCheck.map { it.canBeBringToCPF to it }.forEach(::println)
+//            cpfCheck.map { it.canBeBringToCPF to it }.forEach(::println)
     println()
 
     if (parallelCheck != null) {
@@ -39,12 +39,12 @@ private fun List<CPF.Iteration>.shortDesription() {
             """
             Iteration number:   ${i + 1}
             Operator number:    ${it.program.size}
-            CPF check number:   ${it.fpfCheck.size}
+            CPF check number:   ${it.cpfCheck.size}
 
         """.trimIndent()
         )
     }
-    println("Total number of cpf check ${map { it.fpfCheck.size }.sum()}")
+    println("Total number of cpf check ${map { it.cpfCheck.size }.sum()}")
 }
 
 

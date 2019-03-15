@@ -6,8 +6,8 @@ import report.OperatorNamer
 import report.latex.LatexConverter.Companion.doubleLineBreak
 
 
-class LatexConverter(val fpfResults: List<CPF.Iteration>) {
-    private val namer = OperatorNamer(fpfResults)
+class LatexConverter(val cpfResults: List<CPF.Iteration>) {
+    private val namer = OperatorNamer(cpfResults)
 
     companion object {
         val singleLineBreak = " \\\\ \n"
@@ -15,14 +15,14 @@ class LatexConverter(val fpfResults: List<CPF.Iteration>) {
         val tripleLineBreak = " \\\\ \\\\ \\\\ \n%\n"
     }
 
-    fun form() = fpfResults.mapIndexed { i, iteration ->
+    fun form() = cpfResults.mapIndexed { i, iteration ->
         Iteration(
             ProgramLatex(iteration.program),
             RelationsMatrixLatex(iteration.allRelationsMatrices, iteration.program),
-            iteration.fpfCheck.map { CPFCheck(iteration.program, it) },
+            iteration.cpfCheck.map { CPFCheck(iteration.program, it) },
             iteration.isParallel,
             iteration.groupedOperators.map { namer.name(iteration.program, it).toLatex() }.toSet(),
-            fpfResults.resultOfGroupOperators(i)?.let { namer.name(it).toLatex() } ?: ""
+            cpfResults.resultOfGroupOperators(i)?.let { namer.name(it).toLatex() } ?: ""
         )
     }
 
@@ -30,7 +30,7 @@ class LatexConverter(val fpfResults: List<CPF.Iteration>) {
     inner class Iteration(
         val program: ProgramLatex,
         val matrices: RelationsMatrixLatex,
-        val fpfCheck: List<CPFCheck>,
+        val cpfCheck: List<CPFCheck>,
         val parallelIteration: Boolean,
         val operatorsGroup: Set<String>,
         val groupedOperator: String
