@@ -23,14 +23,15 @@ fun Matrix.toLatex(rowHeader: List<String>, colHeader: List<String>) =
         }
         .let {
             """
-            |{${sizeModifier()}$\bbordermatrix{
+            |{${sizeModifier()}{$\bbordermatrix{
             |$it
-            |}$}
+            |}$}}
         """.trimMargin()
         }
 
 fun Matrix.sizeModifier() = when {
-    size >= 30 -> "\\let\\quad\\thinspace\\tiny"
+    size >= 30 -> "\\resizebox{\\linewidth}{!}"
+//    size >= 30 -> "\\let\\quad\\thinspace\\tiny"
     size >= 25 -> "\\let\\quad\\thinspace\\scriptize"
     size >= 15 -> "\\let\\quad\\thinspace\\footnotesize"
     else -> "\\let\\quad\\thinspace\\normalsize"
