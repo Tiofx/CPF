@@ -32,10 +32,14 @@ fun ProgramText.prepareToLatex(): ProgramText {
     return text.split("\n")
 }
 
+val RESOURCES_FOLDER =  Paths
+        .get("")
+        .resolve("src")
+        .resolve("main")
+        .resolve("resources")
 
 val programText
-    get() = Paths
-        .get("")
+    get() = RESOURCES_FOLDER
         .resolve("raw_program.txt")
         .toFile()
         .readLines()
