@@ -1,8 +1,11 @@
 package graph
 
 import algorithm.*
+import guru.nidi.graphviz.engine.Format
+import guru.nidi.graphviz.engine.Graphviz
 import report.OperatorNamer
 import report.toPlainString
+import java.nio.file.Paths
 
 
 val IOperator.inner: List<IOperator>
@@ -20,7 +23,7 @@ fun main() {
     val cpf = CPF(program)
     val result = cpf.form()
     val cpfUnfolder = CPFUnfolding(result)
-    println(cpfUnfolder.toGraph())
+    cpfUnfolder.save()
 }
 
 class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
@@ -41,6 +44,13 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
         }
 
         return iterate()
+    }
+
+    fun save(){
+        Graphviz
+                .fromString(toGraph())
+                .render(Format.PNG)
+                .toFile(Paths.get("").toAbsolutePath().resolve("CPF_unfloding.png").toFile())
     }
 
     fun toGraph(): String {
