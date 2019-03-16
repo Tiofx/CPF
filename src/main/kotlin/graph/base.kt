@@ -49,7 +49,7 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
                 |graph CPFUnfloding {
                 |   layout=osage;
                 |   style="rounded"
-                |   node [shape=circle, fontsize=14, fontname="Times New Roman", margin=".1,.01"]
+                |   node [shape=circle, fontsize=14, fontname="Times New Roman", margin=".1,.01, fixedsize=true"]
                 |
                 |   ${body.replace("\n", "\n\t")}
                 |}

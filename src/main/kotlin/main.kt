@@ -3,10 +3,12 @@ import report.latex.LatexConverter
 import report.latex.TwoAppendixTemplate
 
 fun main() {
+    graph.main()
+    return
     val program = programText
-        .run { prepareToLatex() }
-        .map(::Operator)
-        .let { CashedProgram(it) }
+            .run { prepareToLatex() }
+            .map(::Operator)
+            .let { CashedProgram(it) }
 
 
     val cpf = CPF(program)
