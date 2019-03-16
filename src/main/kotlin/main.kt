@@ -4,7 +4,7 @@ import report.latex.TwoAppendixTemplate
 
 fun main() {
     graph.main()
-    return
+
     val program = programText
             .run { prepareToLatex() }
             .map(::Operator)

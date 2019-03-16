@@ -50,7 +50,7 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
         Graphviz
                 .fromString(toGraph())
                 .render(Format.PNG)
-                .toFile(Paths.get("").toAbsolutePath().resolve("CPF_unfloding.png").toFile())
+                .toFile(RESOURCES_FOLDER.toAbsolutePath().resolve("CPF_unfloding.png").toFile())
     }
 
     fun toGraph(): String {
