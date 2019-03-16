@@ -17,8 +17,7 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation("guru.nidi:graphviz-java:0.8.3")
-    implementation("org.apache.logging.log4j:log4j-api:2.11.2")
-    implementation("org.apache.logging.log4j:log4j-core:2.11.2")
+    implementation("ch.qos.logback:logback-classic:1.2.3")
 }
 
 tasks.withType<KotlinCompile> {
