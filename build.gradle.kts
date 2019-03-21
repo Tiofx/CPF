@@ -46,6 +46,12 @@ tasks {
         }
     }
 
+    val CPFUnflodingGraph by registering(JavaExec::class) {
+        group = "Custom tasks"
+        classpath = sourceSets["main"].runtimeClasspath
+        main = "report.graphviz.BaseKt"
+    }
+
     val makeReport by registering {
         group = "Custom tasks"
         dependsOn(texToPdf)
