@@ -1,6 +1,7 @@
 package graph
 
 import algorithm.*
+import guru.nidi.graphviz.engine.Engine
 import guru.nidi.graphviz.engine.Format
 import guru.nidi.graphviz.engine.Graphviz
 import report.OperatorNamer
@@ -49,6 +50,7 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
     fun save(){
         Graphviz
                 .fromString(toGraph())
+                .engine(Engine.OSAGE)
                 .render(Format.PNG)
                 .toFile(RESOURCES_FOLDER.toAbsolutePath().resolve("CPF_unfloding.png").toFile())
     }
@@ -57,9 +59,10 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
         fun wrapByGraph(body: String) =
             """
                 |graph CPFUnfloding {
-                |   layout=osage;
+                |   layout=osage
                 |   style="rounded"
-                |   node [shape=circle, fontsize=14, fontname="Times New Roman", margin=".1,.01, fixedsize=true"]
+                |        node [margin=".1,.01", skew="1,1",peripheries=1]
+                |   node [shape=circle, fontsize=14, fontname="Times New Roman", margin=".1,.01", fixedsize=true]
                 |
                 |   ${body.replace("\n", "\n\t")}
                 |}
