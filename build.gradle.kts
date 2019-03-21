@@ -21,9 +21,8 @@ dependencies {
 
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
-}
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.kotlinOptions.jvmTarget = "1.8"
 
 tasks {
     val RESOURCES_FOLDER = rootProject.projectDir
@@ -33,7 +32,8 @@ tasks {
 
     val run by existing
 
-    val texToPdf by registering {
+    val teXToPdf by registering {
+        group = "Custom tasks"
         val fileName = "report.tex"
 
         doFirst {
@@ -46,13 +46,30 @@ tasks {
         }
     }
 
-    val makeReport by registering {
-        dependsOn(texToPdf)
+    val makeCPFUnflodingGraph by registering(JavaExec::class) {
+        group = "Custom tasks"
+        classpath = sourceSets["main"].runtimeClasspath
+        main = "report.graphviz.BaseKt"
+    }
+
+    val makeTeXReport by registering(JavaExec::class) {
+        group = "Custom tasks"
+        classpath = sourceSets["main"].runtimeClasspath
+        main = "report.latex.MainKt"
+    }
+
+    val makePdfReport by registering {
+        group = "application"
+
+        dependsOn(makeTeXReport)
+        dependsOn(teXToPdf)
     }
 
     val runAndMakeReport by registering {
-        dependsOn(run)
-        dependsOn(makeReport)
+        group = "application"
+
+        dependsOn(makeCPFUnflodingGraph)
+        dependsOn(makePdfReport)
     }
 
 }
