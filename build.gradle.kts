@@ -58,7 +58,7 @@ tasks {
     }
 
     val runAndMakeReport by registering {
-        group = "Custom tasks"
+        group = "application"
         dependsOn(run)
         dependsOn(makeReport)
     }
