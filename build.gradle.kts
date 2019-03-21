@@ -33,6 +33,7 @@ tasks {
     val run by existing
 
     val texToPdf by registering {
+        group = "Custom tasks"
         val fileName = "report.tex"
 
         doFirst {
@@ -46,10 +47,12 @@ tasks {
     }
 
     val makeReport by registering {
+        group = "Custom tasks"
         dependsOn(texToPdf)
     }
 
     val runAndMakeReport by registering {
+        group = "Custom tasks"
         dependsOn(run)
         dependsOn(makeReport)
     }
