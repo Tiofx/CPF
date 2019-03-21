@@ -3,7 +3,7 @@ import report.latex.LatexConverter
 import report.latex.TwoAppendixTemplate
 
 fun main() {
-    graph.main()
+    report.graph.main()
 
     val program = programText
             .run { prepareToLatex() }

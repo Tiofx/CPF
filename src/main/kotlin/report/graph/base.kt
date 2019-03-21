@@ -1,4 +1,4 @@
-package graph
+package report.graph
 
 import algorithm.*
 import guru.nidi.graphviz.engine.Engine
@@ -6,7 +6,6 @@ import guru.nidi.graphviz.engine.Format
 import guru.nidi.graphviz.engine.Graphviz
 import report.OperatorNamer
 import report.toPlainString
-import java.nio.file.Paths
 
 
 val IOperator.inner: List<IOperator>
