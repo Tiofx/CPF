@@ -32,7 +32,7 @@ tasks {
 
     val run by existing
 
-    val texToPdf by registering {
+    val teXToPdf by registering {
         group = "Custom tasks"
         val fileName = "report.tex"
 
@@ -46,21 +46,21 @@ tasks {
         }
     }
 
-    val CPFUnflodingGraph by registering(JavaExec::class) {
+    val makeCPFUnflodingGraph by registering(JavaExec::class) {
         group = "Custom tasks"
         classpath = sourceSets["main"].runtimeClasspath
         main = "report.graphviz.BaseKt"
     }
 
-    val makeReport by registering {
+    val makeTeXReport by registering {
         group = "Custom tasks"
-        dependsOn(texToPdf)
+        dependsOn(teXToPdf)
     }
 
     val runAndMakeReport by registering {
         group = "application"
         dependsOn(run)
-        dependsOn(makeReport)
+        dependsOn(makeTeXReport)
     }
 
 }
