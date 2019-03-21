@@ -48,13 +48,13 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
 
     fun save(){
         Graphviz
-                .fromString(toGraph())
+                .fromString(toGraphviz())
                 .engine(Engine.OSAGE)
                 .render(Format.PNG)
                 .toFile(RESOURCES_FOLDER.toAbsolutePath().resolve("CPF_unfloding.png").toFile())
     }
 
-    fun toGraph(): String {
+    fun toGraphviz(): String {
         fun wrapByGraph(body: String) =
             """
                 |graph CPFUnfloding {
