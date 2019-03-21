@@ -21,9 +21,8 @@ dependencies {
 
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
-}
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.kotlinOptions.jvmTarget = "1.8"
 
 tasks {
     val RESOURCES_FOLDER = rootProject.projectDir
