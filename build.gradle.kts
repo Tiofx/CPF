@@ -52,15 +52,24 @@ tasks {
         main = "report.graphviz.BaseKt"
     }
 
-    val makeTeXReport by registering {
+    val makeTeXReport by registering(JavaExec::class) {
         group = "Custom tasks"
+        classpath = sourceSets["main"].runtimeClasspath
+        main = "report.latex.MainKt"
+    }
+
+    val makePdfReport by registering {
+        group = "application"
+
+        dependsOn(makeTeXReport)
         dependsOn(teXToPdf)
     }
 
     val runAndMakeReport by registering {
         group = "application"
-        dependsOn(run)
-        dependsOn(makeTeXReport)
+
+        dependsOn(makeCPFUnflodingGraph)
+        dependsOn(makePdfReport)
     }
 
 }
