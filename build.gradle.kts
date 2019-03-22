@@ -46,6 +46,12 @@ tasks {
         }
     }
 
+    val makeCPFIterationChangeGraphs by registering(JavaExec::class) {
+        group = "Custom tasks"
+        classpath = sourceSets["main"].runtimeClasspath
+        main = "report.graphviz.iteration.MainKt"
+    }
+
     val makeCPFUnflodingGraph by registering(JavaExec::class) {
         group = "Custom tasks"
         classpath = sourceSets["main"].runtimeClasspath
@@ -65,9 +71,10 @@ tasks {
         dependsOn(teXToPdf)
     }
 
-    val runAndMakeReport by registering {
+    val runAndMakeFullReport by registering {
         group = "application"
 
+        dependsOn(makeCPFIterationChangeGraphs)
         dependsOn(makeCPFUnflodingGraph)
         dependsOn(makePdfReport)
     }
