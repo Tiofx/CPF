@@ -3,21 +3,23 @@ package report.graphviz.iteration
 fun ReducedProgram.Indexes.toGraph(toOperator: IntRange.() -> List<Node>): String {
     class Graph(val start: List<Node>,
                 val group: List<Node>,
-                val end: List<Node>) : Node {
+                val end: List<Node>) {
 
         private val allNodes get() = start + group + end
         private val groupNode get() = NodeGroup(group)
 
-        override fun toGraphviz(): String = """
+        fun toGraphviz(): String = """
         |digraph {
-        |   ranksep = 0.3;
-        |   node [shape=circle fontsize=14 fontname="Times New Roman"];
+        |   ranksep = 0.35;
+        |   node [shape=circle, fontsize=14, fontname="Times New Roman", margin=".1,.01", fixedsize=true]
         |
+        |   ${allNodes.declare()}
         |   ${allNodes.connect()}
         |   ${groupNode.toGraphviz()}
         |}
     """.trimMargin()
 
+        private fun List<Node>.declare(): String = map(Node::nodeName).reduce { acc, n -> "$acc  $n" }
         private fun List<Node>.connect(): String = map(Node::toGraphviz).reduce { acc, n -> "$acc -> $n" }
     }
 
