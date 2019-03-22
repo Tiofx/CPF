@@ -20,10 +20,12 @@ class ReducedProgram(val limit: Int = 15,
     val remFromEnd get() = remNumber(endMinSize, endMaxSize)
 
     val groupPreferredSize get() = limit - (startMinSize + endMinSize) + remFromStart + remFromEnd
+    val startPrefferedSize get() = (limit - groupSize) / 2 + (limit - groupSize) % 2
+    val endPrefferedSize get() = limit - (startSize + groupSize)
 
     val groupSize get() = min(groupPreferredSize, groupMaxSize)
-    val startSize get() = min((limit - groupSize) / 2 + (limit - groupSize) % 2, group.start)
-    val endSize get() = min(limit - (startSize + groupSize), program.lastIndex - group.endInclusive)
+    val startSize get() = min(startPrefferedSize, group.start)
+    val endSize get() = min(endPrefferedSize, program.lastIndex - group.endInclusive)
 
     val startRange get() = if (startSize > 0) 0..(startSize - 1) else IntRange.EMPTY
     val groupSkipAdditionalSpace get() = if (groupMaxSize - groupSize == 1) 1 else 0
