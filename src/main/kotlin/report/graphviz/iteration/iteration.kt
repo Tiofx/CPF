@@ -1,4 +1,4 @@
-package report.graphviz
+package report.graphviz.iteration
 
 import algorithm.CPF
 import algorithm.RESOURCES_FOLDER
