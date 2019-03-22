@@ -32,7 +32,7 @@ class CPFItreationsGraphSaver(val iterations: List<CPF.Iteration>) {
         return programIndexes.parse().run {
             fun Int.toName() = namer.name(cpfIteration.program, this).toPlainString()
             fun IntRange.toOperator() = map { SingleOperator(it.toName()) }
-
+            
             toGraph(IntRange::toOperator)
         }
     }
