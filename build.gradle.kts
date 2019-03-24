@@ -29,9 +29,8 @@ tasks {
             .resolve("src")
             .resolve("main")
             .resolve("resources")
-
-    val run by existing
-
+    
+    
     val teXToPdf by registering {
         group = "Custom tasks"
         val fileName = "report.tex"
