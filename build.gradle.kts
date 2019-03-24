@@ -40,7 +40,35 @@ tasks {
                 workingDir = RESOURCES_FOLDER.absoluteFile
                 isIgnoreExitValue = true
 
-                commandLine("xelatex", "-interaction=nonstopmode", "--shell-escape", "--file-line-error", fileName)
+                commandLine("xelatex",
+//                        "-output-directory",
+//                        RESOURCES_FOLDER.resolve("assets").resolve("reports"),
+                        "-interaction=nonstopmode",
+                        "--shell-escape",
+                        "--file-line-error",
+                        fileName
+                )
+            }
+        }
+    }
+
+    val cpfIterationsTeXToPdfReport by registering {
+        group = "Custom tasks"
+        val fileName = "iterations.tex"
+
+        doFirst {
+            exec {
+                val outputDirectory = RESOURCES_FOLDER.resolve("assets").resolve("cpf").absolutePath
+                workingDir = RESOURCES_FOLDER.resolve("assets").resolve("cpf").absoluteFile
+                isIgnoreExitValue = true
+
+                commandLine("xelatex",
+                        "-output-directory=$outputDirectory",
+                        "-interaction=nonstopmode",
+                        "--shell-escape",
+                        "--file-line-error",
+                        fileName
+                )
             }
         }
     }
@@ -48,7 +76,7 @@ tasks {
     val makeCPFIterationChangeGraphs by registering(JavaExec::class) {
         group = "Custom tasks"
         classpath = sourceSets["main"].runtimeClasspath
-        main = "report.graphviz.iteration.CpfIterationGraphImagesKt"
+        main = "report.graphviz.iteration.MakeCpfIterationGraphImagesKt"
     }
 
     val makeCPFIterationGraphTeXReport by registering(JavaExec::class) {
@@ -60,7 +88,7 @@ tasks {
     val makeCPFUnflodingGraph by registering(JavaExec::class) {
         group = "Custom tasks"
         classpath = sourceSets["main"].runtimeClasspath
-        main = "report.graphviz.BaseKt"
+        main = "report.graphviz.Cpf_unfolderKt"
     }
 
     val makeTeXReport by registering(JavaExec::class) {

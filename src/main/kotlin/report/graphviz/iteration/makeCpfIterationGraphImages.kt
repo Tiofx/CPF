@@ -14,5 +14,5 @@ fun main() {
     val result = cpf.form()
 
     val saver = CPFItreationsGraphSaver(result)
-    saver.save()
+    saver.saveAll()
 }
