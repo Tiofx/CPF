@@ -24,37 +24,29 @@ dependencies {
 val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions.jvmTarget = "1.8"
 
+fun TaskContainerScope.registerTaskByMainFile(mainPath: String) = registering(JavaExec::class) {
+    group = "Custom tasks"
+    classpath = sourceSets["main"].runtimeClasspath
+    main = mainPath
+}
+
 tasks {
+
+
     val RESOURCES_FOLDER = rootProject.projectDir
             .resolve("src")
             .resolve("main")
             .resolve("resources")
 
+    val ASSETS_FOLDER = RESOURCES_FOLDER.resolve("assets")
 
-    val makeCPFIterationGraphImages by registering(TaskByMainFile::class) {
-        main = "buildtask.report.cpf.iteration.Make_graph_imagesKt"
-    }
 
-    val makeCPFIterationPlainGraph by registering(TaskByMainFile::class) {
-        main = "buildtask.report.cpf.iteration.Make_plain_graphKt"
-    }
-
-    val makeCPFIterationTeXReport by registering(TaskByMainFile::class) {
-        main = "buildtask.report.cpf.iteration.Make_tex_reportKt"
-    }
-
-    val makeCPFUnfoldingImage by registering(TaskByMainFile::class) {
-        main = "buildtask.report.cpf.unfolding.Make_imageKt"
-    }
-
-    val makeCPFUnfoldingPlain by registering(TaskByMainFile::class) {
-        main = "buildtask.report.cpf.unfolding.Make_plainKt"
-    }
-
-    val makeTeXReport by registering(TaskByMainFile::class) {
-        main = "buildtask.report.Make_tex_reportKt"
-    }
-
+    val makeCPFIterationGraphImages by registerTaskByMainFile("buildtask.report.cpf.iteration.Make_graph_imagesKt")
+    val makeCPFIterationPlainGraph by registerTaskByMainFile("buildtask.report.cpf.iteration.Make_plain_graphKt")
+    val makeCPFIterationTeXReport by registerTaskByMainFile("buildtask.report.cpf.iteration.Make_tex_reportKt")
+    val makeCPFUnfoldingImage by registerTaskByMainFile("buildtask.report.cpf.unfolding.Make_imageKt")
+    val makeCPFUnfoldingPlain by registerTaskByMainFile("buildtask.report.cpf.unfolding.Make_plainKt")
+    val makeTeXReport by registerTaskByMainFile("buildtask.report.Make_tex_reportKt")
 
     val makeCPFIterationTeXToPdfReport by registering {
         group = "Custom tasks"
@@ -62,12 +54,14 @@ tasks {
 
         doFirst {
             exec {
-                val outputDirectory = RESOURCES_FOLDER.resolve("assets").resolve("cpf").absolutePath
-                workingDir = RESOURCES_FOLDER.resolve("assets").resolve("cpf").absoluteFile
+                workingDir = ASSETS_FOLDER
+                        .resolve("cpf")
+                        .absoluteFile
+
                 isIgnoreExitValue = true
 
                 commandLine("xelatex",
-                        "-output-directory=$outputDirectory",
+//                        "-output-directory=$outputDirectory",
                         "-interaction=nonstopmode",
                         "--shell-escape",
                         "--file-line-error",
@@ -76,19 +70,19 @@ tasks {
             }
         }
     }
-    
+
     val teXToPdf by registering {
         group = "Custom tasks"
         val fileName = "report.tex"
 
         doFirst {
             exec {
-                workingDir = RESOURCES_FOLDER.absoluteFile
+                workingDir = ASSETS_FOLDER.absoluteFile
                 isIgnoreExitValue = true
 
                 commandLine("xelatex",
 //                        "-output-directory",
-//                        RESOURCES_FOLDER.resolve("assets").resolve("reports"),
+//                        ASSETS_FOLDER.resolve("reports"),
                         "-interaction=nonstopmode",
                         "--shell-escape",
                         "--file-line-error",
@@ -98,6 +92,15 @@ tasks {
         }
     }
 
+    val makeTempPlainResult by registering {
+        group = "application"
+
+        doFirst {
+            fileTree(ASSETS_FOLDER.resolve("plain").absoluteFile).removeAll { true }
+        }
+
+        dependsOn(makeCPFIterationPlainGraph, makeCPFUnfoldingPlain)
+    }
 
 
     val makePdfReport by registering {
@@ -117,9 +120,3 @@ tasks {
 
 }
 
-class TaskByMainFile : JavaExec() {
-    init {
-        group = "Custom tasks"
-        classpath = sourceSets["main"].runtimeClasspath
-    }
-}
