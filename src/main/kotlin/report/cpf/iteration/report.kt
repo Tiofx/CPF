@@ -22,8 +22,10 @@ class IterationsGraphReport(val iterationNumber: Int) : LatexReportTemplate() {
  \geometry{
  a4paper,
  total={170mm,257mm},
- left=20mm,
+ left=25mm,
+ right=10mm,
  top=20mm,
+ bottom=20mm,
  }
 
 \usepackage{amssymb}
