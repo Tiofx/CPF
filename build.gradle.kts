@@ -29,9 +29,8 @@ tasks {
             .resolve("src")
             .resolve("main")
             .resolve("resources")
-
-    val run by existing
-
+    
+    
     val teXToPdf by registering {
         group = "Custom tasks"
         val fileName = "report.tex"
@@ -49,7 +48,13 @@ tasks {
     val makeCPFIterationChangeGraphs by registering(JavaExec::class) {
         group = "Custom tasks"
         classpath = sourceSets["main"].runtimeClasspath
-        main = "report.graphviz.iteration.MainKt"
+        main = "report.graphviz.iteration.CpfIterationGraphImagesKt"
+    }
+
+    val makeCPFIterationGraphTeXReport by registering(JavaExec::class) {
+        group = "Custom tasks"
+        classpath = sourceSets["main"].runtimeClasspath
+        main = "report.graphviz.iteration.MakeTeXReportKt"
     }
 
     val makeCPFUnflodingGraph by registering(JavaExec::class) {

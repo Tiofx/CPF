@@ -23,14 +23,25 @@ fun ReducedProgram.Indexes.toGraph(toOperator: IntRange.() -> List<Node>): Strin
         private fun List<Node>.connect(): String = map(Node::toGraphviz).reduce { acc, n -> "$acc -> $n" }
     }
 
-    val startPart = if (hasSkipBeforeGroup) start.toOperator() + NodeSkip() else start.toOperator()
+    fun IntRange.endExclusive(): IntRange = start until endInclusive
+
+    val startPart =
+            if (hasSkipBeforeGroup)
+                start.endExclusive().toOperator() + NodeSkip()
+            else
+                start.toOperator()
 
     val groupPart =
             if (hasSkipInGroup)
-                groupStart.toOperator() + NodeSkip() + groupEnd.toOperator()
-            else groupStart.toOperator() + groupEnd.toOperator()
+                groupStart.endExclusive().toOperator() + NodeSkip() + groupEnd.toOperator()
+            else
+                groupStart.toOperator() + groupEnd.toOperator()
 
-    val endPart = if (hasSkipBeforeEnd) listOf(NodeSkip()) + end.toOperator() else end.toOperator()
+    val endPart =
+            if (hasSkipBeforeEnd)
+                listOf(NodeSkip()) + end.endExclusive().toOperator()
+            else
+                end.toOperator()
 
     return Graph(startPart, groupPart, endPart).toGraphviz()
 }

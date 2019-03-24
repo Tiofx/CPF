@@ -4,28 +4,27 @@ import algorithm.CPF
 import kotlin.math.min
 
 class ReducedProgram(val limit: Int = 15,
-//                     val groupMinSize: Int = 3,
+                     val groupMinSize: Int = 3,
                      val startMinSize: Int = 2,
                      val endMinSize: Int = 2) {
     lateinit var iteration: CPF.Iteration
 
-    val group get() = iteration.groupedOperators
-    val program get() = iteration.program
+    private val group get() = iteration.groupedOperators
+    private val program get() = iteration.program
 
     val startMaxSize get() = group.start
     val endMaxSize get() = program.lastIndex - group.endInclusive
     val groupMaxSize get() = group.toList().size
 
-    val remFromStart get() = remNumber(startMinSize, startMaxSize)
-    val remFromEnd get() = remNumber(endMinSize, endMaxSize)
+    fun size(): TempSize = TempSize(startMinSize, groupMinSize, endMinSize)
+            .minimaze()
+            .maxGroupSize()
+            .maxStartSize()
+            .maxEndSize()
 
-    val groupPreferredSize get() = limit - (startMinSize + endMinSize) + remFromStart + remFromEnd
-    val startPrefferedSize get() = (limit - groupSize) / 2 + (limit - groupSize) % 2
-    val endPrefferedSize get() = limit - (startSize + groupSize)
-
-    val groupSize get() = min(groupPreferredSize, groupMaxSize)
-    val startSize get() = min(startPrefferedSize, group.start)
-    val endSize get() = min(endPrefferedSize, program.lastIndex - group.endInclusive)
+    val groupSize get() = size().group
+    val startSize get() = size().start
+    val endSize get() = size().end
 
     val startRange get() = if (startSize > 0) 0..(startSize - 1) else IntRange.EMPTY
     val groupSkipAdditionalSpace get() = if (groupMaxSize - groupSize == 1) 1 else 0
@@ -51,5 +50,39 @@ class ReducedProgram(val limit: Int = 15,
         val hasSkipBeforeEnd: Boolean = !end.isEmpty() && groupEnd.endInclusive + 1 != end.start
     }
 
-    private fun remNumber(min: Int, max: Int) = if (max < min) min - max else 0
+    inner class TempSize(val start: Int, val group: Int, val end: Int) {
+        val total get() = start + group + end
+        val rem get() = limit - total
+
+        fun minimaze():TempSize=TempSize(
+                min(startMinSize, startMaxSize),
+                min(groupMinSize, groupMaxSize),
+                min(endMinSize, endMaxSize)
+        )
+
+        fun maxGroupSize(): TempSize =
+                if (groupMaxSize <= group + rem)
+                    copy(group = groupMaxSize)
+                else
+                    copy(group = group + rem)
+
+        fun maxStartSize(): TempSize =
+                if (startMaxSize <= start + rem)
+                    copy(start = startMaxSize)
+                else
+                    copy(start = start + rem)
+
+        fun maxEndSize(): TempSize =
+                if (endMaxSize <= end + rem)
+                    copy(end = endMaxSize)
+                else
+                    copy(end = end + rem)
+
+        fun copy(
+                start: Int = this.start,
+                group: Int = this.group,
+                end: Int = this.end
+        ) = TempSize(start, group, end)
+    }
+
 }
