@@ -21,6 +21,7 @@ class CPFItreationsGraphSaver(val iterations: List<CPF.Iteration>) {
         parse().forEachIndexed { i, it ->
             RESOURCES_FOLDER
                     .resolve("assets")
+                    .resolve("cpf")
                     .resolve("plain")
                     .resolve("iterations")
                     .toAbsolutePath()
@@ -39,6 +40,7 @@ class CPFItreationsGraphSaver(val iterations: List<CPF.Iteration>) {
                     .render(Format.PNG)
                     .toFile(RESOURCES_FOLDER
                             .resolve("assets")
+                            .resolve("cpf")
                             .resolve("iterations")
                             .toAbsolutePath()
                             .resolve("${i + 1}")

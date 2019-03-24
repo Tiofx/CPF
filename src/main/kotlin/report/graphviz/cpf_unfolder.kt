@@ -54,9 +54,10 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
     private fun savePlain(){
         RESOURCES_FOLDER
                 .resolve("assets")
+                .resolve("cpf")
                 .resolve("plain")
+                .resolve("unfolding.txt")
                 .toAbsolutePath()
-                .resolve("CPF_unfolding.txt")
                 .toFile()
                 .apply {
                     createNewFile()
@@ -71,7 +72,8 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
                 .render(Format.PNG)
                 .toFile(RESOURCES_FOLDER
                         .resolve("assets")
-                        .resolve("CPF_unfolding")
+                        .resolve("cpf")
+                        .resolve("unfolding")
                         .toAbsolutePath()
                         .toFile())
     }
