@@ -52,7 +52,7 @@ tasks {
         }
     }
 
-    val cpfIterationsTeXToPdfReport by registering {
+    val makeCPFIterationTeXToPdfReport by registering {
         group = "Custom tasks"
         val fileName = "iterations.tex"
 
@@ -73,7 +73,7 @@ tasks {
         }
     }
 
-    val makeCPFIterationChangeGraphs by registering(JavaExec::class) {
+    val makeCPFIterationGraphImages by registering(JavaExec::class) {
         group = "Custom tasks"
         classpath = sourceSets["main"].runtimeClasspath
         main = "report.graphviz.iteration.MakeCpfIterationGraphImagesKt"
@@ -107,7 +107,7 @@ tasks {
     val runAndMakeFullReport by registering {
         group = "application"
 
-        dependsOn(makeCPFIterationChangeGraphs)
+        dependsOn(makeCPFIterationGraphImages)
         dependsOn(makeCPFUnflodingGraph)
         dependsOn(makePdfReport)
     }
