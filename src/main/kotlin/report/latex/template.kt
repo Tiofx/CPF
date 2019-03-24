@@ -1,6 +1,7 @@
 package report.latex
 
 import algorithm.RESOURCES_FOLDER
+import java.nio.file.Path
 import java.nio.file.Paths
 import kotlin.math.min
 
@@ -215,11 +216,14 @@ abstract class LatexReportTemplate {
         save(report)
     }
 
+    open protected fun Path.configResourcesPath(): Path = resolve("report.tex")
+
     private fun save(result: String) {
-        RESOURCES_FOLDER.resolve("report.tex")
-            .toAbsolutePath().toFile().apply {
-                createNewFile()
-                writeText(result)
-            }
+        RESOURCES_FOLDER
+                .configResourcesPath()
+                .toAbsolutePath().toFile().apply {
+                    createNewFile()
+                    writeText(result)
+                }
     }
 }
