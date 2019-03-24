@@ -1,9 +1,9 @@
 package buildtask.report.cpf
 
 import buildtask.cpf
-import report.graphviz.CPFUnfolding
-import report.graphviz.iteration.CPFItreationsGraphSaver
-import report.graphviz.iteration.IterationsGraphReport
+import report.cpf.CPFUnfolding
+import report.cpf.iteration.CPFItreationsGraphSaver
+import report.cpf.iteration.IterationsGraphReport
 
 val saver get() = CPFItreationsGraphSaver(cpf.form())
 val unfolder get() = CPFUnfolding(cpf.form())

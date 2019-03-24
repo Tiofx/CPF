@@ -1,4 +1,4 @@
-package report.graphviz.iteration
+package report.cpf.iteration
 
 fun ReducedProgram.Indexes.toGraph(toOperator: IntRange.() -> List<Node>): String {
     class Graph(val start: List<Node>,

@@ -1,4 +1,4 @@
-package report.graphviz.iteration
+package report.cpf.iteration
 
 interface Node {
     val nodeName: String

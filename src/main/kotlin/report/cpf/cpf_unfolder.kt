@@ -1,4 +1,4 @@
-package report.graphviz
+package report.cpf
 
 import algorithm.*
 import guru.nidi.graphviz.engine.Engine

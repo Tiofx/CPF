@@ -1,4 +1,4 @@
-package report.graphviz.iteration
+package report.cpf.iteration
 
 import report.latex.LatexReportTemplate
 import java.nio.file.Path

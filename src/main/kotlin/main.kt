@@ -1,4 +1,4 @@
 fun main() {
-    report.graphviz.main()
+    report.cpf.main()
     report.latex.main()
 }
