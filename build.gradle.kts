@@ -47,6 +47,7 @@ tasks {
     val makeCPFUnfoldingImage by registerTaskByMainFile("buildtask.report.cpf.unfolding.Make_imageKt")
     val makeCPFUnfoldingPlain by registerTaskByMainFile("buildtask.report.cpf.unfolding.Make_plainKt")
     val makeCPFUnfoldingTeXReport by registerTaskByMainFile("buildtask.report.cpf.unfolding.Make_tex_reportKt")
+    val makeCPFTeXReport by registerTaskByMainFile("buildtask.report.cpf.Make_tex_reportKt")
     val makeTeXReport by registerTaskByMainFile("buildtask.report.Make_tex_reportKt")
 
     val makeCPFIterationTeXToPdfReport by registering {
@@ -62,7 +63,6 @@ tasks {
                 isIgnoreExitValue = true
 
                 commandLine("xelatex",
-//                        "-output-directory=$outputDirectory",
                         "-interaction=nonstopmode",
                         "--shell-escape",
                         "--file-line-error",
@@ -85,7 +85,28 @@ tasks {
                 isIgnoreExitValue = true
 
                 commandLine("xelatex",
-//                        "-output-directory=$outputDirectory",
+                        "-interaction=nonstopmode",
+                        "--shell-escape",
+                        "--file-line-error",
+                        fileName
+                )
+            }
+        }
+    }
+
+    val makeCPFTeXToPdfReport by registering {
+        group = "Custom tasks"
+        val fileName = "report.tex"
+
+        doFirst {
+            exec {
+                workingDir = ASSETS_FOLDER
+                        .resolve("cpf")
+                        .absoluteFile
+
+                isIgnoreExitValue = true
+
+                commandLine("xelatex",
                         "-interaction=nonstopmode",
                         "--shell-escape",
                         "--file-line-error",
