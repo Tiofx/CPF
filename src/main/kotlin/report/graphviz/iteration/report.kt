@@ -74,6 +74,6 @@ class IterationsGraphReport(val iterationNumber: Int) : LatexReportTemplate() {
 
     override fun Path.configResourcesPath() =
             resolve("assets")
-                    .resolve("iterations")
-                    .resolve("report.tex")
+                    .resolve("tex")
+                    .resolve("cpf_iterations.tex")
 }

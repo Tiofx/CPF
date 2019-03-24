@@ -41,6 +41,24 @@ tasks {
                 isIgnoreExitValue = true
 
                 commandLine("xelatex", "-interaction=nonstopmode", "--shell-escape", "--file-line-error", fileName)
+
+    val cpfIterationsTeXToPdfReport by registering {
+        group = "Custom tasks"
+        val fileName = "cpf_iterations.tex"
+
+        doFirst {
+            exec {
+                val outputDirectory = RESOURCES_FOLDER.resolve("assets").resolve("pdf").absolutePath
+                workingDir = RESOURCES_FOLDER.resolve("assets").resolve("tex").absoluteFile
+                isIgnoreExitValue = true
+
+                commandLine("xelatex",
+                        "-output-directory=$outputDirectory",
+                        "-interaction=nonstopmode",
+                        "--shell-escape",
+                        "--file-line-error",
+                        fileName
+                )
             }
         }
     }
