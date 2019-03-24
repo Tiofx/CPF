@@ -1,4 +1,4 @@
-package report.graphviz.iteration
+package report.cpf.iteration
 
 import algorithm.CPF
 import algorithm.RESOURCES_FOLDER
@@ -17,7 +17,7 @@ class CPFItreationsGraphSaver(val iterations: List<CPF.Iteration>) {
         saveAsImage()
     }
 
-    private fun savePlain() {
+    fun savePlain() {
         parse().forEachIndexed { i, it ->
             RESOURCES_FOLDER
                     .resolve("assets")
@@ -34,7 +34,7 @@ class CPFItreationsGraphSaver(val iterations: List<CPF.Iteration>) {
         }
     }
 
-    private fun saveAsImage() {
+    fun saveAsImage() {
         parse().forEachIndexed { i, it ->
             Graphviz.fromString(it)
                     .render(Format.PNG)

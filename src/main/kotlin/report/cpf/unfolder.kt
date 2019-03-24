@@ -1,4 +1,4 @@
-package report.graphviz
+package report.cpf
 
 import algorithm.*
 import guru.nidi.graphviz.engine.Engine
@@ -13,18 +13,6 @@ val IOperator.inner: List<IOperator>
 
 val IOperator.isBaseOperator get() = inner.isEmpty()
 
-fun main() {
-    val program = programText
-        .run { prepareToLatex() }
-        .map(::Operator)
-        .let { CashedProgram(it) }
-
-
-    val cpf = CPF(program)
-    val result = cpf.form()
-    val cpfUnfolder = CPFUnfolding(result)
-    cpfUnfolder.saveAll()
-}
 
 class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
     private val cpfResult = cpfSteps.finalResul()
@@ -51,7 +39,7 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
         saveAsImage()
     }
 
-    private fun savePlain(){
+    fun savePlain(){
         RESOURCES_FOLDER
                 .resolve("assets")
                 .resolve("cpf")
@@ -65,7 +53,7 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
                 }
     }
 
-    private fun saveAsImage(){
+    fun saveAsImage(){
         Graphviz
                 .fromString(toGraphviz())
                 .engine(Engine.OSAGE)

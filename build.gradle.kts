@@ -24,25 +24,65 @@ dependencies {
 val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions.jvmTarget = "1.8"
 
+fun TaskContainerScope.registerTaskByMainFile(mainPath: String) = registering(JavaExec::class) {
+    group = "Custom tasks"
+    classpath = sourceSets["main"].runtimeClasspath
+    main = mainPath
+}
+
 tasks {
+
+
     val RESOURCES_FOLDER = rootProject.projectDir
             .resolve("src")
             .resolve("main")
             .resolve("resources")
-    
-    
+
+    val ASSETS_FOLDER = RESOURCES_FOLDER.resolve("assets")
+
+
+    val makeCPFIterationGraphImages by registerTaskByMainFile("buildtask.report.cpf.iteration.Make_graph_imagesKt")
+    val makeCPFIterationPlainGraph by registerTaskByMainFile("buildtask.report.cpf.iteration.Make_plain_graphKt")
+    val makeCPFIterationTeXReport by registerTaskByMainFile("buildtask.report.cpf.iteration.Make_tex_reportKt")
+    val makeCPFUnfoldingImage by registerTaskByMainFile("buildtask.report.cpf.unfolding.Make_imageKt")
+    val makeCPFUnfoldingPlain by registerTaskByMainFile("buildtask.report.cpf.unfolding.Make_plainKt")
+    val makeTeXReport by registerTaskByMainFile("buildtask.report.Make_tex_reportKt")
+
+    val makeCPFIterationTeXToPdfReport by registering {
+        group = "Custom tasks"
+        val fileName = "iterations.tex"
+
+        doFirst {
+            exec {
+                workingDir = ASSETS_FOLDER
+                        .resolve("cpf")
+                        .absoluteFile
+
+                isIgnoreExitValue = true
+
+                commandLine("xelatex",
+//                        "-output-directory=$outputDirectory",
+                        "-interaction=nonstopmode",
+                        "--shell-escape",
+                        "--file-line-error",
+                        fileName
+                )
+            }
+        }
+    }
+
     val teXToPdf by registering {
         group = "Custom tasks"
         val fileName = "report.tex"
 
         doFirst {
             exec {
-                workingDir = RESOURCES_FOLDER.absoluteFile
+                workingDir = ASSETS_FOLDER.absoluteFile
                 isIgnoreExitValue = true
 
                 commandLine("xelatex",
 //                        "-output-directory",
-//                        RESOURCES_FOLDER.resolve("assets").resolve("reports"),
+//                        ASSETS_FOLDER.resolve("reports"),
                         "-interaction=nonstopmode",
                         "--shell-escape",
                         "--file-line-error",
@@ -52,50 +92,21 @@ tasks {
         }
     }
 
-    val cpfIterationsTeXToPdfReport by registering {
-        group = "Custom tasks"
-        val fileName = "iterations.tex"
 
+    val clearPlainDirectories by registering {
         doFirst {
-            exec {
-                val outputDirectory = RESOURCES_FOLDER.resolve("assets").resolve("cpf").absolutePath
-                workingDir = RESOURCES_FOLDER.resolve("assets").resolve("cpf").absoluteFile
-                isIgnoreExitValue = true
-
-                commandLine("xelatex",
-                        "-output-directory=$outputDirectory",
-                        "-interaction=nonstopmode",
-                        "--shell-escape",
-                        "--file-line-error",
-                        fileName
-                )
-            }
+            delete(fileTree(ASSETS_FOLDER.resolve("cpf").resolve("plain").absoluteFile))
         }
     }
+    
+    val makeTempPlainResult by registering {
+        group = "application"
 
-    val makeCPFIterationChangeGraphs by registering(JavaExec::class) {
-        group = "Custom tasks"
-        classpath = sourceSets["main"].runtimeClasspath
-        main = "report.graphviz.iteration.MakeCpfIterationGraphImagesKt"
+        dependsOn(clearPlainDirectories,
+                makeCPFIterationPlainGraph,
+                makeCPFUnfoldingPlain)
     }
 
-    val makeCPFIterationGraphTeXReport by registering(JavaExec::class) {
-        group = "Custom tasks"
-        classpath = sourceSets["main"].runtimeClasspath
-        main = "report.graphviz.iteration.MakeTeXReportKt"
-    }
-
-    val makeCPFUnflodingGraph by registering(JavaExec::class) {
-        group = "Custom tasks"
-        classpath = sourceSets["main"].runtimeClasspath
-        main = "report.graphviz.Cpf_unfolderKt"
-    }
-
-    val makeTeXReport by registering(JavaExec::class) {
-        group = "Custom tasks"
-        classpath = sourceSets["main"].runtimeClasspath
-        main = "report.latex.MainKt"
-    }
 
     val makePdfReport by registering {
         group = "application"
@@ -107,9 +118,10 @@ tasks {
     val runAndMakeFullReport by registering {
         group = "application"
 
-        dependsOn(makeCPFIterationChangeGraphs)
-        dependsOn(makeCPFUnflodingGraph)
+        dependsOn(makeCPFIterationGraphImages)
+        dependsOn(makeCPFUnfoldingImage)
         dependsOn(makePdfReport)
     }
 
 }
+
