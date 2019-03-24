@@ -157,7 +157,17 @@ class FullLatexGenerator(content: List<LatexConverter.Iteration>) : LatexReportT
 
 
 abstract class LatexReportTemplate {
-    val report by lazy {
+    protected val report by lazy {
+        """
+$preamble
+
+\begin{document}
+    $documentBody
+\end{document}
+            """.trimIndent()
+    }
+
+    protected open val preamble by lazy{
         """
 \documentclass[a4paper,14pt]{article}
 \usepackage{geometry}
@@ -203,11 +213,7 @@ abstract class LatexReportTemplate {
     \vcenter{\kern-\ht\@ne\unvbox\z@\kern-\baselineskip}\,\right]${'$'}}%
   \null\;\vbox{\kern\ht\@ne\box\tw@}\endgroup}
 \makeatother
-
-\begin{document}
-    $documentBody
-\end{document}
-            """.trimIndent()
+        """.trimIndent()
     }
 
     abstract val documentBody: String
