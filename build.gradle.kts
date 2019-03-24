@@ -92,14 +92,20 @@ tasks {
         }
     }
 
+
+    val clearPlainDirectories by registering {
+        doFirst {
+            delete(fileTree(ASSETS_FOLDER.resolve("cpf").resolve("plain").absoluteFile))
+        }
+    }
+    
     val makeTempPlainResult by registering {
         group = "application"
 
-        doFirst {
-            fileTree(ASSETS_FOLDER.resolve("plain").absoluteFile).removeAll { true }
-        }
 
-        dependsOn(makeCPFIterationPlainGraph, makeCPFUnfoldingPlain)
+        dependsOn(clearPlainDirectories,
+                makeCPFIterationPlainGraph,
+                makeCPFUnfoldingPlain)
     }
 
 
