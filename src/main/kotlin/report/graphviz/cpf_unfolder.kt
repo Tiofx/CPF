@@ -51,7 +51,7 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
                 .fromString(toGraphviz())
                 .engine(Engine.OSAGE)
                 .render(Format.PNG)
-                .toFile(RESOURCES_FOLDER.toAbsolutePath().resolve("CPF_unfloding.png").toFile())
+                .toFile(RESOURCES_FOLDER.toAbsolutePath().resolve("CPF_unfolding.png").toFile())
     }
 
     fun toGraphviz(): String {
