@@ -23,7 +23,7 @@ fun main() {
     val cpf = CPF(program)
     val result = cpf.form()
     val cpfUnfolder = CPFUnfolding(result)
-    cpfUnfolder.save()
+    cpfUnfolder.saveAll()
 }
 
 class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
@@ -46,13 +46,36 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
         return iterate()
     }
 
-    fun save(){
+    fun saveAll(){
+        savePlain()
+        saveAsImage()
+    }
+
+    private fun savePlain(){
+        RESOURCES_FOLDER
+                .resolve("assets")
+                .resolve("plain")
+                .toAbsolutePath()
+                .resolve("CPF_unfolding.txt")
+                .toFile()
+                .apply {
+                    createNewFile()
+                    writeText(toGraphviz())
+                }
+    }
+
+    private fun saveAsImage(){
         Graphviz
                 .fromString(toGraphviz())
                 .engine(Engine.OSAGE)
                 .render(Format.PNG)
-                .toFile(RESOURCES_FOLDER.toAbsolutePath().resolve("CPF_unfolding.png").toFile())
+                .toFile(RESOURCES_FOLDER
+                        .resolve("assets")
+                        .resolve("CPF_unfolding")
+                        .toAbsolutePath()
+                        .toFile())
     }
+
 
     fun toGraphviz(): String {
         fun wrapByGraph(body: String) =

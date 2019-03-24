@@ -72,5 +72,8 @@ class IterationsGraphReport(val iterationNumber: Int) : LatexReportTemplate() {
     protected fun includeGraphics(fileName: String) =
             "\\includegraphics[width=$WIDTH, height=\\textheight,keepaspectratio]{$fileName} "
 
-    override fun Path.configResourcesPath() = resolve("iterations").resolve("report.tex")
+    override fun Path.configResourcesPath() =
+            resolve("assets")
+                    .resolve("iterations")
+                    .resolve("report.tex")
 }

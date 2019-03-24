@@ -12,17 +12,40 @@ class CPFItreationsGraphSaver(val iterations: List<CPF.Iteration>) {
     private val programIndexes = ReducedProgram()
     private val namer = OperatorNamer(iterations)
 
-    fun save() {
+    fun saveAll() {
+        savePlain()
+        saveAsImage()
+    }
+
+    private fun savePlain() {
+        parse().forEachIndexed { i, it ->
+            RESOURCES_FOLDER
+                    .resolve("assets")
+                    .resolve("plain")
+                    .resolve("iterations")
+                    .toAbsolutePath()
+                    .resolve("${i + 1}.txt")
+                    .toFile()
+                    .apply {
+                        createNewFile()
+                        writeText(it)
+                    }
+        }
+    }
+
+    private fun saveAsImage() {
         parse().forEachIndexed { i, it ->
             Graphviz.fromString(it)
                     .render(Format.PNG)
                     .toFile(RESOURCES_FOLDER
+                            .resolve("assets")
                             .resolve("iterations")
                             .toAbsolutePath()
-                            .resolve("${i + 1}.png")
+                            .resolve("${i + 1}")
                             .toFile())
         }
     }
+
 
     private fun parse() = iterations.map { parse(it) }
 
@@ -32,7 +55,7 @@ class CPFItreationsGraphSaver(val iterations: List<CPF.Iteration>) {
         return programIndexes.parse().run {
             fun Int.toName() = namer.name(cpfIteration.program, this).toPlainString()
             fun IntRange.toOperator() = map { SingleOperator(it.toName()) }
-            
+
             toGraph(IntRange::toOperator)
         }
     }
