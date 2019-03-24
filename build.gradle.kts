@@ -49,7 +49,7 @@ tasks {
     val makeCPFIterationChangeGraphs by registering(JavaExec::class) {
         group = "Custom tasks"
         classpath = sourceSets["main"].runtimeClasspath
-        main = "report.graphviz.iteration.MainKt"
+        main = "report.graphviz.iteration.cpfIterationGraphImages"
     }
 
     val makeCPFUnflodingGraph by registering(JavaExec::class) {
