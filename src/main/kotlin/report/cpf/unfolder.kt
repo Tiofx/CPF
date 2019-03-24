@@ -103,7 +103,10 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
 
 }
 
-class CPFUnfoldingTemplate() : LatexReportTemplate() {
+class CPFUnfoldingTemplate : LatexReportTemplate() {
+    override val preamble: String
+        get() = super.preamble + "\n\\pagenumbering{gobble}"
+
     override val documentBody: String
         get() = """
 \begin{figure}[H]

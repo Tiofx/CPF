@@ -61,6 +61,7 @@ class IterationsGraphReport(val iterationNumber: Int) : LatexReportTemplate() {
     \usepackage[dvips]{graphicx}
 \fi
 
+\pagenumbering{gobble}
             """.trimIndent()
 
     override val documentBody: String
