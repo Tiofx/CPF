@@ -79,16 +79,28 @@ tasks {
         main = "buildtask.report.cpf.iteration.Make_graph_imagesKt"
     }
 
-    val makeCPFIterationGraphTeXReport by registering(JavaExec::class) {
+    val makeCPFIterationPlainGraph by registering(JavaExec::class) {
+        group = "Custom tasks"
+        classpath = sourceSets["main"].runtimeClasspath
+        main = "buildtask.report.cpf.iteration.Make_plain_graphKt"
+    }
+
+    val makeCPFIterationTeXReport by registering(JavaExec::class) {
         group = "Custom tasks"
         classpath = sourceSets["main"].runtimeClasspath
         main = "buildtask.report.cpf.iteration.Make_tex_reportKt"
     }
 
-    val makeCPFUnflodingGraph by registering(JavaExec::class) {
+    val makeCPFUnflodingImage by registering(JavaExec::class) {
         group = "Custom tasks"
         classpath = sourceSets["main"].runtimeClasspath
-        main = "buildtask.report.cpf.unfolder.Make_imageKt"
+        main = "buildtask.report.cpf.unfolding.Make_imageKt"
+    }
+
+    val makeCPFUnflodingPlain by registering(JavaExec::class) {
+        group = "Custom tasks"
+        classpath = sourceSets["main"].runtimeClasspath
+        main = "buildtask.report.cpf.unfolding.Make_plainKt"
     }
 
     val makeTeXReport by registering(JavaExec::class) {
