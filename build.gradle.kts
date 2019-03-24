@@ -31,48 +31,6 @@ tasks {
             .resolve("resources")
 
 
-    val teXToPdf by registering {
-        group = "Custom tasks"
-        val fileName = "report.tex"
-
-        doFirst {
-            exec {
-                workingDir = RESOURCES_FOLDER.absoluteFile
-                isIgnoreExitValue = true
-
-                commandLine("xelatex",
-//                        "-output-directory",
-//                        RESOURCES_FOLDER.resolve("assets").resolve("reports"),
-                        "-interaction=nonstopmode",
-                        "--shell-escape",
-                        "--file-line-error",
-                        fileName
-                )
-            }
-        }
-    }
-
-    val makeCPFIterationTeXToPdfReport by registering {
-        group = "Custom tasks"
-        val fileName = "iterations.tex"
-
-        doFirst {
-            exec {
-                val outputDirectory = RESOURCES_FOLDER.resolve("assets").resolve("cpf").absolutePath
-                workingDir = RESOURCES_FOLDER.resolve("assets").resolve("cpf").absoluteFile
-                isIgnoreExitValue = true
-
-                commandLine("xelatex",
-                        "-output-directory=$outputDirectory",
-                        "-interaction=nonstopmode",
-                        "--shell-escape",
-                        "--file-line-error",
-                        fileName
-                )
-            }
-        }
-    }
-
     val makeCPFIterationGraphImages by registering(TaskByMainFile::class) {
         main = "buildtask.report.cpf.iteration.Make_graph_imagesKt"
     }
@@ -96,6 +54,51 @@ tasks {
     val makeTeXReport by registering(TaskByMainFile::class) {
         main = "buildtask.report.Make_tex_reportKt"
     }
+
+
+    val makeCPFIterationTeXToPdfReport by registering {
+        group = "Custom tasks"
+        val fileName = "iterations.tex"
+
+        doFirst {
+            exec {
+                val outputDirectory = RESOURCES_FOLDER.resolve("assets").resolve("cpf").absolutePath
+                workingDir = RESOURCES_FOLDER.resolve("assets").resolve("cpf").absoluteFile
+                isIgnoreExitValue = true
+
+                commandLine("xelatex",
+                        "-output-directory=$outputDirectory",
+                        "-interaction=nonstopmode",
+                        "--shell-escape",
+                        "--file-line-error",
+                        fileName
+                )
+            }
+        }
+    }
+    
+    val teXToPdf by registering {
+        group = "Custom tasks"
+        val fileName = "report.tex"
+
+        doFirst {
+            exec {
+                workingDir = RESOURCES_FOLDER.absoluteFile
+                isIgnoreExitValue = true
+
+                commandLine("xelatex",
+//                        "-output-directory",
+//                        RESOURCES_FOLDER.resolve("assets").resolve("reports"),
+                        "-interaction=nonstopmode",
+                        "--shell-escape",
+                        "--file-line-error",
+                        fileName
+                )
+            }
+        }
+    }
+
+
 
     val makePdfReport by registering {
         group = "application"
