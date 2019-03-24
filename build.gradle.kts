@@ -46,11 +46,35 @@ tasks {
     val makeCPFIterationTeXReport by registerTaskByMainFile("buildtask.report.cpf.iteration.Make_tex_reportKt")
     val makeCPFUnfoldingImage by registerTaskByMainFile("buildtask.report.cpf.unfolding.Make_imageKt")
     val makeCPFUnfoldingPlain by registerTaskByMainFile("buildtask.report.cpf.unfolding.Make_plainKt")
+    val makeCPFUnfoldingTeXReport by registerTaskByMainFile("buildtask.report.cpf.unfolding.Make_tex_reportKt")
     val makeTeXReport by registerTaskByMainFile("buildtask.report.Make_tex_reportKt")
 
     val makeCPFIterationTeXToPdfReport by registering {
         group = "Custom tasks"
         val fileName = "iterations.tex"
+
+        doFirst {
+            exec {
+                workingDir = ASSETS_FOLDER
+                        .resolve("cpf")
+                        .absoluteFile
+
+                isIgnoreExitValue = true
+
+                commandLine("xelatex",
+//                        "-output-directory=$outputDirectory",
+                        "-interaction=nonstopmode",
+                        "--shell-escape",
+                        "--file-line-error",
+                        fileName
+                )
+            }
+        }
+    }
+
+    val makeCPFUnfoldingTeXToPdfReport by registering {
+        group = "Custom tasks"
+        val fileName = "unfolding.tex"
 
         doFirst {
             exec {
