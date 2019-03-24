@@ -5,7 +5,9 @@ import guru.nidi.graphviz.engine.Engine
 import guru.nidi.graphviz.engine.Format
 import guru.nidi.graphviz.engine.Graphviz
 import report.OperatorNamer
+import report.latex.LatexReportTemplate
 import report.toPlainString
+import java.nio.file.Path
 
 
 val IOperator.inner: List<IOperator>
@@ -23,7 +25,7 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
         fun iterate(depth: Int = 0, operator: IOperator = cpfResult) {
             println("$depth: ${operator.toName()}")
             if (!operator.isBaseOperator) println(
-                "${operator.toName()} = ${operator.inner.map { it.toName() }}"
+                    "${operator.toName()} = ${operator.inner.map { it.toName() }}"
             )
 
             operator.inner.forEach {
@@ -34,12 +36,12 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
         return iterate()
     }
 
-    fun saveAll(){
+    fun saveAll() {
         savePlain()
         saveAsImage()
     }
 
-    fun savePlain(){
+    fun savePlain() {
         RESOURCES_FOLDER
                 .resolve("assets")
                 .resolve("cpf")
@@ -53,7 +55,7 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
                 }
     }
 
-    fun saveAsImage(){
+    fun saveAsImage() {
         Graphviz
                 .fromString(toGraphviz())
                 .engine(Engine.OSAGE)
@@ -69,7 +71,7 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
 
     fun toGraphviz(): String {
         fun wrapByGraph(body: String) =
-            """
+                """
                 |graph CPFUnfloding {
                 |   layout=osage
                 |   style="rounded"
@@ -80,7 +82,7 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
             """.trimMargin()
 
         fun IOperator.wrapBySubgraph(body: String) =
-            """
+                """
                 |subgraph "cluster_${toName()}" {
                 |   label = "${toName()}"
                 |
@@ -89,14 +91,29 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
             """.trimMargin()
 
         fun iterate(operator: IOperator = cpfResult): String =
-            if (operator.isBaseOperator)
-                operator.toName()
-            else
-                operator.inner
-                    .joinToString("\n") { iterate(it) }
-                    .let { operator.wrapBySubgraph(it) }
+                if (operator.isBaseOperator)
+                    operator.toName()
+                else
+                    operator.inner
+                            .joinToString("\n") { iterate(it) }
+                            .let { operator.wrapBySubgraph(it) }
 
         return wrapByGraph(iterate())
     }
 
+}
+
+class CPFUnfoldingTemplate : LatexReportTemplate() {
+    override val preamble: String
+        get() = super.preamble + "\n\\pagenumbering{gobble}"
+
+    override val documentBody: String
+        get() = """
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{unfolding.png}
+\end{figure}
+        """.trimIndent()
+
+    override fun Path.configResourcesPath() = resolve("assets").resolve("cpf").resolve("unfolding.tex")
 }
