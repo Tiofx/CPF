@@ -1,5 +1,7 @@
 package buildtask.report.cpf.unfolder
 
+import buildtask.report.cpf.unfolder
+
 fun main() {
-    buildtask.report.cpf.unfolder.saveAsImage()
+    unfolder.saveAsImage()
 }
