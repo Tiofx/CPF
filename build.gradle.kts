@@ -29,8 +29,8 @@ tasks {
             .resolve("src")
             .resolve("main")
             .resolve("resources")
-    
-    
+
+
     val teXToPdf by registering {
         group = "Custom tasks"
         val fileName = "report.tex"
@@ -73,39 +73,27 @@ tasks {
         }
     }
 
-    val makeCPFIterationGraphImages by registering(JavaExec::class) {
-        group = "Custom tasks"
-        classpath = sourceSets["main"].runtimeClasspath
+    val makeCPFIterationGraphImages by registering(TaskByMainFile::class) {
         main = "buildtask.report.cpf.iteration.Make_graph_imagesKt"
     }
 
-    val makeCPFIterationPlainGraph by registering(JavaExec::class) {
-        group = "Custom tasks"
-        classpath = sourceSets["main"].runtimeClasspath
+    val makeCPFIterationPlainGraph by registering(TaskByMainFile::class) {
         main = "buildtask.report.cpf.iteration.Make_plain_graphKt"
     }
 
-    val makeCPFIterationTeXReport by registering(JavaExec::class) {
-        group = "Custom tasks"
-        classpath = sourceSets["main"].runtimeClasspath
+    val makeCPFIterationTeXReport by registering(TaskByMainFile::class) {
         main = "buildtask.report.cpf.iteration.Make_tex_reportKt"
     }
 
-    val makeCPFUnflodingImage by registering(JavaExec::class) {
-        group = "Custom tasks"
-        classpath = sourceSets["main"].runtimeClasspath
+    val makeCPFUnfoldingImage by registering(TaskByMainFile::class) {
         main = "buildtask.report.cpf.unfolding.Make_imageKt"
     }
 
-    val makeCPFUnflodingPlain by registering(JavaExec::class) {
-        group = "Custom tasks"
-        classpath = sourceSets["main"].runtimeClasspath
+    val makeCPFUnfoldingPlain by registering(TaskByMainFile::class) {
         main = "buildtask.report.cpf.unfolding.Make_plainKt"
     }
 
-    val makeTeXReport by registering(JavaExec::class) {
-        group = "Custom tasks"
-        classpath = sourceSets["main"].runtimeClasspath
+    val makeTeXReport by registering(TaskByMainFile::class) {
         main = "buildtask.report.Make_tex_reportKt"
     }
 
@@ -120,8 +108,15 @@ tasks {
         group = "application"
 
         dependsOn(makeCPFIterationGraphImages)
-        dependsOn(makeCPFUnflodingGraph)
+        dependsOn(makeCPFUnfoldingImage)
         dependsOn(makePdfReport)
     }
 
+}
+
+class TaskByMainFile : JavaExec() {
+    init {
+        group = "Custom tasks"
+        classpath = sourceSets["main"].runtimeClasspath
+    }
 }
