@@ -1,0 +1,13 @@
+digraph {
+   ranksep = 0.35;
+   node [shape=circle, fontsize=14, fontname="Times New Roman", margin=".1,.01", fixedsize=true]
+
+   "||y1"  "||y2"  "S6"  "S7"  "S8"  "1952779858"[label="...", color=invis]  "S31"  "S32"  "S33"  "S34"  "S35"  "S36"  "S37"  "S38"  "S39"
+   "||y1" -> "||y2" -> "S6" -> "S7" -> "S8" -> "1952779858" -> "S31" -> "S32" -> "S33" -> "S34" -> "S35" -> "S36" -> "S37" -> "S38" -> "S39"
+   subgraph cluster_group {
+    penwidth = 2
+    margin = 10
+
+   "S6" "S7" "S8"
+}
+}
