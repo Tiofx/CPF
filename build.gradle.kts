@@ -102,7 +102,6 @@ tasks {
     val makeTempPlainResult by registering {
         group = "application"
 
-
         dependsOn(clearPlainDirectories,
                 makeCPFIterationPlainGraph,
                 makeCPFUnfoldingPlain)
