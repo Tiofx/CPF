@@ -2,8 +2,8 @@ digraph {
    ranksep = 0.35;
    node [shape=circle, fontsize=14, fontname="Times New Roman", margin=".1,.01", fixedsize=true]
 
-   "||y1"  "||y2"  "||y3"  "||y4"  "S12"  "||y5"  "||y6"  "S19"  "||y7"  "||y8"  "S25"  "S26"  "S27"  "57748372"[label="...", color=invis]  "S39"
-   "||y1" -> "||y2" -> "||y3" -> "||y4" -> "S12" -> "||y5" -> "||y6" -> "S19" -> "||y7" -> "||y8" -> "S25" -> "S26" -> "S27" -> "57748372" -> "S39"
+   "||y1"  "||y2"  "||y3"  "||y4"  "S12"  "||y5"  "||y6"  "S19"  "||y7"  "||y8"  "S25"  "S26"  "S27"  "54495403"[label="...", color=invis]  "S39"
+   "||y1" -> "||y2" -> "||y3" -> "||y4" -> "S12" -> "||y5" -> "||y6" -> "S19" -> "||y7" -> "||y8" -> "S25" -> "S26" -> "S27" -> "54495403" -> "S39"
    subgraph cluster_group {
     penwidth = 2
     margin = 10
