@@ -24,14 +24,25 @@ dependencies {
 val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions.jvmTarget = "1.8"
 
-fun TaskContainerScope.registerTaskByMainFile(mainPath: String) = registering(JavaExec::class) {
-    group = "Custom tasks"
-    classpath = sourceSets["main"].runtimeClasspath
-    main = mainPath
-}
 
 tasks {
+    fun xelatexTask(name: String, workingDir: File, fileName: String) = register(name, DefaultTask::class) {
+        group = "Custom tasks"
 
+        doFirst {
+            exec {
+                this.workingDir = workingDir
+                isIgnoreExitValue = true
+
+                commandLine("xelatex",
+                        "-interaction=nonstopmode",
+                        "--shell-escape",
+                        "--file-line-error",
+                        fileName
+                )
+            }
+        }
+    }
 
     val RESOURCES_FOLDER = rootProject.projectDir
             .resolve("src")
@@ -47,74 +58,43 @@ tasks {
     val makeCPFUnfoldingImage by registerTaskByMainFile("buildtask.report.cpf.unfolding.Make_imageKt")
     val makeCPFUnfoldingPlain by registerTaskByMainFile("buildtask.report.cpf.unfolding.Make_plainKt")
     val makeCPFUnfoldingTeXReport by registerTaskByMainFile("buildtask.report.cpf.unfolding.Make_tex_reportKt")
+    val makeCPFTeXReport by registerTaskByMainFile("buildtask.report.cpf.Make_tex_reportKt")
     val makeTeXReport by registerTaskByMainFile("buildtask.report.Make_tex_reportKt")
 
-    val makeCPFIterationTeXToPdfReport by registering {
-        group = "Custom tasks"
-        val fileName = "iterations.tex"
 
-        doFirst {
-            exec {
-                workingDir = ASSETS_FOLDER
-                        .resolve("cpf")
-                        .absoluteFile
+    val makeCPFIterationTeXToPdfReport = xelatexTask(
+            "makeCPFIterationTeXToPdfReport",
+            ASSETS_FOLDER.resolve("cpf").absoluteFile,
+            "iterations.tex")
 
-                isIgnoreExitValue = true
+    val makeCPFUnfoldingTeXToPdfReport = xelatexTask(
+            "makeCPFUnfoldingTeXToPdfReport",
+            ASSETS_FOLDER.resolve("cpf").absoluteFile,
+            "unfolding.tex")
 
-                commandLine("xelatex",
-//                        "-output-directory=$outputDirectory",
-                        "-interaction=nonstopmode",
-                        "--shell-escape",
-                        "--file-line-error",
-                        fileName
-                )
-            }
-        }
+    val makeCPFTeXToPdfReport = xelatexTask(
+            "makeCPFTeXToPdfReport",
+            ASSETS_FOLDER.resolve("cpf").absoluteFile,
+            "report.tex")
+
+    val remakeCPFReport by registering {
+        group = "application"
+        
+        dependsOn(
+                makeCPFIterationGraphImages,
+                makeCPFIterationTeXReport,
+                makeCPFIterationTeXToPdfReport,
+
+                makeCPFUnfoldingImage,
+                makeCPFUnfoldingTeXReport,
+                makeCPFUnfoldingTeXToPdfReport,
+
+                makeCPFTeXReport,
+                makeCPFTeXToPdfReport
+        )
     }
 
-    val makeCPFUnfoldingTeXToPdfReport by registering {
-        group = "Custom tasks"
-        val fileName = "unfolding.tex"
-
-        doFirst {
-            exec {
-                workingDir = ASSETS_FOLDER
-                        .resolve("cpf")
-                        .absoluteFile
-
-                isIgnoreExitValue = true
-
-                commandLine("xelatex",
-//                        "-output-directory=$outputDirectory",
-                        "-interaction=nonstopmode",
-                        "--shell-escape",
-                        "--file-line-error",
-                        fileName
-                )
-            }
-        }
-    }
-
-    val teXToPdf by registering {
-        group = "Custom tasks"
-        val fileName = "report.tex"
-
-        doFirst {
-            exec {
-                workingDir = ASSETS_FOLDER.absoluteFile
-                isIgnoreExitValue = true
-
-                commandLine("xelatex",
-//                        "-output-directory",
-//                        ASSETS_FOLDER.resolve("reports"),
-                        "-interaction=nonstopmode",
-                        "--shell-escape",
-                        "--file-line-error",
-                        fileName
-                )
-            }
-        }
-    }
+    val teXToPdf = xelatexTask("teXToPdf", ASSETS_FOLDER.absoluteFile, "report.tex")
 
 
     val clearPlainDirectories by registering {
@@ -122,7 +102,7 @@ tasks {
             delete(fileTree(ASSETS_FOLDER.resolve("cpf").resolve("plain").absoluteFile))
         }
     }
-    
+
     val makeTempPlainResult by registering {
         group = "application"
 
@@ -149,3 +129,8 @@ tasks {
 
 }
 
+fun TaskContainerScope.registerTaskByMainFile(mainPath: String) = registering(JavaExec::class) {
+    group = "Custom tasks"
+    classpath = sourceSets["main"].runtimeClasspath
+    main = mainPath
+}
