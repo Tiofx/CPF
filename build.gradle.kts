@@ -24,11 +24,6 @@ dependencies {
 val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions.jvmTarget = "1.8"
 
-fun TaskContainerScope.registerTaskByMainFile(mainPath: String) = registering(JavaExec::class) {
-    group = "Custom tasks"
-    classpath = sourceSets["main"].runtimeClasspath
-    main = mainPath
-}
 
 tasks {
 
@@ -170,3 +165,8 @@ tasks {
 
 }
 
+fun TaskContainerScope.registerTaskByMainFile(mainPath: String) = registering(JavaExec::class) {
+    group = "Custom tasks"
+    classpath = sourceSets["main"].runtimeClasspath
+    main = mainPath
+}
