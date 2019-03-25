@@ -77,7 +77,9 @@ tasks {
             ASSETS_FOLDER.resolve("cpf").absoluteFile,
             "report.tex")
 
-    val remakeCPFReport by registering{
+    val remakeCPFReport by registering {
+        group = "application"
+        
         dependsOn(
                 makeCPFIterationGraphImages,
                 makeCPFIterationTeXReport,
@@ -86,7 +88,7 @@ tasks {
                 makeCPFUnfoldingImage,
                 makeCPFUnfoldingTeXReport,
                 makeCPFUnfoldingTeXToPdfReport,
-                
+
                 makeCPFTeXReport,
                 makeCPFTeXToPdfReport
         )
