@@ -76,6 +76,20 @@ tasks {
             "makeCPFTeXToPdfReport",
             ASSETS_FOLDER.resolve("cpf").absoluteFile,
             "report.tex")
+
+    val remakeCPFReport by registering{
+        dependsOn(
+                makeCPFIterationGraphImages,
+                makeCPFIterationTeXReport,
+                makeCPFIterationTeXToPdfReport,
+
+                makeCPFUnfoldingImage,
+                makeCPFUnfoldingTeXReport,
+                makeCPFUnfoldingTeXToPdfReport,
+                
+                makeCPFTeXReport,
+                makeCPFTeXToPdfReport
+        )
     }
 
     val teXToPdf = xelatexTask("teXToPdf", ASSETS_FOLDER.absoluteFile, "report.tex")
