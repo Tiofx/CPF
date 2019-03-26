@@ -10,8 +10,9 @@ fun ReducedProgram.Indexes.toGraph(iterationNumber:Int, groupName:String, toOper
 
         fun toGraphviz(): String = """
         |digraph {
-        |   ranksep = 0.35;
+        |   ranksep = 0.2;
         |   node [shape=circle, fontsize=14, fontname="Times New Roman", margin=".1,.01", fixedsize=true]
+        |   edge[style = invis]
         |
         |   subgraph cluster_iteration {
         |       label = $iterationNumber
