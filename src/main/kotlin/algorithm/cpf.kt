@@ -14,43 +14,34 @@ class CPF(val init: Program) {
         while (currentProgram.size > 1) {
             setUp(currentProgram)
 
-            var currentInfo: Iteration? = null
+            var currentInfo: Iteration?
 
-            if (parallelIteration) {
-                val stepResult = parallelGroupOperatorFormatter.analysis
-                if (stepResult.B1.isNotEmpty()) {
-                    currentInfo =
-                        Iteration(
+            val parallelResult = parallelGroupOperatorFormatter.analysis
+            val parallelChain = parallelResult.maxChain
+            val sequentialChain = sequentialGroupOperatorFormatter.maxChain
+
+            parallelIteration = when {
+                sequentialChain == null && parallelChain == null -> throw Exception("problem with CPF algorithm\n no next group chain")
+                sequentialChain == null -> true
+                parallelChain == null -> false
+                else -> parallelChain.first <= sequentialChain.first
+            }
+
+            currentInfo = Iteration(
                             i,
                             currentProgram,
                             parallelIteration,
                             cpfChecker.CPFCheck(),
-                            parallelGroupOperatorFormatter.analysis
-                        )
-                    currentProgram = parallelGroupOperatorFormatter.transform(stepResult)
-                } else {
-                    parallelIteration = !parallelIteration
-                    i--
-                }
-            } else {
-                val maxChain = sequentialGroupOperatorFormatter.maxChain
-                if (maxChain != null) {
-                    currentInfo = Iteration(
-                        i,
-                        currentProgram,
-                        parallelIteration,
-                        cpfChecker.CPFCheck(),
-                        parallelGroupOperatorFormatter.analysis,
-                        sequentialCheck = maxChain
-                    )
-                    currentProgram = sequentialGroupOperatorFormatter.transform(maxChain)
-                } else {
-                    parallelIteration = !parallelIteration
-                    i--
-                }
-            }
+                            parallelResult)
 
-            if (currentInfo != null) result.add(currentInfo)
+            currentInfo = if (parallelIteration) currentInfo else currentInfo.copy(sequentialCheck = sequentialChain)
+
+            currentProgram = if (parallelIteration)
+                parallelGroupOperatorFormatter.transform(parallelResult)
+            else
+                sequentialGroupOperatorFormatter.transform(sequentialChain!!)
+
+            result.add(currentInfo)
             i++
         }
 
@@ -66,12 +57,12 @@ class CPF(val init: Program) {
     }
 
     data class Iteration(
-        val number: Int,
-        val program: Program,
-        val isParallel: Boolean,
-        val cpfCheck: List<CPFChecker.Result>,
-        val parallelCheck: ParallelGroupOperatorFormatter.Result? = null,
-        val sequentialCheck: IntRange? = null
+            val number: Int,
+            val program: Program,
+            val isParallel: Boolean,
+            val cpfCheck: List<CPFChecker.Result>,
+            val parallelCheck: ParallelGroupOperatorFormatter.Result? = null,
+            val sequentialCheck: IntRange? = null
     ) {
         val allRelationsMatrices = RelationsMatrix(program)
         val groupedOperators: IntRange
@@ -82,9 +73,9 @@ class CPF(val init: Program) {
 fun List<CPF.Iteration>.finalResul() = map { it.program }.last().first()
 
 fun List<CPF.Iteration>.resultOfGroupOperators(iteration: Int) =
-    if (iteration != lastIndex)
-        this[iteration + 1].program[this[iteration].groupedOperators.first]
-    else null
+        if (iteration != lastIndex)
+            this[iteration + 1].program[this[iteration].groupedOperators.first]
+        else null
 
 
 class CPFChecker(var program: Program) {
@@ -100,10 +91,10 @@ class CPFChecker(var program: Program) {
     fun CPFCheck() = pairsOfIndependent().map { CPFCheck(it.first, it.second) }
 
     private fun pairsOfIndependent(): List<Pair<Int, Int>> = indices
-        .flatMap { i ->
-            (i + 2..lastIndex).map { j -> i to j }
-        }
-        .filter { isWeekIndependency(it.first, it.second) }
+            .flatMap { i ->
+                (i + 2..lastIndex).map { j -> i to j }
+            }
+            .filter { isWeekIndependency(it.first, it.second) }
 
     private fun CPFCheck(i: Int, j: Int): Result {
         assert(j > i + 1)
@@ -115,10 +106,10 @@ class CPFChecker(var program: Program) {
         val N2 = N2(i, j, N1)
 
         N2
-            .filter { it in i + 1 until j }
-            .forEach { k ->
-                if (N1 in E(k)) return Result(i, j, k, Ei, Ej, N1, N2, E(k))
-            }
+                .filter { it in i + 1 until j }
+                .forEach { k ->
+                    if (N1 in E(k)) return Result(i, j, k, Ei, Ej, N1, N2, E(k))
+                }
 
         val k = j - 1
         return Result(i, j, k, Ei, Ej, N1, N2, E(k))
@@ -128,19 +119,23 @@ class CPFChecker(var program: Program) {
     private fun N2(i: Int, j: Int, N1: Set<Int> = N1(i, j)) = (E(i) union E(j)) - N1
     private fun E(i: Int) = weekDepsFrom(i)
 
+    /**
+     * @param i number of operator
+     * @return {j | Si -> Sj}
+     */
     private fun weekDepsFrom(i: Int) = (i + 1..lastIndex)
-        .filter { j -> isWeekDependency(i, j) }
-        .toCollection(LinkedHashSet())
+            .filter { j -> isWeekDependency(i, j) }
+            .toCollection(LinkedHashSet())
 
     data class Result(
-        val i: Int,
-        val j: Int,
-        val k: Int,
-        val Ei: Set<Int>,
-        val Ej: Set<Int>,
-        val N1: Set<Int>,
-        val N2: Set<Int>,
-        val Ek: Set<Int>
+            val i: Int,
+            val j: Int,
+            val k: Int,
+            val Ei: Set<Int>,
+            val Ej: Set<Int>,
+            val N1: Set<Int>,
+            val N2: Set<Int>,
+            val Ek: Set<Int>
     ) {
         val isSkInN2 = k in N2
         val isN1InEk = N1 in Ek
@@ -180,20 +175,37 @@ class ParallelGroupOperatorFormatter(var program: Program) {
 
         for (i in 0 until size) {
             val squareSize = squareSize(i)
-            if (squareSize >= 2) return i..(i + squareSize - 1)
+            if (squareSize < 2) continue
+
+            val chain = i until i + squareSize
+            val correctedChain = chain.correctChain()
+
+            if (correctedChain.toList().size >= 2) {
+                return correctedChain
+            }
         }
 
         return null
     }
 
+    private fun IntRange.correctChain(): IntRange {
+        if (last == program.lastIndex) return this
+
+        for (right in last downTo first) {
+            if ((first..right).all { left -> program.isStrongDependency(left, right + 1) })
+                return first..right
+        }
+
+        return IntRange.EMPTY
+    }
 
     fun transform(result: Result = analysis) = result.toNewProgram(program)
     val analysis get() = result()
     private fun result(
-        C: Matrix = this.C,
-        U: Set<Int> = this.U,
-        B1: Set<Int> = B1(C),
-        K: Set<Int> = K(B1)
+            C: Matrix = this.C,
+            U: Set<Int> = this.U,
+            B1: Set<Int> = B1(C),
+            K: Set<Int> = K(B1)
     ) = Result(C, U, B1, K)
 
     private val U get() = indices.toSet()
@@ -206,17 +218,17 @@ class ParallelGroupOperatorFormatter(var program: Program) {
 
 
     data class Result(
-        val C: Matrix,
-        val U: Set<Int>,
-        val B1: Set<Int>,
-        val K: Set<Int>
+            val C: Matrix,
+            val U: Set<Int>,
+            val B1: Set<Int>,
+            val K: Set<Int>
     ) {
         inline val maxChain get() = if (B1.isNotEmpty()) B1.run { first()..last() } else null
 
         fun toNewProgram(from: Program): Program {
             val groupOperator = GroupOperator(from, maxChain!!, GroupOperator.Type.PARALLEL)
             val operators =
-                from.subList(0, maxChain!!.first) + groupOperator + from.subList(maxChain!!.last + 1, from.size)
+                    from.subList(0, maxChain!!.first) + groupOperator + from.subList(maxChain!!.last + 1, from.size)
             val newProgram = CashedProgram(operators)
 
             return newProgram
@@ -229,7 +241,7 @@ class SequentialGroupOperatorFormatter(var program: Program) {
     fun transform(maxChain: IntRange): Program {
         val groupOperator = GroupOperator(program, maxChain, GroupOperator.Type.SEQUENTIAL)
         val operators =
-            program.subList(0, maxChain.first) + groupOperator + program.subList(maxChain.last + 1, program.size)
+                program.subList(0, maxChain.first) + groupOperator + program.subList(maxChain.last + 1, program.size)
         val newProgram = CashedProgram(operators)
 
         return newProgram
@@ -248,7 +260,7 @@ class SequentialGroupOperatorFormatter(var program: Program) {
             }
 
             tailrec fun List<List<Int>>.chainEndFor(i: Int): Int =
-                if (!getOrNull(i).isNullOrEmpty() && get(i).first() == i + 1) chainEndFor(i + 1) else i
+                    if (!getOrNull(i).isNullOrEmpty() && get(i).first() == i + 1) chainEndFor(i + 1) else i
 
             fun List<List<Int>>.maxChain(i: Int) = correct(i..chainEndFor(i))
 
@@ -265,8 +277,8 @@ class SequentialGroupOperatorFormatter(var program: Program) {
         (i + 1 until program.size).map { j ->
             program.isStrongDependency(i, j)
         }
-            .mapIndexed { index, r -> if (r) index + i + 1 else null }
-            .filterNotNull()
+                .mapIndexed { index, r -> if (r) index + i + 1 else null }
+                .filterNotNull()
     }
 }
 
