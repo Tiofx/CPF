@@ -1,21 +1,25 @@
 package report.cpf.iteration
 
-fun ReducedProgram.Indexes.toGraph(toOperator: IntRange.() -> List<Node>): String {
+fun ReducedProgram.Indexes.toGraph(iterationNumber:Int, groupName:String, toOperator: IntRange.() -> List<Node>): String {
     class Graph(val start: List<Node>,
                 val group: List<Node>,
                 val end: List<Node>) {
 
         private val allNodes get() = start + group + end
-        private val groupNode get() = NodeGroup(group)
+        private val groupNode get() = NodeGroup(groupName, group)
 
         fun toGraphviz(): String = """
         |digraph {
         |   ranksep = 0.35;
         |   node [shape=circle, fontsize=14, fontname="Times New Roman", margin=".1,.01", fixedsize=true]
         |
-        |   ${allNodes.declare()}
-        |   ${allNodes.connect()}
-        |   ${groupNode.toGraphviz()}
+        |   subgraph cluster_iteration {
+        |       label = $iterationNumber
+        |
+        |       ${allNodes.declare()}
+        |       ${allNodes.connect()}
+        |       ${groupNode.toGraphviz()}
+        |   }
         |}
     """.trimMargin()
 
