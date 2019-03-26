@@ -50,7 +50,10 @@ class CPFItreationsGraphSaver(val iterations: List<CPF.Iteration>) {
     }
 
 
-    private fun parse() = iterations.zipWithNext().map { parse(it.first, it.second.program[it.first.groupedOperators.first]) }
+    private fun parse() = iterations
+            .zipWithNext()
+            .map { parse(it.first, it.second.program[it.first.groupedOperators.first]) }
+            .plus(parse(iterations.last(), iterations.last().program.first()))
 
     private fun parse(cpfIteration: CPF.Iteration, groupOperator: IOperator): String {
         programIndexes.iteration = cpfIteration
