@@ -59,7 +59,7 @@ class CPFItreationsGraphSaver(val iterations: List<CPF.Iteration>) {
             fun Int.toName() = namer.name(cpfIteration.program, this).toPlainString()
             fun IntRange.toOperator() = map { SingleOperator(it.toName()) }
 
-            toGraph(cpfIteration.number, namer.name(groupOperator).toPlainString(), IntRange::toOperator)
+            toGraph(cpfIteration.number + 1, namer.name(groupOperator).toPlainString(), IntRange::toOperator)
         }
     }
 }
