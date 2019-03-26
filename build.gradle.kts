@@ -79,7 +79,7 @@ tasks {
 
     val remakeCPFReport by registering {
         group = "application"
-        
+
         dependsOn(
                 makeCPFIterationGraphImages,
                 makeCPFIterationTeXReport,
@@ -92,6 +92,34 @@ tasks {
                 makeCPFTeXReport,
                 makeCPFTeXToPdfReport
         )
+    }
+
+    val orders = listOf(
+            listOf(
+                    makeCPFIterationGraphImages,
+                    makeCPFIterationTeXReport,
+                    makeCPFIterationTeXToPdfReport
+            ),
+            listOf(
+                    makeCPFUnfoldingImage,
+                    makeCPFUnfoldingTeXReport,
+                    makeCPFUnfoldingTeXToPdfReport
+            ),
+            listOf(
+                    makeCPFIterationTeXToPdfReport,
+                    makeCPFTeXReport
+            ),
+            listOf(
+                    makeCPFUnfoldingTeXToPdfReport,
+                    makeCPFTeXReport
+            ),
+            listOf(
+                    makeCPFTeXReport,
+                    makeCPFTeXToPdfReport
+            )
+    )
+    orders.forEach {
+        it.zipWithNext().forEach { it.second.get().mustRunAfter(it.first) }
     }
 
     val teXToPdf = xelatexTask("teXToPdf", ASSETS_FOLDER.absoluteFile, "report.tex")
