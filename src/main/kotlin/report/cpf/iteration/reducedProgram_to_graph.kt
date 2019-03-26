@@ -13,9 +13,11 @@ fun ReducedProgram.Indexes.toGraph(iterationNumber:Int, groupName:String, toOper
         |   ranksep = 0.2;
         |   node [shape=circle, fontsize=14, fontname="Times New Roman", margin=".1,.01", fixedsize=true]
         |   edge[style = invis]
+        |   margin = 0
         |
         |   subgraph cluster_iteration {
         |       label = $iterationNumber
+        |       margin = 5
         |
         |       ${allNodes.declare()}
         |       ${allNodes.connect()}

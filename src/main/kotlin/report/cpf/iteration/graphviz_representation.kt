@@ -23,7 +23,7 @@ class NodeGroup(val groupName:String, val nodeSequence: List<Node>) : Node {
     override fun toGraphviz(): String = """
         |subgraph cluster_group {
         |    penwidth = 2
-        |    margin = 10
+        |    margin = 5
         |    label = "$groupName"
         |
         |   ${nodeSequence.joinToString(" ", transform = Node::nodeName)}
