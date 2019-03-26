@@ -73,7 +73,7 @@ class IterationsGraphReport(val iterationNumber: Int) : LatexReportTemplate() {
     protected fun include(fileName: String) = "\\raisebox{1ex-\\height}{${includeGraphics(fileName)}}"
 
     protected fun includeGraphics(fileName: String) =
-            "\\includegraphics[width=$WIDTH, height=\\textheight,keepaspectratio]{iterations/$fileName} "
+            "\\includegraphics[trim=5mm 5mm 5mm 5mm,clip,width=$WIDTH, height=\\textheight,keepaspectratio]{iterations/$fileName} "
 
     override fun Path.configResourcesPath() =
             resolve("assets")
