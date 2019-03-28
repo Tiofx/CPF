@@ -4,7 +4,6 @@ import algorithm.*
 import report.OperatorName
 import report.OperatorNamer
 import report.latex.LatexConverter.Companion.doubleLineBreak
-import javax.swing.text.html.HTML.Tag.I
 
 
 class LatexConverter(val cpfResults: List<CPF.Iteration>) {
@@ -70,27 +69,18 @@ class LatexConverter(val cpfResults: List<CPF.Iteration>) {
     }
 
     inner class RelationsMatrixLatex(
-        val strongDependencyMatrix: String,
-        val weekDependencyMatrix: String,
-        val strongIndependencyMatrix: String,
-        val weekIndependencyMatrix: String
+            val strongDependencyMatrix: String,
+            val weekIndependencyMatrix: String
     ) {
 
         constructor(matrices: RelationsMatrix, program: Program) : this(matrices, header(program))
 
         constructor(matrices: RelationsMatrix, header: List<String>) : this(
-            "SD = ${matrices.strongDependencyMatrix.toLatex(header, header)}",
-            "WD = ${matrices.weekDependencyMatrix.toLatex(header, header)}",
-            "SI = ${matrices.strongIndependencyMatrix.toLatex(header, header)}",
-            "C = ${matrices.weekIndependencyMatrix.toLatex(header, header)}"
+                "SD = ${matrices.strongDependencyMatrix.toLatex(header, header)}",
+                "C = ${matrices.weekIndependencyMatrix.toLatex(header, header)}"
         )
 
-        fun toLatex() = listOf(
-            strongDependencyMatrix,
-            weekDependencyMatrix,
-            weekIndependencyMatrix,
-            strongIndependencyMatrix
-        ).joinToString(tripleLineBreak)
+        fun toLatex() = listOf(strongDependencyMatrix, weekIndependencyMatrix).joinToString(tripleLineBreak)
 
     }
 
