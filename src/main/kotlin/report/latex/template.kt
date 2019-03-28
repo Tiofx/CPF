@@ -2,7 +2,6 @@ package report.latex
 
 import algorithm.RESOURCES_FOLDER
 import java.nio.file.Path
-import java.nio.file.Paths
 import kotlin.math.min
 
 class TwoAppendixTemplate(val content: List<LatexConverter.Iteration>) : LatexReportTemplate() {
@@ -33,13 +32,13 @@ class TwoAppendixTemplate(val content: List<LatexConverter.Iteration>) : LatexRe
     }
 
     inner class AppendixB : LatexReportTemplate() {
-        private val uniqueOperators = content.flatMap { it.program.operators }.distinctBy { it.name }
+        private val singleOperators = content.first().program.operators
 
         override val documentBody: String
             get() = """
                 |\begin{center} ПРИЛОЖЕНИЕ Б \end{center}\\
                 |\begin{math}\breakingcomma
-                |${uniqueOperators.map { it.toLatex() }.joinToString(LatexConverter.singleLineBreak)}
+                |${singleOperators.map { it.toLatex() }.joinToString(LatexConverter.singleLineBreak)}
                 |\end{math}
             """.trimMargin()
     }
@@ -51,17 +50,17 @@ open class ByIterationTemplate(val content: List<LatexConverter.Iteration>) : La
     }
 
     override val documentBody: String =
-        content
-            .dropLast(1)
-            .map { toLatex(it) }
-            .mapIndexed { i, it ->
-                """
+            content
+                    .dropLast(1)
+                    .map { toLatex(it) }
+                    .mapIndexed { i, it ->
+                        """
                 |\begin{center}\huge Итерация №${i + 1} \end{center}\\
                 |$it${LatexConverter.singleLineBreak}
                 |\newpage
                 """.trimMargin()
-            }
-            .joinToString(LatexConverter.singleLineBreak)
+                    }
+                    .joinToString(LatexConverter.singleLineBreak)
 
 
     protected open fun toLatex(iteration: LatexConverter.Iteration) = iteration.run {
@@ -93,8 +92,8 @@ open class ByIterationTemplate(val content: List<LatexConverter.Iteration>) : La
     protected val LatexConverter.Iteration.cpfChecks
         get() = """
         |Проверка условия приводимости программы к ППФ (${min(
-            MAX_NUMBER_OF_CPF_CHECK,
-            cpfCheck.size
+                MAX_NUMBER_OF_CPF_CHECK,
+                cpfCheck.size
         )} из ${cpfCheck.size}): \\
         |\begin{math}\breakingcomma
         |${cpfCheck.take(MAX_NUMBER_OF_CPF_CHECK).toLatex()}
@@ -106,11 +105,11 @@ open class ByIterationTemplate(val content: List<LatexConverter.Iteration>) : La
 
     fun iterationType(iteration: LatexConverter.Iteration) = iteration.run {
         (if (parallelIteration) "паралллельный" else "последовательный")
-            .let {
-                """
+                .let {
+                    """
             |На текущей итерации был выделен $it групповой оператор $$resultOfIteration$${LatexConverter.singleLineBreak}
         """.trimMargin()
-            }
+                }
     }
 
     private fun String.wrapInMath() = "\\text{$this}"
@@ -118,7 +117,7 @@ open class ByIterationTemplate(val content: List<LatexConverter.Iteration>) : La
 
 class FullLatexGenerator(content: List<LatexConverter.Iteration>) : LatexReportTemplate() {
     override val documentBody =
-        """\breakingcomma
+            """\breakingcomma
     \tiny
     ${content.toLatex12()}
     \interdisplaylinepenalty=10000
@@ -136,23 +135,23 @@ class FullLatexGenerator(content: List<LatexConverter.Iteration>) : LatexReportT
         """.trimMargin()
 
     fun List<LatexConverter.Iteration>.toLatex1() =
-        map { it.program.names.toLatex() to "${it.operatorsGroup.toLatex()} \\to ${it.groupedOperator}" }
-            .map { it.first + LatexConverter.singleLineBreak + it.second + LatexConverter.singleLineBreak }
+            map { it.program.names.toLatex() to "${it.operatorsGroup.toLatex()} \\to ${it.groupedOperator}" }
+                    .map { it.first + LatexConverter.singleLineBreak + it.second + LatexConverter.singleLineBreak }
 
     fun List<LatexConverter.Iteration>.toLatex2() = map { it.matrices }
-        .map {
-            listOf(
-                it.strongDependencyMatrix,
-                it.weekDependencyMatrix,
-                it.weekIndependencyMatrix,
-                it.strongIndependencyMatrix
-            )
-                .joinToString(LatexConverter.singleLineBreak)
-        }
+            .map {
+                listOf(
+                        it.strongDependencyMatrix,
+                        it.weekDependencyMatrix,
+                        it.weekIndependencyMatrix,
+                        it.strongIndependencyMatrix
+                )
+                        .joinToString(LatexConverter.singleLineBreak)
+            }
 
     fun List<LatexConverter.Iteration>.toLatex12() = toLatex1().zip(toLatex2())
-        .map { "$" + it.first + "$" + LatexConverter.singleLineBreak + it.second }
-        .joinToString(LatexConverter.singleLineBreak)
+            .map { "$" + it.first + "$" + LatexConverter.singleLineBreak + it.second }
+            .joinToString(LatexConverter.singleLineBreak)
 }
 
 
@@ -167,7 +166,7 @@ $preamble
             """.trimIndent()
     }
 
-    protected open val preamble by lazy{
+    protected open val preamble by lazy {
         """
 \documentclass[a4paper,14pt]{article}
 \usepackage{geometry}
