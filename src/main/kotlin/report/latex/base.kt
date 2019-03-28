@@ -10,30 +10,52 @@ fun OperatorName.toLatex() = when (this) {
     UnknownName -> "Unknown"
 }
 
-fun Matrix.toLatex(rowHeader: List<String>, colHeader: List<String>) =
-        map { it.map { b -> if (b) "1" else "0" } }
-                .map { it.reduce { acc, v -> "$acc & $v" } }
-                .mapIndexed { i, row -> "${rowHeader[i]} & $row" }
+fun Matrix.toLatex(
+        rowHeader: List<String>,
+        colHeader: List<String>,
+        highlight: Pair<IntRange, IntRange> = IntRange.EMPTY to IntRange.EMPTY
+) =
+        toRaw(highlight)
+                .wrapBy(rowHeader.highlight(highlight.second), colHeader.highlight(highlight.first))
+                .toLatex(this.size)
+
+
+private fun Matrix.toRaw(highlight: Pair<IntRange, IntRange> = IntRange.EMPTY to IntRange.EMPTY) =
+        mapIndexed { row, it ->
+            it.map { b -> if (b) "1" else "0" }
+                    .mapIndexed { col, el ->
+                        if (row in highlight.first && col in highlight.second) el.highlight() else el
+                    }
+        }.map { it.reduce { acc, v -> "$acc & $v" } }
+
+private fun List<String>.highlight(highlight: IntRange) =
+        mapIndexed { index, el -> if (index in highlight) el.highlight("\\normalsize") else el }
+
+private fun List<String>.wrapBy(rowHeader: List<String>, colHeader: List<String>) =
+        mapIndexed { i, row -> "${rowHeader[i]} & $row" }
                 .reduce { acc, row -> "$acc \\cr\n$row" }
                 .let {
-                    """
-            |${colHeader.fold("  ") { acc, h -> "$acc & $h" }} \cr
-            |$it
-        """.trimMargin()
-                }
-                .let {
-                    """
-            |{${sizeModifier()}{$\bbordermatrix{
-            |$it
-            |}$}}
-        """.trimMargin()
+                    listOf(colHeader.fold("  ") { acc, h -> "$acc & $h" }) + it
                 }
 
-fun Matrix.sizeModifier() = when {
-    size >= 30 -> "\\resizebox{\\linewidth}{!}"
-//    size >= 30 -> "\\let\\quad\\thinspace\\tiny"
-    size >= 25 -> "\\let\\quad\\thinspace\\scriptize"
-    size >= 15 -> "\\let\\quad\\thinspace\\footnotesize"
+private fun List<String>.toLatex(size:Int) =
+        joinToString("\\cr\n").let {
+            """
+                |{${size.sizeModifier()}{$\bbordermatrix{
+                |$it
+                |}$}}
+            """.trimMargin()
+        }
+
+
+private fun String.highlight(size:String = "\\LARGE") = "{$$size$ \\bf $this$$} "
+
+
+fun Int.sizeModifier() = when {
+    this >= 30 -> "\\resizebox{\\linewidth}{!}"
+//    this >= 30 -> "\\let\\quad\\thinspace\\tiny"
+    this >= 25 -> "\\let\\quad\\thinspace\\scriptize"
+    this >= 15 -> "\\let\\quad\\thinspace\\footnotesize"
     else -> "\\let\\quad\\thinspace\\normalsize"
 }
 

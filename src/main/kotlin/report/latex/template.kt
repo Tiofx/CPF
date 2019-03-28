@@ -55,10 +55,10 @@ open class ByIterationTemplate(val content: List<LatexConverter.Iteration>) : La
                     .map { toLatex(it) }
                     .mapIndexed { i, it ->
                         """
-                |\begin{center}\huge Итерация №${i + 1} \end{center}\\
-                |$it${LatexConverter.singleLineBreak}
-                |\newpage
-                """.trimMargin()
+                        |\begin{center}\huge Итерация №${i + 1} \end{center}\\
+                        |$it${LatexConverter.singleLineBreak}
+                        |\newpage
+                        """.trimMargin()
                     }
                     .joinToString(LatexConverter.singleLineBreak)
 
@@ -142,9 +142,7 @@ class FullLatexGenerator(content: List<LatexConverter.Iteration>) : LatexReportT
             .map {
                 listOf(
                         it.strongDependencyMatrix,
-                        it.weekDependencyMatrix,
-                        it.weekIndependencyMatrix,
-                        it.strongIndependencyMatrix
+                        it.weekIndependencyMatrix
                 )
                         .joinToString(LatexConverter.singleLineBreak)
             }
