@@ -11,23 +11,23 @@ fun OperatorName.toLatex() = when (this) {
 }
 
 fun Matrix.toLatex(rowHeader: List<String>, colHeader: List<String>) =
-    map { it.map { b -> if (b) "1" else "0" } }
-        .map { it.reduce { acc, v -> "$acc & $v" } }
-        .mapIndexed { i, row -> "${rowHeader[i]} & $row" }
-        .reduce { acc, row -> "$acc \\cr\n$row" }
-        .let {
-            """
+        map { it.map { b -> if (b) "1" else "0" } }
+                .map { it.reduce { acc, v -> "$acc & $v" } }
+                .mapIndexed { i, row -> "${rowHeader[i]} & $row" }
+                .reduce { acc, row -> "$acc \\cr\n$row" }
+                .let {
+                    """
             |${colHeader.fold("  ") { acc, h -> "$acc & $h" }} \cr
             |$it
         """.trimMargin()
-        }
-        .let {
-            """
+                }
+                .let {
+                    """
             |{${sizeModifier()}{$\bbordermatrix{
             |$it
             |}$}}
         """.trimMargin()
-        }
+                }
 
 fun Matrix.sizeModifier() = when {
     size >= 30 -> "\\resizebox{\\linewidth}{!}"
@@ -38,9 +38,9 @@ fun Matrix.sizeModifier() = when {
 }
 
 fun Set<String>.toLatex() =
-    if (isNotEmpty())
-        reduce { acc, v -> "$acc, $v" }.let { "\\{$it\\}" }
-    else emptySetSymbol
+        if (isNotEmpty())
+            reduce { acc, v -> "$acc, $v" }.let { "\\{$it\\}" }
+        else emptySetSymbol
 
 private const val emptySetSymbol = "\\varnothing"
 
