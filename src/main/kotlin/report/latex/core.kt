@@ -4,6 +4,7 @@ import algorithm.*
 import report.OperatorName
 import report.OperatorNamer
 import report.latex.LatexConverter.Companion.doubleLineBreak
+import javax.swing.text.html.HTML.Tag.I
 
 
 class LatexConverter(val cpfResults: List<CPF.Iteration>) {
@@ -48,26 +49,20 @@ class LatexConverter(val cpfResults: List<CPF.Iteration>) {
     }
 
     inner class OperatorInfo(
-        val name: String,
-        val C: Set<String>,
-        val R: Set<String>,
-        val I: Set<String>,
-        val O: Set<String>
+            val name: String,
+            val C: Set<String>,
+            val R: Set<String>
     ) {
         constructor(program: Program, i: Int) : this(
-            namer.name(program, i).toLatex(),
-            program.C(i),
-            program.R(i),
-            program.I(i),
-            program.O(i)
+                namer.name(program, i).toLatex(),
+                program.C(i),
+                program.R(i)
         )
 
         fun toLatex() = listOf(
             name,
             C._toLatex("C"),
-            R._toLatex("R"),
-            I._toLatex("I"),
-            O._toLatex("O")
+            R._toLatex("R")
         ).joinToString(singleLineBreak)
 
         private fun Set<String>._toLatex(setName: String): String = toLatex(fullName(setName))
