@@ -2,7 +2,7 @@ package buildtask
 
 import algorithm.*
 
-val program  = programText
+val program = programText
         .run { prepareToLatex() }
         .map(::Operator)
         .let { CashedProgram(it) }

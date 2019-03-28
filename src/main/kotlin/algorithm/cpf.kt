@@ -28,11 +28,11 @@ class CPF(val init: Program) {
             }
 
             currentInfo = Iteration(
-                            i,
-                            currentProgram,
-                            parallelIteration,
-                            cpfChecker.CPFCheck(),
-                            parallelResult)
+                    i,
+                    currentProgram,
+                    parallelIteration,
+                    cpfChecker.CPFCheck(),
+                    parallelResult)
 
             currentInfo = if (parallelIteration) currentInfo else currentInfo.copy(sequentialCheck = sequentialChain)
 

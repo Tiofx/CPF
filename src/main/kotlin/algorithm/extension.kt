@@ -6,32 +6,32 @@ class RelationsMatrix(impl: Relations) : Relations by impl {
 
     val weekIndependencyMatrix: List<List<Boolean>>  by lazy {
         relationMatrix(this::isWeekIndependency)
-            .apply { (0..lastIndex).forEach { this[it][it] = true } }
-            .apply {
-                for (i in 0..lastIndex)
-                    for (j in 0..(i - 1))
-                        this[i][j] = this[j][i]
-            }
+                .apply { (0..lastIndex).forEach { this[it][it] = true } }
+                .apply {
+                    for (i in 0..lastIndex)
+                        for (j in 0..(i - 1))
+                            this[i][j] = this[j][i]
+                }
 
     }
     val strongIndependencyMatrix: List<List<Boolean>> by lazy {
         relationMatrix(this::isStrongIndependency)
-            .apply { (0..lastIndex).forEach { this[it][it] = true } }
-            .apply {
-                for (i in 0..lastIndex)
-                    for (j in 0..(i - 1))
-                        this[i][j] = this[j][i]
-            }
+                .apply { (0..lastIndex).forEach { this[it][it] = true } }
+                .apply {
+                    for (i in 0..lastIndex)
+                        for (j in 0..(i - 1))
+                            this[i][j] = this[j][i]
+                }
     }
 
     private fun relationMatrix(f: (Int, Int) -> Boolean) =
-        (0..lastIndex).map { i ->
-            val row = MutableList(size) { false }
-            (i + 1..lastIndex).map { j ->
-                row[j] = f(i, j)
+            (0..lastIndex).map { i ->
+                val row = MutableList(size) { false }
+                (i + 1..lastIndex).map { j ->
+                    row[j] = f(i, j)
+                }
+                row
             }
-            row
-        }
 }
 
 class CashedProgram(operators: List<IOperator>) : Program(operators) {
@@ -65,7 +65,7 @@ class CashedProgram(operators: List<IOperator>) : Program(operators) {
     }
 
     private val weekIndependencyMatrix: List<MutableList<Boolean?>> =
-        List(size) { MutableList<Boolean?>(size) { null } }
+            List(size) { MutableList<Boolean?>(size) { null } }
 
 
     override fun isStrongIndependency(i: Int, j: Int): Boolean {
@@ -77,7 +77,7 @@ class CashedProgram(operators: List<IOperator>) : Program(operators) {
     }
 
     private val strongIndependencyMatrix: List<MutableList<Boolean?>> =
-        List(size) { MutableList<Boolean?>(size) { null } }
+            List(size) { MutableList<Boolean?>(size) { null } }
 }
 
 operator fun <E> Set<E>.contains(s: Set<E>) = s.all { it in this }

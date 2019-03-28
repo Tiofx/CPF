@@ -12,9 +12,9 @@ open class Program(operators: List<IOperator>) : List<IOperator> by operators, R
 }
 
 class GroupOperator(
-    val from: Program,
-    val range: IntRange,
-    val type: Type
+        val from: Program,
+        val range: IntRange,
+        val type: Type
 ) : Relations {
     override val operators: List<IOperator> = from.subList(range.first, range.endInclusive + 1)
 
@@ -32,18 +32,18 @@ class Operator(val expression: String) : IOperator {
     }
 
     override val C = expression
-        .split("=")
-        .first()
-        .trim()
-        .let { linkedSetOf(it) }
+            .split("=")
+            .first()
+            .trim()
+            .let { linkedSetOf(it) }
 
     override val R = expression
-        .split("=")[1]
-        .split(*separators)
-        .map(String::trim)
-        .filter(String::isNotBlank)
-        .filter { it.toFloatOrNull() == null }
-        .toCollection(LinkedHashSet())
+            .split("=")[1]
+            .split(*separators)
+            .map(String::trim)
+            .filter(String::isNotBlank)
+            .filter { it.toFloatOrNull() == null }
+            .toCollection(LinkedHashSet())
 
     inline operator fun component1() = C
     inline operator fun component2() = R

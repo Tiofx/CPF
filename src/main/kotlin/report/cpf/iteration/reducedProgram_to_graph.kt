@@ -1,6 +1,6 @@
 package report.cpf.iteration
 
-fun ReducedProgram.Indexes.toGraph(iterationNumber:Int, groupName:String, toOperator: IntRange.() -> List<Node>): String {
+fun ReducedProgram.Indexes.toGraph(iterationNumber: Int, groupName: String, toOperator: IntRange.() -> List<Node>): String {
     class Graph(val start: List<Node>,
                 val group: List<Node>,
                 val end: List<Node>) {

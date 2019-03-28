@@ -54,7 +54,7 @@ class ReducedProgram(val limit: Int = 15,
         val total get() = start + group + end
         val rem get() = limit - total
 
-        fun minimaze():TempSize=TempSize(
+        fun minimaze(): TempSize = TempSize(
                 min(startMinSize, startMaxSize),
                 min(groupMinSize, groupMaxSize),
                 min(endMinSize, endMaxSize)

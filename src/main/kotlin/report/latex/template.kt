@@ -223,7 +223,7 @@ $preamble
         save(report)
     }
 
-    open protected fun Path.configResourcesPath(): Path = resolve("assets").resolve("report.tex")
+    protected open fun Path.configResourcesPath(): Path = resolve("assets").resolve("report.tex")
 
     private fun save(result: String) {
         RESOURCES_FOLDER

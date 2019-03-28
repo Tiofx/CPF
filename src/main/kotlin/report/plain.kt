@@ -36,7 +36,7 @@ private fun List<CPF.Iteration>.shortDesription() {
     println("Iteration number: $size")
     forEachIndexed { i, it ->
         println(
-            """
+                """
             Iteration number:   ${i + 1}
             Operator number:    ${it.program.size}
             CPF check number:   ${it.cpfCheck.size}
@@ -56,8 +56,8 @@ fun OperatorName.toPlainString() = when (this) {
 }
 
 fun Matrix.toMatrixString() =
-    map { it.map { b -> if (b) 1 else 0 } }
-        .map { it.toString() + "\n" }
-        .reduce { acc, s -> acc + s }
-        .replace("[\\[\\]]".toRegex(), "|")
-        .replace(",", "")
+        map { it.map { b -> if (b) 1 else 0 } }
+                .map { it.toString() + "\n" }
+                .reduce { acc, s -> acc + s }
+                .replace("[\\[\\]]".toRegex(), "|")
+                .replace(",", "")
