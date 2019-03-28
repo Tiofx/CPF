@@ -1,6 +1,7 @@
 package report.cpf.iteration
 
 import algorithm.CPF
+import algorithm.IOperator
 import algorithm.RESOURCES_FOLDER
 import guru.nidi.graphviz.engine.Format
 import guru.nidi.graphviz.engine.Graphviz
@@ -49,16 +50,19 @@ class CPFItreationsGraphSaver(val iterations: List<CPF.Iteration>) {
     }
 
 
-    private fun parse() = iterations.map { parse(it) }
+    private fun parse() = iterations
+            .zipWithNext()
+            .map { parse(it.first, it.second.program[it.first.groupedOperators.first]) }
+            .plus(parse(iterations.last(), iterations.last().program.first()))
 
-    private fun parse(cpfIteration: CPF.Iteration): String {
+    private fun parse(cpfIteration: CPF.Iteration, groupOperator: IOperator): String {
         programIndexes.iteration = cpfIteration
 
         return programIndexes.parse().run {
             fun Int.toName() = namer.name(cpfIteration.program, this).toPlainString()
             fun IntRange.toOperator() = map { SingleOperator(it.toName()) }
 
-            toGraph(IntRange::toOperator)
+            toGraph(cpfIteration.number + 1, namer.name(groupOperator).toPlainString(), IntRange::toOperator)
         }
     }
 }

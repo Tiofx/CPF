@@ -1,1 +1,142 @@
+graph CPFUnfloding {
+   layout=osage
+   style="rounded"
+   node [shape=circle, fontsize=14, fontname="Times New Roman", margin=".1,.01", fixedsize=true]
 
+   subgraph "cluster_|y11" {
+	   label = "|y11"
+	
+	   subgraph "cluster_||y13" {
+		   label = "||y13"
+		
+		   subgraph "cluster_|y4" {
+			   label = "|y4"
+			
+			   subgraph "cluster_||y5" {
+				   label = "||y5"
+				
+				   subgraph "cluster_|y1" {
+					   label = "|y1"
+					
+					   subgraph "cluster_||y1" {
+						   label = "||y1"
+						
+						   S1
+							S2
+						}
+						S3
+					}
+					subgraph "cluster_|y2" {
+					   label = "|y2"
+					
+					   subgraph "cluster_||y2" {
+						   label = "||y2"
+						
+						   S4
+							S5
+						}
+						S6
+					}
+					subgraph "cluster_|y3" {
+					   label = "|y3"
+					
+					   subgraph "cluster_||y3" {
+						   label = "||y3"
+						
+						   S7
+							S8
+						}
+						S9
+					}
+				}
+				subgraph "cluster_||y4" {
+				   label = "||y4"
+				
+				   S10
+					S11
+					S12
+				}
+				S13
+			}
+			subgraph "cluster_|y5" {
+			   label = "|y5"
+			
+			   subgraph "cluster_||y6" {
+				   label = "||y6"
+				
+				   S14
+					S15
+				}
+				S16
+			}
+			subgraph "cluster_|y6" {
+			   label = "|y6"
+			
+			   subgraph "cluster_||y7" {
+				   label = "||y7"
+				
+				   S17
+					S18
+				}
+				S19
+			}
+			subgraph "cluster_|y7" {
+			   label = "|y7"
+			
+			   subgraph "cluster_||y8" {
+				   label = "||y8"
+				
+				   S20
+					S21
+				}
+				S22
+			}
+			subgraph "cluster_|y8" {
+			   label = "|y8"
+			
+			   subgraph "cluster_||y9" {
+				   label = "||y9"
+				
+				   S23
+					S24
+				}
+				S25
+			}
+			subgraph "cluster_|y9" {
+			   label = "|y9"
+			
+			   subgraph "cluster_||y10" {
+				   label = "||y10"
+				
+				   S26
+					S27
+				}
+				S28
+			}
+			subgraph "cluster_|y10" {
+			   label = "|y10"
+			
+			   subgraph "cluster_||y11" {
+				   label = "||y11"
+				
+				   S29
+					S30
+				}
+				S31
+			}
+		}
+		subgraph "cluster_||y12" {
+		   label = "||y12"
+		
+		   S32
+			S33
+			S34
+			S35
+			S36
+			S37
+			S38
+			S39
+			S40
+		}
+	}
+}
