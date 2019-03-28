@@ -15,7 +15,8 @@ fun ProgramText.prepareToLatex(): ProgramText {
 
     val items = listOf(
         ModifierItem("det") { "\\Delta" },
-        modifire("a\\^_1_(\\d{2})") { "a^{-1}_{$it}" },
+        modifire("A\\^T") { "A^T" },
+        modifire("A\\^_1") { "A^{-1}" },
         modifire("aA(\\d{4})") { "aA_{$it}" },
         modifire("A(\\d{2})") { "A_{$it}" },
         modifire("a(\\d{4})") { "a_{$it}" },

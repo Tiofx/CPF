@@ -48,7 +48,7 @@ class Operator(val expression: String) : IOperator {
     inline operator fun component1() = C
     inline operator fun component2() = R
 
-    override fun toString() = "core.C = {$C}\ncore.R = {$R}"
+    override fun toString() = "C = {$C}\nR = {$R}"
 
 
 }
