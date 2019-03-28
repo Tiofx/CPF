@@ -18,7 +18,7 @@ class LatexConverter(val cpfResults: List<CPF.Iteration>) {
     fun form() = cpfResults.mapIndexed { i, iteration ->
         Iteration(
                 ProgramLatex(iteration.program),
-                RelationsMatrixLatex(iteration.allRelationsMatrices, iteration.program, iteration.groupedOperators),
+                RelationsMatrixLatex(iteration.allRelationsMatrices, iteration.program, iteration.groupedOperators, iteration.isParallel),
                 iteration.cpfCheck.map { CPFCheck(iteration.program, it) },
                 iteration.isParallel,
                 iteration.groupedOperators.map { namer.name(iteration.program, it).toLatex() }.toSet(),
@@ -71,19 +71,23 @@ class LatexConverter(val cpfResults: List<CPF.Iteration>) {
     inner class RelationsMatrixLatex(
             val strongDependencyMatrix: String,
             val weekIndependencyMatrix: String,
-            val highlight: Pair<IntRange, IntRange>
+            val isParallel: Boolean
     ) {
 
-        constructor(matrices: RelationsMatrix, program: Program, groupedOperator: IntRange) : this(matrices, header(program), groupedOperator to groupedOperator)
+        constructor(matrices: RelationsMatrix, program: Program, groupedOperator: IntRange, isParallel: Boolean) :
+                this(matrices, header(program), groupedOperator to groupedOperator, isParallel)
 
-        constructor(matrices: RelationsMatrix, header: List<String>, highlight: Pair<IntRange, IntRange>) : this(
-                "SD = ${matrices.strongDependencyMatrix.toLatex(header, header)}",
-                "C = ${matrices.weekIndependencyMatrix.toLatex(header, header, highlight)}",
-                highlight
-        )
+        constructor(matrices: RelationsMatrix, header: List<String>, highlight: Pair<IntRange, IntRange>, isParallel: Boolean) :
+                this(
+                        "SD = ${matrices.strongDependencyMatrix.toLatex(header, header)}",
+                        "C = ${matrices.weekIndependencyMatrix.toLatex(header, header, highlight)}",
+                        isParallel
+                )
 
-        fun toLatex() = listOf(strongDependencyMatrix, weekIndependencyMatrix).joinToString(tripleLineBreak)
-
+        fun toLatex() =
+                if (isParallel) listOf(strongDependencyMatrix, weekIndependencyMatrix).joinToString(tripleLineBreak)
+                else
+                    strongDependencyMatrix
     }
 
     private fun header(program: Program) = namer.names(program).map(OperatorName::toLatex)
