@@ -5,8 +5,8 @@ import kotlin.math.min
 
 class ReducedProgram(val limit: Int = 15,
                      val groupMinSize: Int = 3,
-                     val startMinSize: Int = 2,
-                     val endMinSize: Int = 2) {
+                     val startMinSize: Int = 3,
+                     val endMinSize: Int = 6) {
     lateinit var iteration: CPF.Iteration
 
     private val group get() = iteration.groupedOperators

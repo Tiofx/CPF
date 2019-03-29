@@ -3,9 +3,10 @@ package report.cpf.iteration
 fun ReducedProgram.Indexes.toGraph(iterationNumber: Int, groupName: String, toOperator: IntRange.() -> List<Node>): String {
     class Graph(val start: List<Node>,
                 val group: List<Node>,
+                val afterGroup: List<Node>,
                 val end: List<Node>) {
 
-        private val allNodes get() = start + group + end
+        private val allNodes get() = start + group + afterGroup + end
         private val groupNode get() = NodeGroup(groupName, group)
 
         fun toGraphviz(): String = """
@@ -44,11 +45,25 @@ fun ReducedProgram.Indexes.toGraph(iterationNumber: Int, groupName: String, toOp
             else
                 groupStart.toOperator() + groupEnd.toOperator()
 
+    val REM_FOR_END = 2
+    val afterGroup =
+            if (hasSkipBeforeEnd)
+                (groupEnd.endInclusive + 1)..(groupEnd.endInclusive + 1 + end.toList().size - REM_FOR_END - 1)
+            else
+                IntRange.EMPTY
+
+    val endGroup =
+            if (hasSkipBeforeEnd)
+                (end.endInclusive - REM_FOR_END + 1)..end.endInclusive
+            else end
+
+    val afterGroupPart = afterGroup.toOperator()
+
     val endPart =
             if (hasSkipBeforeEnd)
-                listOf(NodeSkip()) + end.endExclusive().toOperator()
+                listOf(NodeSkip()) + endGroup.endExclusive().toOperator()
             else
-                end.toOperator()
+                endGroup.toOperator()
 
-    return Graph(startPart, groupPart, endPart).toGraphviz()
+    return Graph(startPart, groupPart, afterGroupPart, endPart).toGraphviz()
 }
