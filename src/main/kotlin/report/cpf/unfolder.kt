@@ -58,7 +58,6 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
     fun saveAsImage() {
         Graphviz
                 .fromString(toGraphviz())
-                .engine(Engine.OSAGE)
                 .render(Format.PNG)
                 .toFile(RESOURCES_FOLDER
                         .resolve("assets")

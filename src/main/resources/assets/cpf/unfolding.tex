@@ -45,10 +45,15 @@
   \null\;\vbox{\kern\ht\@ne\box\tw@}\endgroup}
 \makeatother
 \pagenumbering{gobble}
+\usepackage{rotating}
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}
+
 
 \begin{document}
-    \begin{figure}[H]
+    \begin{sidewaysfigure}
     \centering
     \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{unfolding.png}
-\end{figure}
+    \caption{Рисунок Б.1 – Представление ППФ}
+\end{sidewaysfigure}
 \end{document}
