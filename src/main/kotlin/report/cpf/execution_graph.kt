@@ -141,14 +141,22 @@ class CPFExecutionGraph(cpfSteps: List<CPF.Iteration>) {
 
 class CPFExecutionGraphTemplate : LatexReportTemplate() {
     override val preamble: String
-        get() = super.preamble + "\n\\pagenumbering{gobble}"
+        get() = super.preamble + """
+
+\pagenumbering{gobble}
+\usepackage{rotating}
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}
+
+        """.trimIndent()
 
     override val documentBody: String
         get() = """
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{execution_graph.png}
-\end{figure}
+    \begin{sidewaysfigure}
+        \centering
+        \includegraphics[width=\textwidth,height=\textheight-20,keepaspectratio]{execution_graph.png}
+        \caption{Рисунок Б.2 – Граф параллельного выполнения программы}
+    \end{sidewaysfigure}
         """.trimIndent()
 
     override fun Path.configResourcesPath() = resolve("assets").resolve("cpf").resolve("execution_graph.tex")

@@ -154,14 +154,22 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
 
 class CPFUnfoldingTemplate : LatexReportTemplate() {
     override val preamble: String
-        get() = super.preamble + "\n\\pagenumbering{gobble}"
+        get() = super.preamble + """
+
+\pagenumbering{gobble}
+\usepackage{rotating}
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}
+
+        """.trimIndent()
 
     override val documentBody: String
         get() = """
-\begin{figure}[H]
+\begin{sidewaysfigure}
     \centering
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{unfolding.png}
-\end{figure}
+    \includegraphics[width=\textwidth,height=\textheight-20,keepaspectratio]{unfolding.png}
+    \caption{Рисунок Б.1 – Представление ППФ}
+\end{sidewaysfigure}
         """.trimIndent()
 
     override fun Path.configResourcesPath() = resolve("assets").resolve("cpf").resolve("unfolding.tex")
