@@ -58,6 +58,9 @@ tasks {
     val makeCPFUnfoldingImage by registerTaskByMainFile("buildtask.report.cpf.unfolding.Make_imageKt")
     val makeCPFUnfoldingPlain by registerTaskByMainFile("buildtask.report.cpf.unfolding.Make_plainKt")
     val makeCPFUnfoldingTeXReport by registerTaskByMainFile("buildtask.report.cpf.unfolding.Make_tex_reportKt")
+    val makeCPFExecutionGraphImage by registerTaskByMainFile("buildtask.report.cpf.executiongraph.Make_imageKt")
+    val makeCPFExecutionGraphPlain by registerTaskByMainFile("buildtask.report.cpf.executiongraph.Make_plainKt")
+    val makeCPFExecutionGraphTeXReport by registerTaskByMainFile("buildtask.report.cpf.executiongraph.Make_tex_reportKt")
     val makeCPFTeXReport by registerTaskByMainFile("buildtask.report.cpf.Make_tex_reportKt")
     val makeTeXReport by registerTaskByMainFile("buildtask.report.Make_tex_reportKt")
 
@@ -71,6 +74,11 @@ tasks {
             "makeCPFUnfoldingTeXToPdfReport",
             ASSETS_FOLDER.resolve("cpf").absoluteFile,
             "unfolding.tex")
+
+    val makeCPFExecutionGraphTeXToPdfReport = xelatexTask(
+            "makeCPFExecutionGraphTeXToPdfReport",
+            ASSETS_FOLDER.resolve("cpf").absoluteFile,
+            "execution_graph.tex")
 
     val makeCPFTeXToPdfReport = xelatexTask(
             "makeCPFTeXToPdfReport",
@@ -89,6 +97,10 @@ tasks {
                 makeCPFUnfoldingTeXReport,
                 makeCPFUnfoldingTeXToPdfReport,
 
+                makeCPFExecutionGraphImage,
+                makeCPFExecutionGraphTeXReport,
+                makeCPFExecutionGraphTeXToPdfReport,
+
                 makeCPFTeXReport,
                 makeCPFTeXToPdfReport
         )
@@ -104,6 +116,11 @@ tasks {
                     makeCPFUnfoldingImage,
                     makeCPFUnfoldingTeXReport,
                     makeCPFUnfoldingTeXToPdfReport
+            ),
+            listOf(
+                    makeCPFExecutionGraphImage,
+                    makeCPFExecutionGraphTeXReport,
+                    makeCPFExecutionGraphTeXToPdfReport
             ),
             listOf(
                     makeCPFIterationTeXToPdfReport,
@@ -136,7 +153,8 @@ tasks {
 
         dependsOn(clearPlainDirectories,
                 makeCPFIterationPlainGraph,
-                makeCPFUnfoldingPlain)
+                makeCPFUnfoldingPlain,
+                makeCPFExecutionGraphPlain)
     }
 
 
