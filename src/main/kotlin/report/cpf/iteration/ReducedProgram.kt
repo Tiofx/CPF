@@ -3,7 +3,7 @@ package report.cpf.iteration
 import algorithm.CPF
 import kotlin.math.min
 
-class ReducedProgram(val limit: Int = 15,
+class ReducedProgram(val limit: Int = 17,
                      val groupMinSize: Int = 3,
                      val startMinSize: Int = 3,
                      val endMinSize: Int = 6) {
