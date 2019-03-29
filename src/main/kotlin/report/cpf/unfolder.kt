@@ -73,10 +73,11 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
         fun wrapByGraph(body: String) =
                 """
                 |graph CPFUnfloding {
-                |   layout=osage
                 |   style="rounded"
                 |   node [shape=circle, fontsize=14, fontname="Times New Roman", margin=".1,.01", fixedsize=true]
+                |   edge[style=invis]
                 |
+                |   ${order()}
                 |   ${body.replace("\n", "\n\t")}
                 |}
             """.trimMargin()
@@ -90,16 +91,65 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
                 |}
             """.trimMargin()
 
+        fun IOperator.wrapSimpleOperator() =
+                """
+                    |subgraph "cluster_${hashCode()}" {
+                    |   label = ""
+                    |   margin = 0
+                    |   style = invis
+                    |
+                    |   ${toName()}
+                    |}
+                """.trimMargin()
+
         fun iterate(operator: IOperator = cpfResult): String =
                 if (operator.isBaseOperator)
-                    operator.toName()
+                    operator.wrapSimpleOperator()
                 else
                     operator.inner
+                            .reversed()
                             .joinToString("\n") { iterate(it) }
                             .let { operator.wrapBySubgraph(it) }
 
         return wrapByGraph(iterate())
     }
+
+    fun order(operator: IOperator = cpfResult): String {
+        fun IOperator.wrap(): String {
+            fun IOperator._wrap(): String {
+                fun IOperator.wrapParallelOperator() = inner.joinToString(", ") { it._wrap() }
+                fun IOperator.wrapSequentialOperator() =  inner.last()._wrap()
+
+                return when {
+                    this.isBaseOperator -> this.toName()
+
+                    this is GroupOperator ->
+                        when (type) {
+                            GroupOperator.Type.PARALLEL -> wrapParallelOperator().let { "{$it}" }
+                            GroupOperator.Type.SEQUENTIAL -> wrapSequentialOperator()
+                        }
+
+                    else -> throw IllegalArgumentException("There is new type of IOperator!")
+                }
+            }
+
+            return if (operator is GroupOperator && operator.type == GroupOperator.Type.SEQUENTIAL)
+                inner.joinToString(" -- ") { it._wrap() }
+            else
+                ""
+        }
+
+
+        val currentResult = operator.wrap()
+
+        return operator.inner
+                .map { order(it) }
+                .plus(currentResult)
+                .filter { it.isNotBlank() }
+                .joinToString("\n")
+                .trim()
+    }
+
 
 }
 

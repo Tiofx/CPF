@@ -1,18 +1,21 @@
 digraph {
-   ranksep = 0.35;
+   ranksep = 0.2;
    node [shape=circle, fontsize=14, fontname="Times New Roman", margin=".1,.01", fixedsize=true]
+   edge[style = invis]
+   margin = 0
 
    subgraph cluster_iteration {
-       label = 23
+       label = 24
+       margin = 5
 
-       "||y13"  "||y12"
-       "||y13" -> "||y12"
+       "|y11"
+       "|y11"
        subgraph cluster_group {
     penwidth = 2
-    margin = 10
+    margin = 5
     label = "|y11"
 
-   "||y13" "||y12"
+   
 }
    }
 }
