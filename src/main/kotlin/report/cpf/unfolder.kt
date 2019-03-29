@@ -73,6 +73,8 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
                 """
                 |graph CPFUnfloding {
                 |   style="rounded"
+                |   nodesep = 0.1
+                |   ranksep = 0.2
                 |   node [shape=circle, fontsize=14, fontname="Times New Roman", margin=".1,.01", fixedsize=true]
                 |   edge[style=invis]
                 |
