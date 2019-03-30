@@ -17,9 +17,9 @@ fun ProgramText.prepareToLatex(): ProgramText {
             ModifierItem("det") { "\\Delta" },
             ModifierItem("A\\^_1") { "A^{-1}" },
             ModifierItem("A\\^T") { "A^T" },
-            modifire("aA(\\d{4})") { "aA_{$it}" },
+            modifire("t(\\d+)") { "t_{$it}" },
+            modifire("temp(\\d+)") { "temp_{$it}" },
             modifire("A(\\d{2})") { "A_{$it}" },
-            modifire("a(\\d{4})") { "a_{$it}" },
             modifire("a(\\d{2})") { "a_{$it}" }
     )
 

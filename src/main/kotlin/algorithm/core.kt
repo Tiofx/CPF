@@ -28,7 +28,7 @@ class GroupOperator(
 
 class Operator(val expression: String) : IOperator {
     companion object {
-        private val separators = listOf("+", "*", "-", "/", "(", ")", ",").toTypedArray()
+        private val separators = listOf("+", "*", "-", "/", "(", ")", ",", ";", "[", "]").toTypedArray()
     }
 
     override val C = expression
