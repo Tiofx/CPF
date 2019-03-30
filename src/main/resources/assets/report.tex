@@ -126,7 +126,7 @@ S_{33} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 &
 %
 Проверка условия приводимости программы к ППФ (5 из 413): \\
 \begin{math}\breakingcomma
-1) S_{1} \nrightarrow S_{5} \\ 
+1) S_{1}\xrightarrow[]{\  _*  \ }S_{5} \\ 
 2) S_{3} \\ 
 E(S_{1}) = \{S_{3}, S_{4}, S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{5}) = \{S_{7}, S_{8}, S_{13}, S_{32}, S_{33}\} \\ 
@@ -137,7 +137,7 @@ S_{3} \in N_2(S_{1}, S_{5}) - \text{выполняется} \\
 N_1(S_{1}, S_{5}) \subseteq E(S_{3}) - \text{выполняется} \\ 
 \text{выполняется} \\ \newline 
 %
-1) S_{1} \nrightarrow S_{6} \\ 
+1) S_{1}\xrightarrow[]{\  _*  \ }S_{6} \\ 
 2) S_{3} \\ 
 E(S_{1}) = \{S_{3}, S_{4}, S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{6}) = \{S_{7}, S_{8}, S_{13}, S_{32}, S_{33}\} \\ 
@@ -148,7 +148,7 @@ S_{3} \in N_2(S_{1}, S_{6}) - \text{выполняется} \\
 N_1(S_{1}, S_{6}) \subseteq E(S_{3}) - \text{выполняется} \\ 
 \text{выполняется} \\ \newline 
 %
-1) S_{1} \nrightarrow S_{7} \\ 
+1) S_{1}\xrightarrow[]{\  _*  \ }S_{7} \\ 
 2) S_{3} \\ 
 E(S_{1}) = \{S_{3}, S_{4}, S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{7}) = \{S_{8}, S_{13}, S_{32}, S_{33}\} \\ 
@@ -159,7 +159,7 @@ S_{3} \in N_2(S_{1}, S_{7}) - \text{выполняется} \\
 N_1(S_{1}, S_{7}) \subseteq E(S_{3}) - \text{выполняется} \\ 
 \text{выполняется} \\ \newline 
 %
-1) S_{1} \nrightarrow S_{8} \\ 
+1) S_{1}\xrightarrow[]{\  _*  \ }S_{8} \\ 
 2) S_{3} \\ 
 E(S_{1}) = \{S_{3}, S_{4}, S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{8}) = \{S_{13}, S_{33}\} \\ 
@@ -170,7 +170,7 @@ S_{3} \in N_2(S_{1}, S_{8}) - \text{выполняется} \\
 N_1(S_{1}, S_{8}) \subseteq E(S_{3}) - \text{выполняется} \\ 
 \text{выполняется} \\ \newline 
 %
-1) S_{1} \nrightarrow S_{9} \\ 
+1) S_{1}\xrightarrow[]{\  _*  \ }S_{9} \\ 
 2) S_{3} \\ 
 E(S_{1}) = \{S_{3}, S_{4}, S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{9}) = \{S_{11}, S_{12}, S_{13}, S_{32}, S_{33}\} \\ 
@@ -189,45 +189,12 @@ N_1(S_{1}, S_{9}) \subseteq E(S_{3}) - \text{выполняется} \\
 \begin{center}\huge Итерация №2 \end{center}\\
 Отношения между операторами: \\ \newline
 \begin{math}
-    \bar{\bar{y}}_{1} \rightarrow S_{3} \\ 
-S_{3} \rightarrow S_{4} \\ 
-S_{3} \rightarrow S_{32} \\ 
-S_{4} \rightarrow S_{13} \\ 
-S_{5} \rightarrow S_{7} \\ 
-S_{6} \rightarrow S_{7} \\ 
-S_{7} \rightarrow S_{8} \\ 
-S_{7} \rightarrow S_{32} \\ 
-S_{8} \rightarrow S_{13} \\ 
-S_{9} \rightarrow S_{11} \\ 
-S_{10} \rightarrow S_{11} \\ 
-S_{11} \rightarrow S_{12} \\ 
-S_{11} \rightarrow S_{32} \\ 
-S_{12} \rightarrow S_{13} \\ 
-S_{13} \rightarrow S_{33} \\ 
-S_{14} \rightarrow S_{16} \\ 
-S_{15} \rightarrow S_{16} \\ 
-S_{16} \rightarrow S_{32} \\ 
-S_{17} \rightarrow S_{19} \\ 
-S_{18} \rightarrow S_{19} \\ 
-S_{19} \rightarrow S_{32} \\ 
-S_{20} \rightarrow S_{22} \\ 
-S_{21} \rightarrow S_{22} \\ 
-S_{22} \rightarrow S_{32} \\ 
-S_{23} \rightarrow S_{25} \\ 
-S_{24} \rightarrow S_{25} \\ 
-S_{25} \rightarrow S_{32} \\ 
-S_{26} \rightarrow S_{28} \\ 
-S_{27} \rightarrow S_{28} \\ 
-S_{28} \rightarrow S_{32} \\ 
-S_{29} \rightarrow S_{31} \\ 
-S_{30} \rightarrow S_{31} \\ 
-S_{31} \rightarrow S_{32} \\ 
-S_{32} \rightarrow S_{33}
+    \bar{\bar{y}}_{1} \rightarrow S_{3}
 \end{math}\\ \newline
 %
 Проверка условия приводимости программы к ППФ (5 из 387): \\
 \begin{math}\breakingcomma
-1) \bar{\bar{y}}_{1} \nrightarrow S_{5} \\ 
+1) \bar{\bar{y}}_{1}\xrightarrow[]{\  _*  \ }S_{5} \\ 
 2) S_{3} \\ 
 E(\bar{\bar{y}}_{1}) = \{S_{3}, S_{4}, S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{5}) = \{S_{7}, S_{8}, S_{13}, S_{32}, S_{33}\} \\ 
@@ -238,7 +205,7 @@ S_{3} \in N_2(\bar{\bar{y}}_{1}, S_{5}) - \text{выполняется} \\
 N_1(\bar{\bar{y}}_{1}, S_{5}) \subseteq E(S_{3}) - \text{выполняется} \\ 
 \text{выполняется} \\ \newline 
 %
-1) \bar{\bar{y}}_{1} \nrightarrow S_{6} \\ 
+1) \bar{\bar{y}}_{1}\xrightarrow[]{\  _*  \ }S_{6} \\ 
 2) S_{3} \\ 
 E(\bar{\bar{y}}_{1}) = \{S_{3}, S_{4}, S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{6}) = \{S_{7}, S_{8}, S_{13}, S_{32}, S_{33}\} \\ 
@@ -249,7 +216,7 @@ S_{3} \in N_2(\bar{\bar{y}}_{1}, S_{6}) - \text{выполняется} \\
 N_1(\bar{\bar{y}}_{1}, S_{6}) \subseteq E(S_{3}) - \text{выполняется} \\ 
 \text{выполняется} \\ \newline 
 %
-1) \bar{\bar{y}}_{1} \nrightarrow S_{7} \\ 
+1) \bar{\bar{y}}_{1}\xrightarrow[]{\  _*  \ }S_{7} \\ 
 2) S_{3} \\ 
 E(\bar{\bar{y}}_{1}) = \{S_{3}, S_{4}, S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{7}) = \{S_{8}, S_{13}, S_{32}, S_{33}\} \\ 
@@ -260,7 +227,7 @@ S_{3} \in N_2(\bar{\bar{y}}_{1}, S_{7}) - \text{выполняется} \\
 N_1(\bar{\bar{y}}_{1}, S_{7}) \subseteq E(S_{3}) - \text{выполняется} \\ 
 \text{выполняется} \\ \newline 
 %
-1) \bar{\bar{y}}_{1} \nrightarrow S_{8} \\ 
+1) \bar{\bar{y}}_{1}\xrightarrow[]{\  _*  \ }S_{8} \\ 
 2) S_{3} \\ 
 E(\bar{\bar{y}}_{1}) = \{S_{3}, S_{4}, S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{8}) = \{S_{13}, S_{33}\} \\ 
@@ -271,7 +238,7 @@ S_{3} \in N_2(\bar{\bar{y}}_{1}, S_{8}) - \text{выполняется} \\
 N_1(\bar{\bar{y}}_{1}, S_{8}) \subseteq E(S_{3}) - \text{выполняется} \\ 
 \text{выполняется} \\ \newline 
 %
-1) \bar{\bar{y}}_{1} \nrightarrow S_{9} \\ 
+1) \bar{\bar{y}}_{1}\xrightarrow[]{\  _*  \ }S_{9} \\ 
 2) S_{3} \\ 
 E(\bar{\bar{y}}_{1}) = \{S_{3}, S_{4}, S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{9}) = \{S_{11}, S_{12}, S_{13}, S_{32}, S_{33}\} \\ 
@@ -291,37 +258,7 @@ N_1(\bar{\bar{y}}_{1}, S_{9}) \subseteq E(S_{3}) - \text{выполняется}
 Отношения между операторами: \\ \newline
 \begin{math}
     \bar{y}_{1} \rightarrow S_{13} \\ 
-\bar{y}_{1} \rightarrow S_{32} \\ 
-S_{5} \rightarrow S_{7} \\ 
-S_{6} \rightarrow S_{7} \\ 
-S_{7} \rightarrow S_{8} \\ 
-S_{7} \rightarrow S_{32} \\ 
-S_{8} \rightarrow S_{13} \\ 
-S_{9} \rightarrow S_{11} \\ 
-S_{10} \rightarrow S_{11} \\ 
-S_{11} \rightarrow S_{12} \\ 
-S_{11} \rightarrow S_{32} \\ 
-S_{12} \rightarrow S_{13} \\ 
-S_{13} \rightarrow S_{33} \\ 
-S_{14} \rightarrow S_{16} \\ 
-S_{15} \rightarrow S_{16} \\ 
-S_{16} \rightarrow S_{32} \\ 
-S_{17} \rightarrow S_{19} \\ 
-S_{18} \rightarrow S_{19} \\ 
-S_{19} \rightarrow S_{32} \\ 
-S_{20} \rightarrow S_{22} \\ 
-S_{21} \rightarrow S_{22} \\ 
-S_{22} \rightarrow S_{32} \\ 
-S_{23} \rightarrow S_{25} \\ 
-S_{24} \rightarrow S_{25} \\ 
-S_{25} \rightarrow S_{32} \\ 
-S_{26} \rightarrow S_{28} \\ 
-S_{27} \rightarrow S_{28} \\ 
-S_{28} \rightarrow S_{32} \\ 
-S_{29} \rightarrow S_{31} \\ 
-S_{30} \rightarrow S_{31} \\ 
-S_{31} \rightarrow S_{32} \\ 
-S_{32} \rightarrow S_{33}
+\bar{y}_{1} \rightarrow S_{32}
 \end{math} \\ \\ \\ 
 %
 C = {\resizebox{\linewidth}{!}{$\bbordermatrix{
@@ -360,7 +297,7 @@ S_{33} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 &
 %
 Проверка условия приводимости программы к ППФ (5 из 334): \\
 \begin{math}\breakingcomma
-1) \bar{y}_{1} \nrightarrow S_{6} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{6} \\ 
 2) S_{5} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{6}) = \{S_{7}, S_{8}, S_{13}, S_{32}, S_{33}\} \\ 
@@ -371,7 +308,7 @@ S_{5} \in N_2(\bar{y}_{1}, S_{6}) - \text{не выполняется} \\
 N_1(\bar{y}_{1}, S_{6}) \subseteq E(S_{5}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{1} \nrightarrow S_{7} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{7} \\ 
 2) S_{6} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{7}) = \{S_{8}, S_{13}, S_{32}, S_{33}\} \\ 
@@ -382,7 +319,7 @@ S_{6} \in N_2(\bar{y}_{1}, S_{7}) - \text{не выполняется} \\
 N_1(\bar{y}_{1}, S_{7}) \subseteq E(S_{6}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{1} \nrightarrow S_{8} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{8} \\ 
 2) S_{7} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{8}) = \{S_{13}, S_{33}\} \\ 
@@ -393,7 +330,7 @@ S_{7} \in N_2(\bar{y}_{1}, S_{8}) - \text{не выполняется} \\
 N_1(\bar{y}_{1}, S_{8}) \subseteq E(S_{7}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{1} \nrightarrow S_{9} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{9} \\ 
 2) S_{8} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{9}) = \{S_{11}, S_{12}, S_{13}, S_{32}, S_{33}\} \\ 
@@ -404,7 +341,7 @@ S_{8} \in N_2(\bar{y}_{1}, S_{9}) - \text{не выполняется} \\
 N_1(\bar{y}_{1}, S_{9}) \subseteq E(S_{8}) - \text{не выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{1} \nrightarrow S_{10} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{10} \\ 
 2) S_{9} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{10}) = \{S_{11}, S_{12}, S_{13}, S_{32}, S_{33}\} \\ 
@@ -423,42 +360,12 @@ N_1(\bar{y}_{1}, S_{10}) \subseteq E(S_{9}) - \text{выполняется} \\
 \begin{center}\huge Итерация №4 \end{center}\\
 Отношения между операторами: \\ \newline
 \begin{math}
-    \bar{y}_{1} \rightarrow S_{13} \\ 
-\bar{y}_{1} \rightarrow S_{32} \\ 
-\bar{\bar{y}}_{2} \rightarrow S_{7} \\ 
-S_{7} \rightarrow S_{8} \\ 
-S_{7} \rightarrow S_{32} \\ 
-S_{8} \rightarrow S_{13} \\ 
-S_{9} \rightarrow S_{11} \\ 
-S_{10} \rightarrow S_{11} \\ 
-S_{11} \rightarrow S_{12} \\ 
-S_{11} \rightarrow S_{32} \\ 
-S_{12} \rightarrow S_{13} \\ 
-S_{13} \rightarrow S_{33} \\ 
-S_{14} \rightarrow S_{16} \\ 
-S_{15} \rightarrow S_{16} \\ 
-S_{16} \rightarrow S_{32} \\ 
-S_{17} \rightarrow S_{19} \\ 
-S_{18} \rightarrow S_{19} \\ 
-S_{19} \rightarrow S_{32} \\ 
-S_{20} \rightarrow S_{22} \\ 
-S_{21} \rightarrow S_{22} \\ 
-S_{22} \rightarrow S_{32} \\ 
-S_{23} \rightarrow S_{25} \\ 
-S_{24} \rightarrow S_{25} \\ 
-S_{25} \rightarrow S_{32} \\ 
-S_{26} \rightarrow S_{28} \\ 
-S_{27} \rightarrow S_{28} \\ 
-S_{28} \rightarrow S_{32} \\ 
-S_{29} \rightarrow S_{31} \\ 
-S_{30} \rightarrow S_{31} \\ 
-S_{31} \rightarrow S_{32} \\ 
-S_{32} \rightarrow S_{33}
+    \bar{\bar{y}}_{2} \rightarrow S_{7}
 \end{math}\\ \newline
 %
 Проверка условия приводимости программы к ППФ (5 из 311): \\
 \begin{math}\breakingcomma
-1) \bar{y}_{1} \nrightarrow S_{7} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{7} \\ 
 2) \bar{\bar{y}}_{2} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{7}) = \{S_{8}, S_{13}, S_{32}, S_{33}\} \\ 
@@ -469,7 +376,7 @@ E(\bar{\bar{y}}_{2}) = \{S_{7}, S_{8}, S_{13}, S_{32}, S_{33}\} \\
 N_1(\bar{y}_{1}, S_{7}) \subseteq E(\bar{\bar{y}}_{2}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{1} \nrightarrow S_{8} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{8} \\ 
 2) S_{7} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{8}) = \{S_{13}, S_{33}\} \\ 
@@ -480,7 +387,7 @@ S_{7} \in N_2(\bar{y}_{1}, S_{8}) - \text{не выполняется} \\
 N_1(\bar{y}_{1}, S_{8}) \subseteq E(S_{7}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{1} \nrightarrow S_{9} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{9} \\ 
 2) S_{8} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{9}) = \{S_{11}, S_{12}, S_{13}, S_{32}, S_{33}\} \\ 
@@ -491,7 +398,7 @@ S_{8} \in N_2(\bar{y}_{1}, S_{9}) - \text{не выполняется} \\
 N_1(\bar{y}_{1}, S_{9}) \subseteq E(S_{8}) - \text{не выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{1} \nrightarrow S_{10} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{10} \\ 
 2) S_{9} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{10}) = \{S_{11}, S_{12}, S_{13}, S_{32}, S_{33}\} \\ 
@@ -502,7 +409,7 @@ S_{9} \in N_2(\bar{y}_{1}, S_{10}) - \text{не выполняется} \\
 N_1(\bar{y}_{1}, S_{10}) \subseteq E(S_{9}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{1} \nrightarrow S_{11} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{11} \\ 
 2) S_{10} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{11}) = \{S_{12}, S_{13}, S_{32}, S_{33}\} \\ 
@@ -521,35 +428,8 @@ N_1(\bar{y}_{1}, S_{11}) \subseteq E(S_{10}) - \text{выполняется} \\
 \begin{center}\huge Итерация №5 \end{center}\\
 Отношения между операторами: \\ \newline
 \begin{math}
-    \bar{y}_{1} \rightarrow S_{13} \\ 
-\bar{y}_{1} \rightarrow S_{32} \\ 
-\bar{y}_{2} \rightarrow S_{13} \\ 
-\bar{y}_{2} \rightarrow S_{32} \\ 
-S_{9} \rightarrow S_{11} \\ 
-S_{10} \rightarrow S_{11} \\ 
-S_{11} \rightarrow S_{12} \\ 
-S_{11} \rightarrow S_{32} \\ 
-S_{12} \rightarrow S_{13} \\ 
-S_{13} \rightarrow S_{33} \\ 
-S_{14} \rightarrow S_{16} \\ 
-S_{15} \rightarrow S_{16} \\ 
-S_{16} \rightarrow S_{32} \\ 
-S_{17} \rightarrow S_{19} \\ 
-S_{18} \rightarrow S_{19} \\ 
-S_{19} \rightarrow S_{32} \\ 
-S_{20} \rightarrow S_{22} \\ 
-S_{21} \rightarrow S_{22} \\ 
-S_{22} \rightarrow S_{32} \\ 
-S_{23} \rightarrow S_{25} \\ 
-S_{24} \rightarrow S_{25} \\ 
-S_{25} \rightarrow S_{32} \\ 
-S_{26} \rightarrow S_{28} \\ 
-S_{27} \rightarrow S_{28} \\ 
-S_{28} \rightarrow S_{32} \\ 
-S_{29} \rightarrow S_{31} \\ 
-S_{30} \rightarrow S_{31} \\ 
-S_{31} \rightarrow S_{32} \\ 
-S_{32} \rightarrow S_{33}
+    \bar{y}_{2} \rightarrow S_{13} \\ 
+\bar{y}_{2} \rightarrow S_{32}
 \end{math} \\ \\ \\ 
 %
 C = {\let\quad\thinspace\scriptize{$\bbordermatrix{
@@ -585,7 +465,7 @@ S_{33} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 &
 %
 Проверка условия приводимости программы к ППФ (5 из 264): \\
 \begin{math}\breakingcomma
-1) \bar{y}_{1} \nrightarrow S_{9} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{9} \\ 
 2) \bar{y}_{2} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{9}) = \{S_{11}, S_{12}, S_{13}, S_{32}, S_{33}\} \\ 
@@ -596,7 +476,7 @@ E(\bar{y}_{2}) = \{S_{13}, S_{32}, S_{33}\} \\
 N_1(\bar{y}_{1}, S_{9}) \subseteq E(\bar{y}_{2}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{1} \nrightarrow S_{10} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{10} \\ 
 2) S_{9} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{10}) = \{S_{11}, S_{12}, S_{13}, S_{32}, S_{33}\} \\ 
@@ -607,7 +487,7 @@ S_{9} \in N_2(\bar{y}_{1}, S_{10}) - \text{не выполняется} \\
 N_1(\bar{y}_{1}, S_{10}) \subseteq E(S_{9}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{1} \nrightarrow S_{11} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{11} \\ 
 2) S_{10} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{11}) = \{S_{12}, S_{13}, S_{32}, S_{33}\} \\ 
@@ -618,7 +498,7 @@ S_{10} \in N_2(\bar{y}_{1}, S_{11}) - \text{не выполняется} \\
 N_1(\bar{y}_{1}, S_{11}) \subseteq E(S_{10}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{1} \nrightarrow S_{12} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{12} \\ 
 2) S_{11} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{12}) = \{S_{13}, S_{33}\} \\ 
@@ -629,7 +509,7 @@ S_{11} \in N_2(\bar{y}_{1}, S_{12}) - \text{не выполняется} \\
 N_1(\bar{y}_{1}, S_{12}) \subseteq E(S_{11}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{1} \nrightarrow S_{14} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{14} \\ 
 2) S_{13} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{14}) = \{S_{16}, S_{32}, S_{33}\} \\ 
@@ -648,39 +528,12 @@ N_1(\bar{y}_{1}, S_{14}) \subseteq E(S_{13}) - \text{не выполняется
 \begin{center}\huge Итерация №6 \end{center}\\
 Отношения между операторами: \\ \newline
 \begin{math}
-    \bar{y}_{1} \rightarrow S_{13} \\ 
-\bar{y}_{1} \rightarrow S_{32} \\ 
-\bar{y}_{2} \rightarrow S_{13} \\ 
-\bar{y}_{2} \rightarrow S_{32} \\ 
-\bar{\bar{y}}_{3} \rightarrow S_{11} \\ 
-S_{11} \rightarrow S_{12} \\ 
-S_{11} \rightarrow S_{32} \\ 
-S_{12} \rightarrow S_{13} \\ 
-S_{13} \rightarrow S_{33} \\ 
-S_{14} \rightarrow S_{16} \\ 
-S_{15} \rightarrow S_{16} \\ 
-S_{16} \rightarrow S_{32} \\ 
-S_{17} \rightarrow S_{19} \\ 
-S_{18} \rightarrow S_{19} \\ 
-S_{19} \rightarrow S_{32} \\ 
-S_{20} \rightarrow S_{22} \\ 
-S_{21} \rightarrow S_{22} \\ 
-S_{22} \rightarrow S_{32} \\ 
-S_{23} \rightarrow S_{25} \\ 
-S_{24} \rightarrow S_{25} \\ 
-S_{25} \rightarrow S_{32} \\ 
-S_{26} \rightarrow S_{28} \\ 
-S_{27} \rightarrow S_{28} \\ 
-S_{28} \rightarrow S_{32} \\ 
-S_{29} \rightarrow S_{31} \\ 
-S_{30} \rightarrow S_{31} \\ 
-S_{31} \rightarrow S_{32} \\ 
-S_{32} \rightarrow S_{33}
+    \bar{\bar{y}}_{3} \rightarrow S_{11}
 \end{math}\\ \newline
 %
 Проверка условия приводимости программы к ППФ (5 из 244): \\
 \begin{math}\breakingcomma
-1) \bar{y}_{1} \nrightarrow \bar{\bar{y}}_{3} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }\bar{\bar{y}}_{3} \\ 
 2) \bar{y}_{2} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(\bar{\bar{y}}_{3}) = \{S_{11}, S_{12}, S_{13}, S_{32}, S_{33}\} \\ 
@@ -691,7 +544,7 @@ E(\bar{y}_{2}) = \{S_{13}, S_{32}, S_{33}\} \\
 N_1(\bar{y}_{1}, \bar{\bar{y}}_{3}) \subseteq E(\bar{y}_{2}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{1} \nrightarrow S_{11} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{11} \\ 
 2) \bar{\bar{y}}_{3} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{11}) = \{S_{12}, S_{13}, S_{32}, S_{33}\} \\ 
@@ -702,7 +555,7 @@ E(\bar{\bar{y}}_{3}) = \{S_{11}, S_{12}, S_{13}, S_{32}, S_{33}\} \\
 N_1(\bar{y}_{1}, S_{11}) \subseteq E(\bar{\bar{y}}_{3}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{1} \nrightarrow S_{12} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{12} \\ 
 2) S_{11} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{12}) = \{S_{13}, S_{33}\} \\ 
@@ -713,7 +566,7 @@ S_{11} \in N_2(\bar{y}_{1}, S_{12}) - \text{не выполняется} \\
 N_1(\bar{y}_{1}, S_{12}) \subseteq E(S_{11}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{1} \nrightarrow S_{14} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{14} \\ 
 2) S_{13} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{14}) = \{S_{16}, S_{32}, S_{33}\} \\ 
@@ -724,7 +577,7 @@ S_{13} \in N_2(\bar{y}_{1}, S_{14}) - \text{выполняется} \\
 N_1(\bar{y}_{1}, S_{14}) \subseteq E(S_{13}) - \text{не выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{1} \nrightarrow S_{15} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{15} \\ 
 2) S_{14} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{15}) = \{S_{16}, S_{32}, S_{33}\} \\ 
@@ -743,32 +596,8 @@ N_1(\bar{y}_{1}, S_{15}) \subseteq E(S_{14}) - \text{выполняется} \\
 \begin{center}\huge Итерация №7 \end{center}\\
 Отношения между операторами: \\ \newline
 \begin{math}
-    \bar{y}_{1} \rightarrow S_{13} \\ 
-\bar{y}_{1} \rightarrow S_{32} \\ 
-\bar{y}_{2} \rightarrow S_{13} \\ 
-\bar{y}_{2} \rightarrow S_{32} \\ 
-\bar{y}_{3} \rightarrow S_{13} \\ 
-\bar{y}_{3} \rightarrow S_{32} \\ 
-S_{13} \rightarrow S_{33} \\ 
-S_{14} \rightarrow S_{16} \\ 
-S_{15} \rightarrow S_{16} \\ 
-S_{16} \rightarrow S_{32} \\ 
-S_{17} \rightarrow S_{19} \\ 
-S_{18} \rightarrow S_{19} \\ 
-S_{19} \rightarrow S_{32} \\ 
-S_{20} \rightarrow S_{22} \\ 
-S_{21} \rightarrow S_{22} \\ 
-S_{22} \rightarrow S_{32} \\ 
-S_{23} \rightarrow S_{25} \\ 
-S_{24} \rightarrow S_{25} \\ 
-S_{25} \rightarrow S_{32} \\ 
-S_{26} \rightarrow S_{28} \\ 
-S_{27} \rightarrow S_{28} \\ 
-S_{28} \rightarrow S_{32} \\ 
-S_{29} \rightarrow S_{31} \\ 
-S_{30} \rightarrow S_{31} \\ 
-S_{31} \rightarrow S_{32} \\ 
-S_{32} \rightarrow S_{33}
+    \bar{y}_{3} \rightarrow S_{13} \\ 
+\bar{y}_{3} \rightarrow S_{32}
 \end{math} \\ \\ \\ 
 %
 C = {\let\quad\thinspace\footnotesize{$\bbordermatrix{
@@ -801,7 +630,7 @@ S_{33} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 &
 %
 Проверка условия приводимости программы к ППФ (5 из 203): \\
 \begin{math}\breakingcomma
-1) \bar{y}_{1} \nrightarrow \bar{y}_{3} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }\bar{y}_{3} \\ 
 2) \bar{y}_{2} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(\bar{y}_{3}) = \{S_{13}, S_{32}, S_{33}\} \\ 
@@ -812,7 +641,7 @@ E(\bar{y}_{2}) = \{S_{13}, S_{32}, S_{33}\} \\
 N_1(\bar{y}_{1}, \bar{y}_{3}) \subseteq E(\bar{y}_{2}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{1} \nrightarrow S_{14} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{14} \\ 
 2) S_{13} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{14}) = \{S_{16}, S_{32}, S_{33}\} \\ 
@@ -823,7 +652,7 @@ S_{13} \in N_2(\bar{y}_{1}, S_{14}) - \text{выполняется} \\
 N_1(\bar{y}_{1}, S_{14}) \subseteq E(S_{13}) - \text{не выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{1} \nrightarrow S_{15} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{15} \\ 
 2) S_{14} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{15}) = \{S_{16}, S_{32}, S_{33}\} \\ 
@@ -834,7 +663,7 @@ S_{14} \in N_2(\bar{y}_{1}, S_{15}) - \text{не выполняется} \\
 N_1(\bar{y}_{1}, S_{15}) \subseteq E(S_{14}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{1} \nrightarrow S_{16} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{16} \\ 
 2) S_{15} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{16}) = \{S_{32}, S_{33}\} \\ 
@@ -845,7 +674,7 @@ S_{15} \in N_2(\bar{y}_{1}, S_{16}) - \text{не выполняется} \\
 N_1(\bar{y}_{1}, S_{16}) \subseteq E(S_{15}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{1} \nrightarrow S_{17} \\ 
+1) \bar{y}_{1}\xrightarrow[]{\  _*  \ }S_{17} \\ 
 2) S_{16} \\ 
 E(\bar{y}_{1}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{17}) = \{S_{19}, S_{32}, S_{33}\} \\ 
@@ -865,32 +694,12 @@ N_1(\bar{y}_{1}, S_{17}) \subseteq E(S_{16}) - \text{выполняется} \\
 Отношения между операторами: \\ \newline
 \begin{math}
     \bar{\bar{y}}_{4} \rightarrow S_{13} \\ 
-\bar{\bar{y}}_{4} \rightarrow S_{32} \\ 
-S_{13} \rightarrow S_{33} \\ 
-S_{14} \rightarrow S_{16} \\ 
-S_{15} \rightarrow S_{16} \\ 
-S_{16} \rightarrow S_{32} \\ 
-S_{17} \rightarrow S_{19} \\ 
-S_{18} \rightarrow S_{19} \\ 
-S_{19} \rightarrow S_{32} \\ 
-S_{20} \rightarrow S_{22} \\ 
-S_{21} \rightarrow S_{22} \\ 
-S_{22} \rightarrow S_{32} \\ 
-S_{23} \rightarrow S_{25} \\ 
-S_{24} \rightarrow S_{25} \\ 
-S_{25} \rightarrow S_{32} \\ 
-S_{26} \rightarrow S_{28} \\ 
-S_{27} \rightarrow S_{28} \\ 
-S_{28} \rightarrow S_{32} \\ 
-S_{29} \rightarrow S_{31} \\ 
-S_{30} \rightarrow S_{31} \\ 
-S_{31} \rightarrow S_{32} \\ 
-S_{32} \rightarrow S_{33}
+\bar{\bar{y}}_{4} \rightarrow S_{32}
 \end{math}\\ \newline
 %
 Проверка условия приводимости программы к ППФ (5 из 166): \\
 \begin{math}\breakingcomma
-1) \bar{\bar{y}}_{4} \nrightarrow S_{14} \\ 
+1) \bar{\bar{y}}_{4}\xrightarrow[]{\  _*  \ }S_{14} \\ 
 2) S_{13} \\ 
 E(\bar{\bar{y}}_{4}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{14}) = \{S_{16}, S_{32}, S_{33}\} \\ 
@@ -901,7 +710,7 @@ S_{13} \in N_2(\bar{\bar{y}}_{4}, S_{14}) - \text{выполняется} \\
 N_1(\bar{\bar{y}}_{4}, S_{14}) \subseteq E(S_{13}) - \text{не выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{\bar{y}}_{4} \nrightarrow S_{15} \\ 
+1) \bar{\bar{y}}_{4}\xrightarrow[]{\  _*  \ }S_{15} \\ 
 2) S_{14} \\ 
 E(\bar{\bar{y}}_{4}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{15}) = \{S_{16}, S_{32}, S_{33}\} \\ 
@@ -912,7 +721,7 @@ S_{14} \in N_2(\bar{\bar{y}}_{4}, S_{15}) - \text{не выполняется} \
 N_1(\bar{\bar{y}}_{4}, S_{15}) \subseteq E(S_{14}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{\bar{y}}_{4} \nrightarrow S_{16} \\ 
+1) \bar{\bar{y}}_{4}\xrightarrow[]{\  _*  \ }S_{16} \\ 
 2) S_{15} \\ 
 E(\bar{\bar{y}}_{4}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{16}) = \{S_{32}, S_{33}\} \\ 
@@ -923,7 +732,7 @@ S_{15} \in N_2(\bar{\bar{y}}_{4}, S_{16}) - \text{не выполняется} \
 N_1(\bar{\bar{y}}_{4}, S_{16}) \subseteq E(S_{15}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{\bar{y}}_{4} \nrightarrow S_{17} \\ 
+1) \bar{\bar{y}}_{4}\xrightarrow[]{\  _*  \ }S_{17} \\ 
 2) S_{16} \\ 
 E(\bar{\bar{y}}_{4}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{17}) = \{S_{19}, S_{32}, S_{33}\} \\ 
@@ -934,7 +743,7 @@ S_{16} \in N_2(\bar{\bar{y}}_{4}, S_{17}) - \text{не выполняется} \
 N_1(\bar{\bar{y}}_{4}, S_{17}) \subseteq E(S_{16}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{\bar{y}}_{4} \nrightarrow S_{18} \\ 
+1) \bar{\bar{y}}_{4}\xrightarrow[]{\  _*  \ }S_{18} \\ 
 2) S_{17} \\ 
 E(\bar{\bar{y}}_{4}) = \{S_{13}, S_{32}, S_{33}\} \\ 
 E(S_{18}) = \{S_{19}, S_{32}, S_{33}\} \\ 
@@ -954,26 +763,7 @@ N_1(\bar{\bar{y}}_{4}, S_{18}) \subseteq E(S_{17}) - \text{выполняетс�
 Отношения между операторами: \\ \newline
 \begin{math}
     \bar{y}_{4} \rightarrow S_{32} \\ 
-\bar{y}_{4} \rightarrow S_{33} \\ 
-S_{14} \rightarrow S_{16} \\ 
-S_{15} \rightarrow S_{16} \\ 
-S_{16} \rightarrow S_{32} \\ 
-S_{17} \rightarrow S_{19} \\ 
-S_{18} \rightarrow S_{19} \\ 
-S_{19} \rightarrow S_{32} \\ 
-S_{20} \rightarrow S_{22} \\ 
-S_{21} \rightarrow S_{22} \\ 
-S_{22} \rightarrow S_{32} \\ 
-S_{23} \rightarrow S_{25} \\ 
-S_{24} \rightarrow S_{25} \\ 
-S_{25} \rightarrow S_{32} \\ 
-S_{26} \rightarrow S_{28} \\ 
-S_{27} \rightarrow S_{28} \\ 
-S_{28} \rightarrow S_{32} \\ 
-S_{29} \rightarrow S_{31} \\ 
-S_{30} \rightarrow S_{31} \\ 
-S_{31} \rightarrow S_{32} \\ 
-S_{32} \rightarrow S_{33}
+\bar{y}_{4} \rightarrow S_{33}
 \end{math} \\ \\ \\ 
 %
 C = {\let\quad\thinspace\footnotesize{$\bbordermatrix{
@@ -1003,7 +793,7 @@ S_{33} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 &
 %
 Проверка условия приводимости программы к ППФ (5 из 147): \\
 \begin{math}\breakingcomma
-1) \bar{y}_{4} \nrightarrow S_{15} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{15} \\ 
 2) S_{14} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{15}) = \{S_{16}, S_{32}, S_{33}\} \\ 
@@ -1014,7 +804,7 @@ S_{14} \in N_2(\bar{y}_{4}, S_{15}) - \text{не выполняется} \\
 N_1(\bar{y}_{4}, S_{15}) \subseteq E(S_{14}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{16} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{16} \\ 
 2) S_{15} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{16}) = \{S_{32}, S_{33}\} \\ 
@@ -1025,7 +815,7 @@ S_{15} \in N_2(\bar{y}_{4}, S_{16}) - \text{не выполняется} \\
 N_1(\bar{y}_{4}, S_{16}) \subseteq E(S_{15}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{17} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{17} \\ 
 2) S_{16} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{17}) = \{S_{19}, S_{32}, S_{33}\} \\ 
@@ -1036,7 +826,7 @@ S_{16} \in N_2(\bar{y}_{4}, S_{17}) - \text{не выполняется} \\
 N_1(\bar{y}_{4}, S_{17}) \subseteq E(S_{16}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{18} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{18} \\ 
 2) S_{17} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{18}) = \{S_{19}, S_{32}, S_{33}\} \\ 
@@ -1047,7 +837,7 @@ S_{17} \in N_2(\bar{y}_{4}, S_{18}) - \text{не выполняется} \\
 N_1(\bar{y}_{4}, S_{18}) \subseteq E(S_{17}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{19} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{19} \\ 
 2) S_{18} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{19}) = \{S_{32}, S_{33}\} \\ 
@@ -1066,31 +856,12 @@ N_1(\bar{y}_{4}, S_{19}) \subseteq E(S_{18}) - \text{выполняется} \\
 \begin{center}\huge Итерация №10 \end{center}\\
 Отношения между операторами: \\ \newline
 \begin{math}
-    \bar{y}_{4} \rightarrow S_{32} \\ 
-\bar{y}_{4} \rightarrow S_{33} \\ 
-\bar{\bar{y}}_{5} \rightarrow S_{16} \\ 
-S_{16} \rightarrow S_{32} \\ 
-S_{17} \rightarrow S_{19} \\ 
-S_{18} \rightarrow S_{19} \\ 
-S_{19} \rightarrow S_{32} \\ 
-S_{20} \rightarrow S_{22} \\ 
-S_{21} \rightarrow S_{22} \\ 
-S_{22} \rightarrow S_{32} \\ 
-S_{23} \rightarrow S_{25} \\ 
-S_{24} \rightarrow S_{25} \\ 
-S_{25} \rightarrow S_{32} \\ 
-S_{26} \rightarrow S_{28} \\ 
-S_{27} \rightarrow S_{28} \\ 
-S_{28} \rightarrow S_{32} \\ 
-S_{29} \rightarrow S_{31} \\ 
-S_{30} \rightarrow S_{31} \\ 
-S_{31} \rightarrow S_{32} \\ 
-S_{32} \rightarrow S_{33}
+    \bar{\bar{y}}_{5} \rightarrow S_{16}
 \end{math}\\ \newline
 %
 Проверка условия приводимости программы к ППФ (5 из 131): \\
 \begin{math}\breakingcomma
-1) \bar{y}_{4} \nrightarrow S_{16} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{16} \\ 
 2) \bar{\bar{y}}_{5} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{16}) = \{S_{32}, S_{33}\} \\ 
@@ -1101,7 +872,7 @@ E(\bar{\bar{y}}_{5}) = \{S_{16}, S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, S_{16}) \subseteq E(\bar{\bar{y}}_{5}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{17} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{17} \\ 
 2) S_{16} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{17}) = \{S_{19}, S_{32}, S_{33}\} \\ 
@@ -1112,7 +883,7 @@ S_{16} \in N_2(\bar{y}_{4}, S_{17}) - \text{не выполняется} \\
 N_1(\bar{y}_{4}, S_{17}) \subseteq E(S_{16}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{18} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{18} \\ 
 2) S_{17} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{18}) = \{S_{19}, S_{32}, S_{33}\} \\ 
@@ -1123,7 +894,7 @@ S_{17} \in N_2(\bar{y}_{4}, S_{18}) - \text{не выполняется} \\
 N_1(\bar{y}_{4}, S_{18}) \subseteq E(S_{17}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{19} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{19} \\ 
 2) S_{18} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{19}) = \{S_{32}, S_{33}\} \\ 
@@ -1134,7 +905,7 @@ S_{18} \in N_2(\bar{y}_{4}, S_{19}) - \text{не выполняется} \\
 N_1(\bar{y}_{4}, S_{19}) \subseteq E(S_{18}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{20} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{20} \\ 
 2) S_{19} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{20}) = \{S_{22}, S_{32}, S_{33}\} \\ 
@@ -1153,25 +924,7 @@ N_1(\bar{y}_{4}, S_{20}) \subseteq E(S_{19}) - \text{выполняется} \\
 \begin{center}\huge Итерация №11 \end{center}\\
 Отношения между операторами: \\ \newline
 \begin{math}
-    \bar{y}_{4} \rightarrow S_{32} \\ 
-\bar{y}_{4} \rightarrow S_{33} \\ 
-\bar{y}_{5} \rightarrow S_{32} \\ 
-S_{17} \rightarrow S_{19} \\ 
-S_{18} \rightarrow S_{19} \\ 
-S_{19} \rightarrow S_{32} \\ 
-S_{20} \rightarrow S_{22} \\ 
-S_{21} \rightarrow S_{22} \\ 
-S_{22} \rightarrow S_{32} \\ 
-S_{23} \rightarrow S_{25} \\ 
-S_{24} \rightarrow S_{25} \\ 
-S_{25} \rightarrow S_{32} \\ 
-S_{26} \rightarrow S_{28} \\ 
-S_{27} \rightarrow S_{28} \\ 
-S_{28} \rightarrow S_{32} \\ 
-S_{29} \rightarrow S_{31} \\ 
-S_{30} \rightarrow S_{31} \\ 
-S_{31} \rightarrow S_{32} \\ 
-S_{32} \rightarrow S_{33}
+    \bar{y}_{5} \rightarrow S_{32}
 \end{math} \\ \\ \\ 
 %
 C = {\let\quad\thinspace\footnotesize{$\bbordermatrix{
@@ -1199,7 +952,7 @@ S_{33} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 &
 %
 Проверка условия приводимости программы к ППФ (5 из 115): \\
 \begin{math}\breakingcomma
-1) \bar{y}_{4} \nrightarrow S_{17} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{17} \\ 
 2) \bar{y}_{5} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{17}) = \{S_{19}, S_{32}, S_{33}\} \\ 
@@ -1210,7 +963,7 @@ E(\bar{y}_{5}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, S_{17}) \subseteq E(\bar{y}_{5}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{18} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{18} \\ 
 2) S_{17} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{18}) = \{S_{19}, S_{32}, S_{33}\} \\ 
@@ -1221,7 +974,7 @@ S_{17} \in N_2(\bar{y}_{4}, S_{18}) - \text{не выполняется} \\
 N_1(\bar{y}_{4}, S_{18}) \subseteq E(S_{17}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{19} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{19} \\ 
 2) S_{18} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{19}) = \{S_{32}, S_{33}\} \\ 
@@ -1232,7 +985,7 @@ S_{18} \in N_2(\bar{y}_{4}, S_{19}) - \text{не выполняется} \\
 N_1(\bar{y}_{4}, S_{19}) \subseteq E(S_{18}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{20} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{20} \\ 
 2) S_{19} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{20}) = \{S_{22}, S_{32}, S_{33}\} \\ 
@@ -1243,7 +996,7 @@ S_{19} \in N_2(\bar{y}_{4}, S_{20}) - \text{не выполняется} \\
 N_1(\bar{y}_{4}, S_{20}) \subseteq E(S_{19}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{21} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{21} \\ 
 2) S_{20} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{21}) = \{S_{22}, S_{32}, S_{33}\} \\ 
@@ -1262,29 +1015,12 @@ N_1(\bar{y}_{4}, S_{21}) \subseteq E(S_{20}) - \text{выполняется} \\
 \begin{center}\huge Итерация №12 \end{center}\\
 Отношения между операторами: \\ \newline
 \begin{math}
-    \bar{y}_{4} \rightarrow S_{32} \\ 
-\bar{y}_{4} \rightarrow S_{33} \\ 
-\bar{y}_{5} \rightarrow S_{32} \\ 
-\bar{\bar{y}}_{6} \rightarrow S_{19} \\ 
-S_{19} \rightarrow S_{32} \\ 
-S_{20} \rightarrow S_{22} \\ 
-S_{21} \rightarrow S_{22} \\ 
-S_{22} \rightarrow S_{32} \\ 
-S_{23} \rightarrow S_{25} \\ 
-S_{24} \rightarrow S_{25} \\ 
-S_{25} \rightarrow S_{32} \\ 
-S_{26} \rightarrow S_{28} \\ 
-S_{27} \rightarrow S_{28} \\ 
-S_{28} \rightarrow S_{32} \\ 
-S_{29} \rightarrow S_{31} \\ 
-S_{30} \rightarrow S_{31} \\ 
-S_{31} \rightarrow S_{32} \\ 
-S_{32} \rightarrow S_{33}
+    \bar{\bar{y}}_{6} \rightarrow S_{19}
 \end{math}\\ \newline
 %
 Проверка условия приводимости программы к ППФ (5 из 101): \\
 \begin{math}\breakingcomma
-1) \bar{y}_{4} \nrightarrow \bar{\bar{y}}_{6} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{\bar{y}}_{6} \\ 
 2) \bar{y}_{5} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{\bar{y}}_{6}) = \{S_{19}, S_{32}, S_{33}\} \\ 
@@ -1295,7 +1031,7 @@ E(\bar{y}_{5}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{\bar{y}}_{6}) \subseteq E(\bar{y}_{5}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{19} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{19} \\ 
 2) \bar{\bar{y}}_{6} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{19}) = \{S_{32}, S_{33}\} \\ 
@@ -1306,7 +1042,7 @@ E(\bar{\bar{y}}_{6}) = \{S_{19}, S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, S_{19}) \subseteq E(\bar{\bar{y}}_{6}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{20} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{20} \\ 
 2) S_{19} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{20}) = \{S_{22}, S_{32}, S_{33}\} \\ 
@@ -1317,7 +1053,7 @@ S_{19} \in N_2(\bar{y}_{4}, S_{20}) - \text{не выполняется} \\
 N_1(\bar{y}_{4}, S_{20}) \subseteq E(S_{19}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{21} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{21} \\ 
 2) S_{20} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{21}) = \{S_{22}, S_{32}, S_{33}\} \\ 
@@ -1328,7 +1064,7 @@ S_{20} \in N_2(\bar{y}_{4}, S_{21}) - \text{не выполняется} \\
 N_1(\bar{y}_{4}, S_{21}) \subseteq E(S_{20}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{22} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{22} \\ 
 2) S_{21} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{22}) = \{S_{32}, S_{33}\} \\ 
@@ -1347,23 +1083,7 @@ N_1(\bar{y}_{4}, S_{22}) \subseteq E(S_{21}) - \text{выполняется} \\
 \begin{center}\huge Итерация №13 \end{center}\\
 Отношения между операторами: \\ \newline
 \begin{math}
-    \bar{y}_{4} \rightarrow S_{32} \\ 
-\bar{y}_{4} \rightarrow S_{33} \\ 
-\bar{y}_{5} \rightarrow S_{32} \\ 
-\bar{y}_{6} \rightarrow S_{32} \\ 
-S_{20} \rightarrow S_{22} \\ 
-S_{21} \rightarrow S_{22} \\ 
-S_{22} \rightarrow S_{32} \\ 
-S_{23} \rightarrow S_{25} \\ 
-S_{24} \rightarrow S_{25} \\ 
-S_{25} \rightarrow S_{32} \\ 
-S_{26} \rightarrow S_{28} \\ 
-S_{27} \rightarrow S_{28} \\ 
-S_{28} \rightarrow S_{32} \\ 
-S_{29} \rightarrow S_{31} \\ 
-S_{30} \rightarrow S_{31} \\ 
-S_{31} \rightarrow S_{32} \\ 
-S_{32} \rightarrow S_{33}
+    \bar{y}_{6} \rightarrow S_{32}
 \end{math} \\ \\ \\ 
 %
 C = {\let\quad\thinspace\footnotesize{$\bbordermatrix{
@@ -1389,7 +1109,7 @@ S_{33} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
 %
 Проверка условия приводимости программы к ППФ (5 из 87): \\
 \begin{math}\breakingcomma
-1) \bar{y}_{4} \nrightarrow \bar{y}_{6} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{6} \\ 
 2) \bar{y}_{5} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{6}) = \{S_{32}, S_{33}\} \\ 
@@ -1400,7 +1120,7 @@ E(\bar{y}_{5}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{6}) \subseteq E(\bar{y}_{5}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{20} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{20} \\ 
 2) \bar{y}_{6} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{20}) = \{S_{22}, S_{32}, S_{33}\} \\ 
@@ -1411,7 +1131,7 @@ E(\bar{y}_{6}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, S_{20}) \subseteq E(\bar{y}_{6}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{21} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{21} \\ 
 2) S_{20} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{21}) = \{S_{22}, S_{32}, S_{33}\} \\ 
@@ -1422,7 +1142,7 @@ S_{20} \in N_2(\bar{y}_{4}, S_{21}) - \text{не выполняется} \\
 N_1(\bar{y}_{4}, S_{21}) \subseteq E(S_{20}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{22} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{22} \\ 
 2) S_{21} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{22}) = \{S_{32}, S_{33}\} \\ 
@@ -1433,7 +1153,7 @@ S_{21} \in N_2(\bar{y}_{4}, S_{22}) - \text{не выполняется} \\
 N_1(\bar{y}_{4}, S_{22}) \subseteq E(S_{21}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{23} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{23} \\ 
 2) S_{22} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{23}) = \{S_{25}, S_{32}, S_{33}\} \\ 
@@ -1452,27 +1172,12 @@ N_1(\bar{y}_{4}, S_{23}) \subseteq E(S_{22}) - \text{выполняется} \\
 \begin{center}\huge Итерация №14 \end{center}\\
 Отношения между операторами: \\ \newline
 \begin{math}
-    \bar{y}_{4} \rightarrow S_{32} \\ 
-\bar{y}_{4} \rightarrow S_{33} \\ 
-\bar{y}_{5} \rightarrow S_{32} \\ 
-\bar{y}_{6} \rightarrow S_{32} \\ 
-\bar{\bar{y}}_{7} \rightarrow S_{22} \\ 
-S_{22} \rightarrow S_{32} \\ 
-S_{23} \rightarrow S_{25} \\ 
-S_{24} \rightarrow S_{25} \\ 
-S_{25} \rightarrow S_{32} \\ 
-S_{26} \rightarrow S_{28} \\ 
-S_{27} \rightarrow S_{28} \\ 
-S_{28} \rightarrow S_{32} \\ 
-S_{29} \rightarrow S_{31} \\ 
-S_{30} \rightarrow S_{31} \\ 
-S_{31} \rightarrow S_{32} \\ 
-S_{32} \rightarrow S_{33}
+    \bar{\bar{y}}_{7} \rightarrow S_{22}
 \end{math}\\ \newline
 %
 Проверка условия приводимости программы к ППФ (5 из 75): \\
 \begin{math}\breakingcomma
-1) \bar{y}_{4} \nrightarrow \bar{y}_{6} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{6} \\ 
 2) \bar{y}_{5} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{6}) = \{S_{32}, S_{33}\} \\ 
@@ -1483,7 +1188,7 @@ E(\bar{y}_{5}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{6}) \subseteq E(\bar{y}_{5}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow \bar{\bar{y}}_{7} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{\bar{y}}_{7} \\ 
 2) \bar{y}_{6} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{\bar{y}}_{7}) = \{S_{22}, S_{32}, S_{33}\} \\ 
@@ -1494,7 +1199,7 @@ E(\bar{y}_{6}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{\bar{y}}_{7}) \subseteq E(\bar{y}_{6}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{22} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{22} \\ 
 2) \bar{\bar{y}}_{7} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{22}) = \{S_{32}, S_{33}\} \\ 
@@ -1505,7 +1210,7 @@ E(\bar{\bar{y}}_{7}) = \{S_{22}, S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, S_{22}) \subseteq E(\bar{\bar{y}}_{7}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{23} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{23} \\ 
 2) S_{22} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{23}) = \{S_{25}, S_{32}, S_{33}\} \\ 
@@ -1516,7 +1221,7 @@ S_{22} \in N_2(\bar{y}_{4}, S_{23}) - \text{не выполняется} \\
 N_1(\bar{y}_{4}, S_{23}) \subseteq E(S_{22}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{24} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{24} \\ 
 2) S_{23} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{24}) = \{S_{25}, S_{32}, S_{33}\} \\ 
@@ -1535,21 +1240,7 @@ N_1(\bar{y}_{4}, S_{24}) \subseteq E(S_{23}) - \text{выполняется} \\
 \begin{center}\huge Итерация №15 \end{center}\\
 Отношения между операторами: \\ \newline
 \begin{math}
-    \bar{y}_{4} \rightarrow S_{32} \\ 
-\bar{y}_{4} \rightarrow S_{33} \\ 
-\bar{y}_{5} \rightarrow S_{32} \\ 
-\bar{y}_{6} \rightarrow S_{32} \\ 
-\bar{y}_{7} \rightarrow S_{32} \\ 
-S_{23} \rightarrow S_{25} \\ 
-S_{24} \rightarrow S_{25} \\ 
-S_{25} \rightarrow S_{32} \\ 
-S_{26} \rightarrow S_{28} \\ 
-S_{27} \rightarrow S_{28} \\ 
-S_{28} \rightarrow S_{32} \\ 
-S_{29} \rightarrow S_{31} \\ 
-S_{30} \rightarrow S_{31} \\ 
-S_{31} \rightarrow S_{32} \\ 
-S_{32} \rightarrow S_{33}
+    \bar{y}_{7} \rightarrow S_{32}
 \end{math} \\ \\ \\ 
 %
 C = {\let\quad\thinspace\footnotesize{$\bbordermatrix{
@@ -1573,7 +1264,7 @@ S_{33} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
 %
 Проверка условия приводимости программы к ППФ (5 из 63): \\
 \begin{math}\breakingcomma
-1) \bar{y}_{4} \nrightarrow \bar{y}_{6} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{6} \\ 
 2) \bar{y}_{5} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{6}) = \{S_{32}, S_{33}\} \\ 
@@ -1584,7 +1275,7 @@ E(\bar{y}_{5}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{6}) \subseteq E(\bar{y}_{5}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow \bar{y}_{7} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{7} \\ 
 2) \bar{y}_{6} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{7}) = \{S_{32}, S_{33}\} \\ 
@@ -1595,7 +1286,7 @@ E(\bar{y}_{6}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{7}) \subseteq E(\bar{y}_{6}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{23} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{23} \\ 
 2) \bar{y}_{7} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{23}) = \{S_{25}, S_{32}, S_{33}\} \\ 
@@ -1606,7 +1297,7 @@ E(\bar{y}_{7}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, S_{23}) \subseteq E(\bar{y}_{7}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{24} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{24} \\ 
 2) S_{23} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{24}) = \{S_{25}, S_{32}, S_{33}\} \\ 
@@ -1617,7 +1308,7 @@ S_{23} \in N_2(\bar{y}_{4}, S_{24}) - \text{не выполняется} \\
 N_1(\bar{y}_{4}, S_{24}) \subseteq E(S_{23}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{25} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{25} \\ 
 2) S_{24} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{25}) = \{S_{32}, S_{33}\} \\ 
@@ -1636,25 +1327,12 @@ N_1(\bar{y}_{4}, S_{25}) \subseteq E(S_{24}) - \text{выполняется} \\
 \begin{center}\huge Итерация №16 \end{center}\\
 Отношения между операторами: \\ \newline
 \begin{math}
-    \bar{y}_{4} \rightarrow S_{32} \\ 
-\bar{y}_{4} \rightarrow S_{33} \\ 
-\bar{y}_{5} \rightarrow S_{32} \\ 
-\bar{y}_{6} \rightarrow S_{32} \\ 
-\bar{y}_{7} \rightarrow S_{32} \\ 
-\bar{\bar{y}}_{8} \rightarrow S_{25} \\ 
-S_{25} \rightarrow S_{32} \\ 
-S_{26} \rightarrow S_{28} \\ 
-S_{27} \rightarrow S_{28} \\ 
-S_{28} \rightarrow S_{32} \\ 
-S_{29} \rightarrow S_{31} \\ 
-S_{30} \rightarrow S_{31} \\ 
-S_{31} \rightarrow S_{32} \\ 
-S_{32} \rightarrow S_{33}
+    \bar{\bar{y}}_{8} \rightarrow S_{25}
 \end{math}\\ \newline
 %
 Проверка условия приводимости программы к ППФ (5 из 53): \\
 \begin{math}\breakingcomma
-1) \bar{y}_{4} \nrightarrow \bar{y}_{6} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{6} \\ 
 2) \bar{y}_{5} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{6}) = \{S_{32}, S_{33}\} \\ 
@@ -1665,7 +1343,7 @@ E(\bar{y}_{5}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{6}) \subseteq E(\bar{y}_{5}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow \bar{y}_{7} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{7} \\ 
 2) \bar{y}_{6} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{7}) = \{S_{32}, S_{33}\} \\ 
@@ -1676,7 +1354,7 @@ E(\bar{y}_{6}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{7}) \subseteq E(\bar{y}_{6}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow \bar{\bar{y}}_{8} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{\bar{y}}_{8} \\ 
 2) \bar{y}_{7} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{\bar{y}}_{8}) = \{S_{25}, S_{32}, S_{33}\} \\ 
@@ -1687,7 +1365,7 @@ E(\bar{y}_{7}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{\bar{y}}_{8}) \subseteq E(\bar{y}_{7}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{25} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{25} \\ 
 2) \bar{\bar{y}}_{8} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{25}) = \{S_{32}, S_{33}\} \\ 
@@ -1698,7 +1376,7 @@ E(\bar{\bar{y}}_{8}) = \{S_{25}, S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, S_{25}) \subseteq E(\bar{\bar{y}}_{8}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{26} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{26} \\ 
 2) S_{25} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{26}) = \{S_{28}, S_{32}, S_{33}\} \\ 
@@ -1717,19 +1395,7 @@ N_1(\bar{y}_{4}, S_{26}) \subseteq E(S_{25}) - \text{выполняется} \\
 \begin{center}\huge Итерация №17 \end{center}\\
 Отношения между операторами: \\ \newline
 \begin{math}
-    \bar{y}_{4} \rightarrow S_{32} \\ 
-\bar{y}_{4} \rightarrow S_{33} \\ 
-\bar{y}_{5} \rightarrow S_{32} \\ 
-\bar{y}_{6} \rightarrow S_{32} \\ 
-\bar{y}_{7} \rightarrow S_{32} \\ 
-\bar{y}_{8} \rightarrow S_{32} \\ 
-S_{26} \rightarrow S_{28} \\ 
-S_{27} \rightarrow S_{28} \\ 
-S_{28} \rightarrow S_{32} \\ 
-S_{29} \rightarrow S_{31} \\ 
-S_{30} \rightarrow S_{31} \\ 
-S_{31} \rightarrow S_{32} \\ 
-S_{32} \rightarrow S_{33}
+    \bar{y}_{8} \rightarrow S_{32}
 \end{math} \\ \\ \\ 
 %
 C = {\let\quad\thinspace\normalsize{$\bbordermatrix{
@@ -1751,7 +1417,7 @@ S_{33} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
 %
 Проверка условия приводимости программы к ППФ (5 из 43): \\
 \begin{math}\breakingcomma
-1) \bar{y}_{4} \nrightarrow \bar{y}_{6} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{6} \\ 
 2) \bar{y}_{5} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{6}) = \{S_{32}, S_{33}\} \\ 
@@ -1762,7 +1428,7 @@ E(\bar{y}_{5}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{6}) \subseteq E(\bar{y}_{5}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow \bar{y}_{7} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{7} \\ 
 2) \bar{y}_{6} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{7}) = \{S_{32}, S_{33}\} \\ 
@@ -1773,7 +1439,7 @@ E(\bar{y}_{6}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{7}) \subseteq E(\bar{y}_{6}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow \bar{y}_{8} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{8} \\ 
 2) \bar{y}_{7} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{8}) = \{S_{32}, S_{33}\} \\ 
@@ -1784,7 +1450,7 @@ E(\bar{y}_{7}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{8}) \subseteq E(\bar{y}_{7}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{26} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{26} \\ 
 2) \bar{y}_{8} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{26}) = \{S_{28}, S_{32}, S_{33}\} \\ 
@@ -1795,7 +1461,7 @@ E(\bar{y}_{8}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, S_{26}) \subseteq E(\bar{y}_{8}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{27} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{27} \\ 
 2) S_{26} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{27}) = \{S_{28}, S_{32}, S_{33}\} \\ 
@@ -1814,23 +1480,12 @@ N_1(\bar{y}_{4}, S_{27}) \subseteq E(S_{26}) - \text{выполняется} \\
 \begin{center}\huge Итерация №18 \end{center}\\
 Отношения между операторами: \\ \newline
 \begin{math}
-    \bar{y}_{4} \rightarrow S_{32} \\ 
-\bar{y}_{4} \rightarrow S_{33} \\ 
-\bar{y}_{5} \rightarrow S_{32} \\ 
-\bar{y}_{6} \rightarrow S_{32} \\ 
-\bar{y}_{7} \rightarrow S_{32} \\ 
-\bar{y}_{8} \rightarrow S_{32} \\ 
-\bar{\bar{y}}_{9} \rightarrow S_{28} \\ 
-S_{28} \rightarrow S_{32} \\ 
-S_{29} \rightarrow S_{31} \\ 
-S_{30} \rightarrow S_{31} \\ 
-S_{31} \rightarrow S_{32} \\ 
-S_{32} \rightarrow S_{33}
+    \bar{\bar{y}}_{9} \rightarrow S_{28}
 \end{math}\\ \newline
 %
 Проверка условия приводимости программы к ППФ (5 из 35): \\
 \begin{math}\breakingcomma
-1) \bar{y}_{4} \nrightarrow \bar{y}_{6} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{6} \\ 
 2) \bar{y}_{5} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{6}) = \{S_{32}, S_{33}\} \\ 
@@ -1841,7 +1496,7 @@ E(\bar{y}_{5}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{6}) \subseteq E(\bar{y}_{5}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow \bar{y}_{7} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{7} \\ 
 2) \bar{y}_{6} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{7}) = \{S_{32}, S_{33}\} \\ 
@@ -1852,7 +1507,7 @@ E(\bar{y}_{6}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{7}) \subseteq E(\bar{y}_{6}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow \bar{y}_{8} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{8} \\ 
 2) \bar{y}_{7} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{8}) = \{S_{32}, S_{33}\} \\ 
@@ -1863,7 +1518,7 @@ E(\bar{y}_{7}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{8}) \subseteq E(\bar{y}_{7}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow \bar{\bar{y}}_{9} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{\bar{y}}_{9} \\ 
 2) \bar{y}_{8} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{\bar{y}}_{9}) = \{S_{28}, S_{32}, S_{33}\} \\ 
@@ -1874,7 +1529,7 @@ E(\bar{y}_{8}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{\bar{y}}_{9}) \subseteq E(\bar{y}_{8}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{28} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{28} \\ 
 2) \bar{\bar{y}}_{9} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{28}) = \{S_{32}, S_{33}\} \\ 
@@ -1893,17 +1548,7 @@ N_1(\bar{y}_{4}, S_{28}) \subseteq E(\bar{\bar{y}}_{9}) - \text{выполняе
 \begin{center}\huge Итерация №19 \end{center}\\
 Отношения между операторами: \\ \newline
 \begin{math}
-    \bar{y}_{4} \rightarrow S_{32} \\ 
-\bar{y}_{4} \rightarrow S_{33} \\ 
-\bar{y}_{5} \rightarrow S_{32} \\ 
-\bar{y}_{6} \rightarrow S_{32} \\ 
-\bar{y}_{7} \rightarrow S_{32} \\ 
-\bar{y}_{8} \rightarrow S_{32} \\ 
-\bar{y}_{9} \rightarrow S_{32} \\ 
-S_{29} \rightarrow S_{31} \\ 
-S_{30} \rightarrow S_{31} \\ 
-S_{31} \rightarrow S_{32} \\ 
-S_{32} \rightarrow S_{33}
+    \bar{y}_{9} \rightarrow S_{32}
 \end{math} \\ \\ \\ 
 %
 C = {\let\quad\thinspace\normalsize{$\bbordermatrix{
@@ -1923,7 +1568,7 @@ S_{33} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
 %
 Проверка условия приводимости программы к ППФ (5 из 27): \\
 \begin{math}\breakingcomma
-1) \bar{y}_{4} \nrightarrow \bar{y}_{6} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{6} \\ 
 2) \bar{y}_{5} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{6}) = \{S_{32}, S_{33}\} \\ 
@@ -1934,7 +1579,7 @@ E(\bar{y}_{5}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{6}) \subseteq E(\bar{y}_{5}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow \bar{y}_{7} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{7} \\ 
 2) \bar{y}_{6} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{7}) = \{S_{32}, S_{33}\} \\ 
@@ -1945,7 +1590,7 @@ E(\bar{y}_{6}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{7}) \subseteq E(\bar{y}_{6}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow \bar{y}_{8} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{8} \\ 
 2) \bar{y}_{7} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{8}) = \{S_{32}, S_{33}\} \\ 
@@ -1956,7 +1601,7 @@ E(\bar{y}_{7}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{8}) \subseteq E(\bar{y}_{7}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow \bar{y}_{9} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{9} \\ 
 2) \bar{y}_{8} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{9}) = \{S_{32}, S_{33}\} \\ 
@@ -1967,7 +1612,7 @@ E(\bar{y}_{8}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{9}) \subseteq E(\bar{y}_{8}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow S_{29} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }S_{29} \\ 
 2) \bar{y}_{9} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(S_{29}) = \{S_{31}, S_{32}, S_{33}\} \\ 
@@ -1986,21 +1631,12 @@ N_1(\bar{y}_{4}, S_{29}) \subseteq E(\bar{y}_{9}) - \text{выполняется
 \begin{center}\huge Итерация №20 \end{center}\\
 Отношения между операторами: \\ \newline
 \begin{math}
-    \bar{y}_{4} \rightarrow S_{32} \\ 
-\bar{y}_{4} \rightarrow S_{33} \\ 
-\bar{y}_{5} \rightarrow S_{32} \\ 
-\bar{y}_{6} \rightarrow S_{32} \\ 
-\bar{y}_{7} \rightarrow S_{32} \\ 
-\bar{y}_{8} \rightarrow S_{32} \\ 
-\bar{y}_{9} \rightarrow S_{32} \\ 
-\bar{\bar{y}}_{10} \rightarrow S_{31} \\ 
-S_{31} \rightarrow S_{32} \\ 
-S_{32} \rightarrow S_{33}
+    \bar{\bar{y}}_{10} \rightarrow S_{31}
 \end{math}\\ \newline
 %
 Проверка условия приводимости программы к ППФ (5 из 21): \\
 \begin{math}\breakingcomma
-1) \bar{y}_{4} \nrightarrow \bar{y}_{6} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{6} \\ 
 2) \bar{y}_{5} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{6}) = \{S_{32}, S_{33}\} \\ 
@@ -2011,7 +1647,7 @@ E(\bar{y}_{5}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{6}) \subseteq E(\bar{y}_{5}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow \bar{y}_{7} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{7} \\ 
 2) \bar{y}_{6} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{7}) = \{S_{32}, S_{33}\} \\ 
@@ -2022,7 +1658,7 @@ E(\bar{y}_{6}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{7}) \subseteq E(\bar{y}_{6}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow \bar{y}_{8} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{8} \\ 
 2) \bar{y}_{7} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{8}) = \{S_{32}, S_{33}\} \\ 
@@ -2033,7 +1669,7 @@ E(\bar{y}_{7}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{8}) \subseteq E(\bar{y}_{7}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow \bar{y}_{9} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{9} \\ 
 2) \bar{y}_{8} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{9}) = \{S_{32}, S_{33}\} \\ 
@@ -2044,7 +1680,7 @@ E(\bar{y}_{8}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{9}) \subseteq E(\bar{y}_{8}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow \bar{\bar{y}}_{10} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{\bar{y}}_{10} \\ 
 2) \bar{y}_{9} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{\bar{y}}_{10}) = \{S_{31}, S_{32}, S_{33}\} \\ 
@@ -2063,15 +1699,7 @@ N_1(\bar{y}_{4}, \bar{\bar{y}}_{10}) \subseteq E(\bar{y}_{9}) - \text{выпол
 \begin{center}\huge Итерация №21 \end{center}\\
 Отношения между операторами: \\ \newline
 \begin{math}
-    \bar{y}_{4} \rightarrow S_{32} \\ 
-\bar{y}_{4} \rightarrow S_{33} \\ 
-\bar{y}_{5} \rightarrow S_{32} \\ 
-\bar{y}_{6} \rightarrow S_{32} \\ 
-\bar{y}_{7} \rightarrow S_{32} \\ 
-\bar{y}_{8} \rightarrow S_{32} \\ 
-\bar{y}_{9} \rightarrow S_{32} \\ 
-\bar{y}_{10} \rightarrow S_{32} \\ 
-S_{32} \rightarrow S_{33}
+    \bar{y}_{10} \rightarrow S_{32}
 \end{math} \\ \\ \\ 
 %
 C = {\let\quad\thinspace\normalsize{$\bbordermatrix{
@@ -2089,7 +1717,7 @@ S_{33} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
 %
 Проверка условия приводимости программы к ППФ (5 из 15): \\
 \begin{math}\breakingcomma
-1) \bar{y}_{4} \nrightarrow \bar{y}_{6} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{6} \\ 
 2) \bar{y}_{5} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{6}) = \{S_{32}, S_{33}\} \\ 
@@ -2100,7 +1728,7 @@ E(\bar{y}_{5}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{6}) \subseteq E(\bar{y}_{5}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow \bar{y}_{7} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{7} \\ 
 2) \bar{y}_{6} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{7}) = \{S_{32}, S_{33}\} \\ 
@@ -2111,7 +1739,7 @@ E(\bar{y}_{6}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{7}) \subseteq E(\bar{y}_{6}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow \bar{y}_{8} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{8} \\ 
 2) \bar{y}_{7} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{8}) = \{S_{32}, S_{33}\} \\ 
@@ -2122,7 +1750,7 @@ E(\bar{y}_{7}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{8}) \subseteq E(\bar{y}_{7}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow \bar{y}_{9} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{9} \\ 
 2) \bar{y}_{8} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{9}) = \{S_{32}, S_{33}\} \\ 
@@ -2133,7 +1761,7 @@ E(\bar{y}_{8}) = \{S_{32}, S_{33}\} \\
 N_1(\bar{y}_{4}, \bar{y}_{9}) \subseteq E(\bar{y}_{8}) - \text{выполняется} \\ 
 \text{не выполняется} \\ \newline 
 %
-1) \bar{y}_{4} \nrightarrow \bar{y}_{10} \\ 
+1) \bar{y}_{4}\xrightarrow[]{\  _*  \ }\bar{y}_{10} \\ 
 2) \bar{y}_{9} \\ 
 E(\bar{y}_{4}) = \{S_{32}, S_{33}\} \\ 
 E(\bar{y}_{10}) = \{S_{32}, S_{33}\} \\ 
@@ -2153,8 +1781,7 @@ N_1(\bar{y}_{4}, \bar{y}_{10}) \subseteq E(\bar{y}_{9}) - \text{выполняе
 Отношения между операторами: \\ \newline
 \begin{math}
     \bar{\bar{y}}_{11} \rightarrow S_{32} \\ 
-\bar{\bar{y}}_{11} \rightarrow S_{33} \\ 
-S_{32} \rightarrow S_{33}
+\bar{\bar{y}}_{11} \rightarrow S_{33}
 \end{math}\\ \newline
 %
 Проверка условия приводимости программы к ППФ (0 из 0): \\
