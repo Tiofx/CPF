@@ -3,10 +3,10 @@ package report.cpf.iteration
 import algorithm.CPF
 import kotlin.math.min
 
-class ReducedProgram(val limit: Int = 15,
+class ReducedProgram(val limit: Int = 17,
                      val groupMinSize: Int = 3,
-                     val startMinSize: Int = 2,
-                     val endMinSize: Int = 2) {
+                     val startMinSize: Int = 3,
+                     val endMinSize: Int = 6) {
     lateinit var iteration: CPF.Iteration
 
     private val group get() = iteration.groupedOperators
@@ -54,7 +54,7 @@ class ReducedProgram(val limit: Int = 15,
         val total get() = start + group + end
         val rem get() = limit - total
 
-        fun minimaze():TempSize=TempSize(
+        fun minimaze(): TempSize = TempSize(
                 min(startMinSize, startMaxSize),
                 min(groupMinSize, groupMaxSize),
                 min(endMinSize, endMaxSize)

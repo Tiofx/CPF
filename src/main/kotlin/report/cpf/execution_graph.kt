@@ -10,43 +10,17 @@ import report.toPlainString
 import java.nio.file.Path
 
 
-val IOperator.inner: List<IOperator>
-    get() = if (this is IGroupOperator) operators else emptyList()
-
-val IOperator.isBaseOperator get() = inner.isEmpty()
-
-
-class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
+class CPFExecutionGraph(cpfSteps: List<CPF.Iteration>) {
     private val cpfResult = cpfSteps.finalResul()
     private val namer = OperatorNamer(cpfSteps)
     private fun IOperator.toName() = namer.name(this).toPlainString()
-
-    fun toConsole() {
-        fun iterate(depth: Int = 0, operator: IOperator = cpfResult) {
-            println("$depth: ${operator.toName()}")
-            if (!operator.isBaseOperator) println(
-                    "${operator.toName()} = ${operator.inner.map { it.toName() }}"
-            )
-
-            operator.inner.forEach {
-                iterate(depth + 1, it)
-            }
-        }
-
-        return iterate()
-    }
-
-    fun saveAll() {
-        savePlain()
-        saveAsImage()
-    }
 
     fun savePlain() {
         RESOURCES_FOLDER
                 .resolve("assets")
                 .resolve("cpf")
                 .resolve("plain")
-                .resolve("unfolding.txt")
+                .resolve("execution_graph.txt")
                 .toAbsolutePath()
                 .toFile()
                 .apply {
@@ -58,39 +32,49 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
     fun saveAsImage() {
         Graphviz
                 .fromString(toGraphviz())
+//                .engine(Engine.DOT)
                 .render(Format.PNG)
                 .toFile(RESOURCES_FOLDER
                         .resolve("assets")
                         .resolve("cpf")
-                        .resolve("unfolding")
+                        .resolve("execution_graph")
                         .toAbsolutePath()
                         .toFile())
     }
 
 
     fun toGraphviz(): String {
-        fun wrapByGraph(body: String) =
-                """
-                |graph CPFUnfloding {
-                |   style="rounded"
-                |   nodesep = 0.1
-                |   ranksep = 0.2
-                |   node [shape=circle, fontsize=14, fontname="Times New Roman", margin=".1,.01", fixedsize=true]
-                |   edge[style=invis]
-                |
-                |   ${order()}
-                |   ${body.replace("\n", "\n\t")}
-                |}
-            """.trimMargin()
-
         fun IOperator.wrapBySubgraph(body: String) =
                 """
                 |subgraph "cluster_${toName()}" {
                 |   label = "${toName()}"
+                |    rankdir = BT
                 |
                 |   ${body.replace("\n", "\n\t")}
                 |}
             """.trimMargin()
+
+        fun String.wrapByCluster() =
+                """
+                    |subgraph "cluster_${hashCode()}" {
+                    |   label = ""
+                    |   style = invis
+                    |   margin = 0
+                    |
+                    |   $this
+                    |}
+                """.trimMargin()
+
+        fun wrapByGraph(body: String) =
+                """
+                |digraph CPFExecutionGraph {
+                |   node [shape=circle, fontsize=14, fontname="Times New Roman", margin=".1,.01", fixedsize=true]
+                |
+                |   ${order()}
+                |   ${body.replace("\n", "\n\t").wrapByCluster()}
+                |}
+            """.trimMargin()
+
 
         fun IOperator.wrapSimpleOperator() =
                 """
@@ -135,7 +119,7 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
             }
 
             return if (operator is GroupOperator && operator.type == GroupOperator.Type.SEQUENTIAL)
-                inner.joinToString(" -- ") { it._wrap() }
+                inner.joinToString(" -> ") { it._wrap() }
             else
                 ""
         }
@@ -154,7 +138,8 @@ class CPFUnfolding(cpfSteps: List<CPF.Iteration>) {
 
 }
 
-class CPFUnfoldingTemplate : LatexReportTemplate() {
+
+class CPFExecutionGraphTemplate : LatexReportTemplate() {
     override val preamble: String
         get() = super.preamble + """
 
@@ -167,16 +152,12 @@ class CPFUnfoldingTemplate : LatexReportTemplate() {
 
     override val documentBody: String
         get() = """
-
-\begin{center} ПРИЛОЖЕНИЕ Б \end{center}
-
-\hskip 0.15\textheight
-\rotatebox{90}{\begin{minipage}{0.95\textheight}
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{unfolding.png}
-    \captionof{figure}{Рисунок Б.1 – Представление ППФ}
-\end{minipage}}
-
+    \begin{sidewaysfigure}
+        \centering
+        \includegraphics[width=\textwidth,height=\textheight-20,keepaspectratio]{execution_graph.png}
+        \caption{Рисунок Б.2 – Граф параллельного выполнения программы}
+    \end{sidewaysfigure}
         """.trimIndent()
 
-    override fun Path.configResourcesPath() = resolve("assets").resolve("cpf").resolve("unfolding.tex")
+    override fun Path.configResourcesPath() = resolve("assets").resolve("cpf").resolve("execution_graph.tex")
 }

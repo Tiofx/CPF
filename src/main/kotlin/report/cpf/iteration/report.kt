@@ -10,25 +10,8 @@ class IterationsGraphReport(val iterationNumber: Int) : LatexReportTemplate() {
     }
 
     override val preamble: String
-        get() =
+        get() = super.preamble+
             """
-\documentclass[a4paper,14pt]{article}
-\usepackage{geometry}
-\geometry{letterpaper}
-\usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{calc}
-\usepackage{geometry}
- \geometry{
- a4paper,
- total={170mm,257mm},
- left=25mm,
- right=10mm,
- top=20mm,
- bottom=20mm,
- }
-
-\usepackage{amssymb}
 \usepackage[export]{adjustbox}
 
 \vtop{%
@@ -65,9 +48,9 @@ class IterationsGraphReport(val iterationNumber: Int) : LatexReportTemplate() {
             """.trimIndent()
 
     override val documentBody: String
-        get() =
-            (1..iterationNumber).map { include("$it.png") }
-                    .joinToString("\n")
+        get() = """\begin{center} ПРИЛОЖЕНИЕ A \end{center}\\""" +"\n"+
+                (1..iterationNumber).map { include("$it.png") }
+                        .joinToString("\n")
 
 
     protected fun include(fileName: String) = "\\raisebox{1ex-\\height}{${includeGraphics(fileName)}}"

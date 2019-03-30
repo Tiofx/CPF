@@ -1,142 +1,248 @@
 graph CPFUnfloding {
-   layout=osage
    style="rounded"
    node [shape=circle, fontsize=14, fontname="Times New Roman", margin=".1,.01", fixedsize=true]
+   edge[style=invis]
 
-   subgraph "cluster_|y11" {
-	   label = "|y11"
+   {S1, S2} -- S3
+{S4, S5} -- S6
+{S7, S8} -- S9
+{S3, S6, S9} -- {S10, S11, S12} -- S13
+{S14, S15} -- S16
+{S17, S18} -- S19
+{S20, S21} -- S22
+{S23, S24} -- S25
+{S26, S27} -- S28
+{S29, S30} -- S31
+{S13, S16, S19, S22, S25, S28, S31} -- S32 -- S33
+   subgraph "cluster_1549409129" {
+	   label = ""
+	   margin = 0
+	   style = invis
 	
-	   subgraph "cluster_||y13" {
-		   label = "||y13"
-		
-		   subgraph "cluster_|y4" {
-			   label = "|y4"
-			
-			   subgraph "cluster_||y5" {
-				   label = "||y5"
-				
-				   subgraph "cluster_|y1" {
-					   label = "|y1"
-					
-					   subgraph "cluster_||y1" {
-						   label = "||y1"
-						
-						   S1
-							S2
-						}
-						S3
-					}
-					subgraph "cluster_|y2" {
-					   label = "|y2"
-					
-					   subgraph "cluster_||y2" {
-						   label = "||y2"
-						
-						   S4
-							S5
-						}
-						S6
-					}
-					subgraph "cluster_|y3" {
-					   label = "|y3"
-					
-					   subgraph "cluster_||y3" {
-						   label = "||y3"
-						
-						   S7
-							S8
-						}
-						S9
-					}
-				}
-				subgraph "cluster_||y4" {
-				   label = "||y4"
-				
-				   S10
-					S11
-					S12
-				}
-				S13
-			}
-			subgraph "cluster_|y5" {
-			   label = "|y5"
-			
-			   subgraph "cluster_||y6" {
-				   label = "||y6"
-				
-				   S14
-					S15
-				}
-				S16
-			}
-			subgraph "cluster_|y6" {
-			   label = "|y6"
-			
-			   subgraph "cluster_||y7" {
-				   label = "||y7"
-				
-				   S17
-					S18
-				}
-				S19
-			}
-			subgraph "cluster_|y7" {
-			   label = "|y7"
-			
-			   subgraph "cluster_||y8" {
-				   label = "||y8"
-				
-				   S20
-					S21
-				}
-				S22
-			}
-			subgraph "cluster_|y8" {
-			   label = "|y8"
-			
-			   subgraph "cluster_||y9" {
-				   label = "||y9"
-				
-				   S23
-					S24
-				}
-				S25
-			}
-			subgraph "cluster_|y9" {
-			   label = "|y9"
-			
-			   subgraph "cluster_||y10" {
-				   label = "||y10"
-				
-				   S26
-					S27
-				}
-				S28
-			}
-			subgraph "cluster_|y10" {
-			   label = "|y10"
-			
-			   subgraph "cluster_||y11" {
-				   label = "||y11"
-				
-				   S29
-					S30
-				}
-				S31
-			}
-		}
-		subgraph "cluster_||y12" {
-		   label = "||y12"
-		
-		   S32
-			S33
-			S34
-			S35
-			S36
-			S37
-			S38
-			S39
-			S40
-		}
+	   S33
+	}
+	subgraph "cluster_1270855946" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S32
+	}
+	subgraph "cluster_1955915048" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S31
+	}
+	subgraph "cluster_817406040" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S30
+	}
+	subgraph "cluster_1757143877" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S29
+	}
+	subgraph "cluster_11003494" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S28
+	}
+	subgraph "cluster_1924582348" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S27
+	}
+	subgraph "cluster_1731722639" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S26
+	}
+	subgraph "cluster_520016214" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S25
+	}
+	subgraph "cluster_1675763772" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S24
+	}
+	subgraph "cluster_841283083" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S23
+	}
+	subgraph "cluster_990398217" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S22
+	}
+	subgraph "cluster_1468357786" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S21
+	}
+	subgraph "cluster_36333492" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S20
+	}
+	subgraph "cluster_2042495840" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S19
+	}
+	subgraph "cluster_1663166483" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S18
+	}
+	subgraph "cluster_1232306490" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S17
+	}
+	subgraph "cluster_982007015" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S16
+	}
+	subgraph "cluster_215145189" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S15
+	}
+	subgraph "cluster_1241276575" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S14
+	}
+	subgraph "cluster_1033490990" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S13
+	}
+	subgraph "cluster_846238611" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S12
+	}
+	subgraph "cluster_1022308509" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S11
+	}
+	subgraph "cluster_1354011814" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S10
+	}
+	subgraph "cluster_1852584274" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S9
+	}
+	subgraph "cluster_1857815974" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S8
+	}
+	subgraph "cluster_503195940" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S7
+	}
+	subgraph "cluster_902919927" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S6
+	}
+	subgraph "cluster_1427810650" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S5
+	}
+	subgraph "cluster_1468303011" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S4
+	}
+	subgraph "cluster_523691575" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S3
+	}
+	subgraph "cluster_660143728" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S2
+	}
+	subgraph "cluster_727001376" {
+	   label = ""
+	   margin = 0
+	   style = invis
+	
+	   S1
 	}
 }

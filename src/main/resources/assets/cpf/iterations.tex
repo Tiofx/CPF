@@ -3,7 +3,7 @@
 \geometry{letterpaper}
 \usepackage{graphicx}
 \usepackage{amsmath}
-\usepackage{calc}
+
 \usepackage{geometry}
  \geometry{
  a4paper,
@@ -14,8 +14,36 @@
  bottom=20mm,
  }
 
+\usepackage[utf8]{inputenc}
+\usepackage[T1,T2A]{fontenc}
 \usepackage{amssymb}
-\usepackage[export]{adjustbox}
+\usepackage{graphicx}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+
+\usepackage{breqn}
+\setkeys{breqn}{breakdepth={1}}
+\newcommand{\breakingcomma}{%
+  \begingroup\lccode`~=`,
+  \lowercase{\endgroup\expandafter\def\expandafter~\expandafter{~\penalty0 }}}
+
+\makeatletter
+\def\bbordermatrix#1{\begingroup \m@th
+  \@tempdima 4.75\p@
+  \setbox\z@\vbox{%
+    \def\cr{\crcr\noalign{\kern2\p@\global\let\cr\endline}}%
+    \ialign{$##$\hfil\kern2\p@\kern\@tempdima&\thinspace\hfil$##$\hfil
+      &&\quad\hfil$##$\hfil\crcr
+      \omit\strut\hfil\crcr\noalign{\kern-\baselineskip}%
+      #1\crcr\omit\strut\cr}}%
+  \setbox\tw@\vbox{\unvcopy\z@\global\setbox\@ne\lastbox}%
+  \setbox\tw@\hbox{\unhbox\@ne\unskip\global\setbox\@ne\lastbox}%
+  \setbox\tw@\hbox{$\kern\wd\@ne\kern-\@tempdima\left[\kern-\wd\@ne
+    \global\setbox\@ne\vbox{\box\@ne\kern2\p@}%
+    \vcenter{\kern-\ht\@ne\unvbox\z@\kern-\baselineskip}\,\right]$}%
+  \null\;\vbox{\kern\ht\@ne\box\tw@}\endgroup}
+\makeatother\usepackage[export]{adjustbox}
 
 \vtop{%
   \vskip0pt
@@ -50,7 +78,8 @@
 \pagenumbering{gobble}
 
 \begin{document}
-    \raisebox{1ex-\height}{\includegraphics[trim=5mm 5mm 5mm 5mm,clip,width=50, height=\textheight,keepaspectratio]{iterations/1.png} }
+    \begin{center} ПРИЛОЖЕНИЕ A \end{center}\\
+\raisebox{1ex-\height}{\includegraphics[trim=5mm 5mm 5mm 5mm,clip,width=50, height=\textheight,keepaspectratio]{iterations/1.png} }
 \raisebox{1ex-\height}{\includegraphics[trim=5mm 5mm 5mm 5mm,clip,width=50, height=\textheight,keepaspectratio]{iterations/2.png} }
 \raisebox{1ex-\height}{\includegraphics[trim=5mm 5mm 5mm 5mm,clip,width=50, height=\textheight,keepaspectratio]{iterations/3.png} }
 \raisebox{1ex-\height}{\includegraphics[trim=5mm 5mm 5mm 5mm,clip,width=50, height=\textheight,keepaspectratio]{iterations/4.png} }
@@ -73,6 +102,4 @@
 \raisebox{1ex-\height}{\includegraphics[trim=5mm 5mm 5mm 5mm,clip,width=50, height=\textheight,keepaspectratio]{iterations/21.png} }
 \raisebox{1ex-\height}{\includegraphics[trim=5mm 5mm 5mm 5mm,clip,width=50, height=\textheight,keepaspectratio]{iterations/22.png} }
 \raisebox{1ex-\height}{\includegraphics[trim=5mm 5mm 5mm 5mm,clip,width=50, height=\textheight,keepaspectratio]{iterations/23.png} }
-\raisebox{1ex-\height}{\includegraphics[trim=5mm 5mm 5mm 5mm,clip,width=50, height=\textheight,keepaspectratio]{iterations/24.png} }
-\raisebox{1ex-\height}{\includegraphics[trim=5mm 5mm 5mm 5mm,clip,width=50, height=\textheight,keepaspectratio]{iterations/25.png} }
 \end{document}

@@ -17,7 +17,7 @@ class NodeSkip : Node {
     override fun toGraphviz(): String = "\"${hashCode()}\""
 }
 
-class NodeGroup(val groupName:String, val nodeSequence: List<Node>) : Node {
+class NodeGroup(val groupName: String, val nodeSequence: List<Node>) : Node {
     override val nodeName: String get() = TODO("not implemented")
 
     override fun toGraphviz(): String = """

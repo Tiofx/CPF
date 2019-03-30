@@ -45,10 +45,19 @@
   \null\;\vbox{\kern\ht\@ne\box\tw@}\endgroup}
 \makeatother
 \pagenumbering{gobble}
+\usepackage{rotating}
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}
+
 
 \begin{document}
-    \begin{figure}[H]
-    \centering
+    
+\begin{center} ПРИЛОЖЕНИЕ Б \end{center}
+
+\hskip 0.15\textheight
+\rotatebox{90}{\begin{minipage}{0.95\textheight}
     \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{unfolding.png}
-\end{figure}
+    \captionof{figure}{Рисунок Б.1 – Представление ППФ}
+\end{minipage}}
+
 \end{document}
