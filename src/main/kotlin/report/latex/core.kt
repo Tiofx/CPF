@@ -18,7 +18,14 @@ class LatexConverter(val cpfResults: List<CPF.Iteration>) {
     fun form() = cpfResults.mapIndexed { i, iteration ->
         Iteration(
                 ProgramLatex(iteration.program),
-                RelationsMatrixLatex(iteration.allRelationsMatrices, iteration.program, iteration.groupedOperators, iteration.isParallel),
+                RelationsMatrixLatex(
+                        i,
+                        if (i > 0) cpfResults[i - 1].groupedOperators.start else -1,
+                        iteration.allRelationsMatrices,
+                        iteration.program,
+                        iteration.groupedOperators,
+                        iteration.isParallel
+                ),
                 iteration.cpfCheck.map { CPFCheck(iteration.program, it) },
                 iteration.isParallel,
                 iteration.groupedOperators.map { namer.name(iteration.program, it).toLatex() }.toSet(),
@@ -74,20 +81,52 @@ class LatexConverter(val cpfResults: List<CPF.Iteration>) {
             val isParallel: Boolean
     ) {
 
-        constructor(matrices: RelationsMatrix, program: Program, groupedOperator: IntRange, isParallel: Boolean) :
-                this(matrices, header(program), groupedOperator to groupedOperator, isParallel)
-
-        constructor(matrices: RelationsMatrix, header: List<String>, highlight: Pair<IntRange, IntRange>, isParallel: Boolean) :
+        constructor(
+                iterationNumber: Int,
+                newGroupOperator: Int,
+                matrices: RelationsMatrix,
+                program: Program,
+                groupedOperator: IntRange,
+                isParallel: Boolean
+        ) :
                 this(
-                        matrices.strongDependencyMatrix.toLatexAsRelations(header,"""\rightarrow"""),
-                        "C = ${matrices.weekIndependencyMatrix.toLatex(header, header, highlight)}",
+                        if (iterationNumber > 0)
+                            matrices.strongDependencyMatrix.mapIndexed { i, row ->
+                                row.mapIndexed { j, el ->
+                                    if (i == newGroupOperator || j == newGroupOperator) el else false
+                                }
+                            }
+                        else
+                            matrices.strongDependencyMatrix,
+                        matrices.weekIndependencyMatrix,
+                        header(program),
+                        groupedOperator to groupedOperator,
+                        isParallel
+                )
+
+        constructor(
+                strongDependency: Matrix,
+                weekIndependency: Matrix,
+                header: List<String>,
+                highlight: Pair<IntRange, IntRange>,
+                isParallel: Boolean
+        ) :
+                this(
+                        strongDependency.toLatexAsRelations(header, """\rightarrow"""),
+                        "C = ${weekIndependency.toLatex(header, header, highlight)}",
                         isParallel
                 )
 
         fun toLatex() =
-                if (isParallel) listOf(strongDependencyRelations, weekIndependencyMatrix).joinToString(tripleLineBreak)
-                else
-                    strongDependencyRelations
+                when {
+                    isParallel && strongDependencyRelations.isNotBlank() -> listOf(
+                            strongDependencyRelations,
+                            weekIndependencyMatrix
+                    ).joinToString(tripleLineBreak)
+
+                    isParallel -> weekIndependencyMatrix
+                    else -> strongDependencyRelations
+                }
     }
 
     private fun header(program: Program) = namer.names(program).map(OperatorName::toLatex)

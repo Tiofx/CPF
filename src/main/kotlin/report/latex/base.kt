@@ -15,6 +15,7 @@ fun Matrix.toLatexAsRelations(operatorNames: List<String>, connector: String) =
                 .flatten()
                 .filter(Triple<Int, Int, Boolean>::third)
                 .map { operatorNames[it.first] to operatorNames[it.second] }
+                .also { if (it.isEmpty()) return "" }
                 .joinToString(LatexConverter.singleLineBreak) { "${it.first} $connector ${it.second}" }
                 .let {
                     """
