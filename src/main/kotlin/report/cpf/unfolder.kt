@@ -167,12 +167,15 @@ class CPFUnfoldingTemplate : LatexReportTemplate() {
 
     override val documentBody: String
         get() = """
+
 \begin{center} ПРИЛОЖЕНИЕ Б \end{center}
 
+\hskip 0.15\textheight
 \rotatebox{90}{\begin{minipage}{0.95\textheight}
     \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{unfolding.png}
     \captionof{figure}{Рисунок Б.1 – Представление ППФ}
 \end{minipage}}
+
         """.trimIndent()
 
     override fun Path.configResourcesPath() = resolve("assets").resolve("cpf").resolve("unfolding.tex")
