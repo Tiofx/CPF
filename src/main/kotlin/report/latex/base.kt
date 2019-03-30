@@ -63,7 +63,7 @@ private fun List<String>.toLatex(size: Int) =
         }
 
 
-private fun String.highlight(size: String = "\\LARGE") = "{$$size$ \\bf $this$$} "
+private fun String.highlight(size: String = "\\LARGE") = "$$size \\boldmath$$this$$ "
 
 
 fun Int.sizeModifier() = when {
