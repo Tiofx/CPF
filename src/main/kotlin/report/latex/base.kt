@@ -10,6 +10,21 @@ fun OperatorName.toLatex() = when (this) {
     UnknownName -> "Unknown"
 }
 
+fun Matrix.toLatexAsRelations(operatorNames: List<String>, connector: String) =
+        mapIndexed { i, row -> row.mapIndexed { j, el -> Triple(i, j, el) } }
+                .flatten()
+                .filter(Triple<Int, Int, Boolean>::third)
+                .map { operatorNames[it.first] to operatorNames[it.second] }
+                .joinToString(LatexConverter.singleLineBreak) { "${it.first} $connector ${it.second}" }
+                .let {
+                    """
+\begin{math}
+    $it
+\end{math}
+                    """.trimIndent()
+                }
+
+
 fun Matrix.toLatex(
         rowHeader: List<String>,
         colHeader: List<String>,
@@ -38,7 +53,7 @@ private fun List<String>.wrapBy(rowHeader: List<String>, colHeader: List<String>
                     listOf(colHeader.fold("  ") { acc, h -> "$acc & $h" }) + it
                 }
 
-private fun List<String>.toLatex(size:Int) =
+private fun List<String>.toLatex(size: Int) =
         joinToString("\\cr\n").let {
             """
                 |{${size.sizeModifier()}{$\bbordermatrix{
@@ -48,7 +63,7 @@ private fun List<String>.toLatex(size:Int) =
         }
 
 
-private fun String.highlight(size:String = "\\LARGE") = "{$$size$ \\bf $this$$} "
+private fun String.highlight(size: String = "\\LARGE") = "{$$size$ \\bf $this$$} "
 
 
 fun Int.sizeModifier() = when {

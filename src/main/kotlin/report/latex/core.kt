@@ -44,7 +44,7 @@ class LatexConverter(val cpfResults: List<CPF.Iteration>) {
 
         constructor(program: Program) : this(program.indices.map { OperatorInfo(program, it) })
 
-        fun toLatex(): String = operators.map { it.toLatex() }.joinToString(doubleLineBreak)
+        fun toLatex(): String = operators.joinToString(doubleLineBreak) { it.toLatex() }
     }
 
     inner class OperatorInfo(
@@ -69,7 +69,7 @@ class LatexConverter(val cpfResults: List<CPF.Iteration>) {
     }
 
     inner class RelationsMatrixLatex(
-            val strongDependencyMatrix: String,
+            val strongDependencyRelations: String,
             val weekIndependencyMatrix: String,
             val isParallel: Boolean
     ) {
@@ -79,15 +79,15 @@ class LatexConverter(val cpfResults: List<CPF.Iteration>) {
 
         constructor(matrices: RelationsMatrix, header: List<String>, highlight: Pair<IntRange, IntRange>, isParallel: Boolean) :
                 this(
-                        "SD = ${matrices.strongDependencyMatrix.toLatex(header, header)}",
+                        matrices.strongDependencyMatrix.toLatexAsRelations(header,"""\rightarrow"""),
                         "C = ${matrices.weekIndependencyMatrix.toLatex(header, header, highlight)}",
                         isParallel
                 )
 
         fun toLatex() =
-                if (isParallel) listOf(strongDependencyMatrix, weekIndependencyMatrix).joinToString(tripleLineBreak)
+                if (isParallel) listOf(strongDependencyRelations, weekIndependencyMatrix).joinToString(tripleLineBreak)
                 else
-                    strongDependencyMatrix
+                    strongDependencyRelations
     }
 
     private fun header(program: Program) = namer.names(program).map(OperatorName::toLatex)

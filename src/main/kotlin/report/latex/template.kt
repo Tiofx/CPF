@@ -141,7 +141,7 @@ class FullLatexGenerator(content: List<LatexConverter.Iteration>) : LatexReportT
     fun List<LatexConverter.Iteration>.toLatex2() = map { it.matrices }
             .map {
                 listOf(
-                        it.strongDependencyMatrix,
+                        it.strongDependencyRelations,
                         it.weekIndependencyMatrix
                 )
                         .joinToString(LatexConverter.singleLineBreak)
