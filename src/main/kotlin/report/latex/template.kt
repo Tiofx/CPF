@@ -14,27 +14,8 @@ class TwoAppendixTemplate(val content: List<LatexConverter.Iteration>) : LatexRe
             |${AppendixB().documentBody}
         """.trimMargin()
 
-    inner class AppendixA : ByIterationTemplate(content) {
 
-        override val documentBody: String
-            get() = """
-                |\begin{center} ПРИЛОЖЕНИЕ A \end{center}\\
-                |${super.documentBody}
-            """.trimMargin()
-
-        override fun toLatex(iteration: LatexConverter.Iteration) = iteration.run {
-            """
-            |$relations
-            |%
-            |$cpfChecks
-            |%
-            |${iterationType(iteration)}
-        """.trimMargin()
-        }
-
-    }
-
-    inner class AppendixB : LatexReportTemplate() {
+    inner class AppendixA : LatexReportTemplate() {
 
         private val singleOperators = content.first().program.operators
 
@@ -84,11 +65,32 @@ class TwoAppendixTemplate(val content: List<LatexConverter.Iteration>) : LatexRe
 
         override val documentBody: String
             get() = """
-                |\begin{center} ПРИЛОЖЕНИЕ Б \end{center}\\ \vspace{5mm}
+                |\begin{center} ПРИЛОЖЕНИЕ А \end{center}\\ \vspace{5mm}
                 |
-                |Таблица Б.1 – Представление программы по операторам \\
+                |Таблица А.1 – Представление программы по операторам \\
                 |$programTable
             """.trimMargin()
+    }
+
+
+    inner class AppendixB : ByIterationTemplate(content) {
+
+        override val documentBody: String
+            get() = """
+                |\begin{center} ПРИЛОЖЕНИЕ Б \end{center}\\
+                |${super.documentBody}
+            """.trimMargin()
+
+        override fun toLatex(iteration: LatexConverter.Iteration) = iteration.run {
+            """
+            |$relations
+            |%
+            |$cpfChecks
+            |%
+            |${iterationType(iteration)}
+        """.trimMargin()
+        }
+
     }
 }
 
