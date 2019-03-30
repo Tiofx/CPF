@@ -1,6 +1,9 @@
 package report.latex
 
+import algorithm.ProgramText
 import algorithm.RESOURCES_FOLDER
+import algorithm.prepareToLatex
+import algorithm.programText
 import java.nio.file.Path
 import kotlin.math.min
 
@@ -32,14 +35,59 @@ class TwoAppendixTemplate(val content: List<LatexConverter.Iteration>) : LatexRe
     }
 
     inner class AppendixB : LatexReportTemplate() {
+
         private val singleOperators = content.first().program.operators
+
+        private val programTable = programText.prepareToLatex().toTable()
+
+        private fun ProgramText.toTable(): String {
+            data class OperatorFullInfo(
+                    val name: String,
+                    val content: String,
+                    val C: String,
+                    val R: String
+            ) {
+                fun toLatex() =
+                        (if (content.startsWith("A^T")) copy(
+                                content = content.split(";")
+                                        .joinToString(";$ \\\\ $")
+                                        .let { "$$it$" }
+                                        .let { """\begin{tabular}[x]{@{}}$it\end{tabular}""" },
+
+                                R = R.split(",")
+                                        .mapIndexed { i, s -> if (i > 1 && (i + 1) % 3 == 0) "$s$ \\\\ $" else s }
+                                        .joinToString()
+                                        .let { "$$it$" }
+                                        .let { """\begin{tabular}[x]{@{}}$it\end{tabular}""" }
+                        ) else this)
+                                .run { listOf(name, content, C, R) }
+                                .map { "$$it$" }
+            }
+
+            return mapIndexed { i, s -> singleOperators[i].run { OperatorFullInfo(name, s, C.toLatex(), R.toLatex()) } }
+                    .map(OperatorFullInfo::toLatex)
+                    .joinToString(""" \\ \hline""" + "\n") { it.joinToString(" &") }
+                    .let {
+                        """
+            \setlength{\tabcolsep}{15pt}
+            \renewcommand{\arraystretch}{1.5}
+
+            \begin{tabular}{|l|p{0.3\linewidth}|l|p{0.3\linewidth}|}
+                \hline
+                S & Оператор & C(S) & R(S) \\ \hline
+                $it
+                \\ \hline
+            \end{tabular}
+                                        """.trimIndent()
+                    }
+        }
 
         override val documentBody: String
             get() = """
-                |\begin{center} ПРИЛОЖЕНИЕ Б \end{center}\\
-                |\begin{math}\breakingcomma
-                |${singleOperators.map { it.toLatex() }.joinToString(LatexConverter.singleLineBreak)}
-                |\end{math}
+                |\begin{center} ПРИЛОЖЕНИЕ Б \end{center}\\ \vspace{5mm}
+                |
+                |Таблица Б.1 – Представление программы по операторам \\
+                |$programTable
             """.trimMargin()
     }
 }
