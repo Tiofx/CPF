@@ -54,14 +54,14 @@ fun ReducedProgram.Indexes.toGraph(iterationNumber: Int, groupName: String, toOp
 
     val endGroup =
             if (hasSkipBeforeEnd)
-                (end.endInclusive - REM_FOR_END + 1)..end.endInclusive
+                (end.endInclusive - REM_FOR_END + 1 + 1)..end.endInclusive
             else end
 
     val afterGroupPart = afterGroup.toOperator()
 
     val endPart =
             if (hasSkipBeforeEnd)
-                listOf(NodeSkip()) + endGroup.endExclusive().toOperator()
+                listOf(NodeSkip()) + endGroup.toOperator()
             else
                 endGroup.toOperator()
 
