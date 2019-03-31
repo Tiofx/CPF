@@ -43,20 +43,10 @@
     \global\setbox\@ne\vbox{\box\@ne\kern2\p@}%
     \vcenter{\kern-\ht\@ne\unvbox\z@\kern-\baselineskip}\,\right]$}%
   \null\;\vbox{\kern\ht\@ne\box\tw@}\endgroup}
-\makeatother\usepackage{fancyhdr}
-
-\pagestyle{fancy}
-\fancyhf{}
-\fancyheadoffset{0cm}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-\fancyhead[R]{\thepage}
-\fancypagestyle{plain}{%
-\fancyhf{}%
-\fancyhead[R]{\thepage}%
-}
-
+\makeatother
 \usepackage[final]{pdfpages}
+\pagenumbering{gobble}
+
 
 \begin{document}
     \includepdf[pages=-,pagecommand={}]{iterations.pdf}

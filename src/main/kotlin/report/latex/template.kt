@@ -8,6 +8,10 @@ import java.nio.file.Path
 import kotlin.math.min
 
 class TwoAppendixTemplate(val content: List<LatexConverter.Iteration>) : LatexReportTemplate() {
+
+    override val preamble: String
+        get() = super.preamble + "\\pagenumbering{gobble}\n"
+
     override val documentBody: String
         get() = """
             |${AppendixA().documentBody}
@@ -90,12 +94,16 @@ open class ByIterationTemplate(val content: List<LatexConverter.Iteration>) : La
         val MAX_NUMBER_OF_CPF_CHECK = 5
     }
 
+    override val preamble: String
+        get() = super.preamble + "\\pagenumbering{gobble}\n"
+
     override val documentBody: String =
             content
                     .dropLast(1)
                     .mapIndexed { i, it -> if (i == 0) toLatexFirstIteration(it) else toLatex(it) }
                     .mapIndexed { i, it ->
                         """
+                        |\\
                         |\begin{center} Итерация №${i + 1} \end{center}
                         |$it
                         """.trimMargin()

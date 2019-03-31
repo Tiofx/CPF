@@ -48,7 +48,7 @@ class IterationsGraphReport(val iterationNumber: Int) : LatexReportTemplate() {
             """.trimIndent()
 
     override val documentBody: String
-        get() = """\begin{center} ПРИЛОЖЕНИЕ A \end{center}\\""" +"\n"+
+        get() = """\begin{center} ПРИЛОЖЕНИЕ В \end{center}\\""" +"\n"+
                 (1..iterationNumber).map { include("$it.png") }
                         .joinToString("\n")
 
