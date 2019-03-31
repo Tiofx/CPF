@@ -24,8 +24,8 @@ class Report : LatexReportTemplate() {
 
     override val documentBody: String
         get() = """
-\includepdf[pages=-,pagecommand={}]{assets/report.pdf}
-\includepdf[pages=-,pagecommand={}]{assets/cpf/report.pdf}
+\includepdf[offset=0mm 8mm, pages=-,pagecommand={}]{assets/report.pdf}
+\includepdf[offset=0mm 8mm, pages=-,pagecommand={}]{assets/cpf/report.pdf}
         """.trimIndent()
 
     override fun Path.configResourcesPath() = resolve("report.tex")
