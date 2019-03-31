@@ -81,15 +81,6 @@ class TwoAppendixTemplate(val content: List<LatexConverter.Iteration>) : LatexRe
                 |${super.documentBody}
             """.trimMargin()
 
-        override fun toLatex(iteration: LatexConverter.Iteration) = iteration.run {
-            """
-            |$relations
-            |%
-            |$cpfChecks
-            |%
-            |${iterationType(iteration)}
-        """.trimMargin()
-        }
 
     }
 }
@@ -102,42 +93,49 @@ open class ByIterationTemplate(val content: List<LatexConverter.Iteration>) : La
     override val documentBody: String =
             content
                     .dropLast(1)
-                    .map { toLatex(it) }
+                    .mapIndexed { i, it -> if (i == 0) toLatexFirstIteration(it) else toLatex(it) }
                     .mapIndexed { i, it ->
                         """
-                        |\begin{center}\huge Итерация №${i + 1} \end{center}\\
-                        |$it${LatexConverter.singleLineBreak}
-                        |\newpage
+                        |\begin{center} Итерация №${i + 1} \end{center}
+                        |$it
                         """.trimMargin()
                     }
-                    .joinToString(LatexConverter.singleLineBreak)
+                    .joinToString("\n")
 
+    protected fun toLatexFirstIteration(iteration: LatexConverter.Iteration) =
+            iteration.run {
+                """
+                    |Отношения между операторами: \\
+                    |Отношения сильной зависимости: \\ \newline
+                    |$relations
+                    |%
+                    |$cpfChecks
+                    |%
+                    |${iterationType(iteration)}
+                """.trimMargin()
+            }
 
-    protected open fun toLatex(iteration: LatexConverter.Iteration) = iteration.run {
-        """
-        |$sets
-        |%
-        |$relations
-        |%
-        |$cpfChecks
-        |%
-        |${iterationType(iteration)}
-    """.trimMargin()
-    }
+    protected open fun toLatex(iteration: LatexConverter.Iteration) =
+            iteration.run {
+                """
+                    |Отношения между операторами: \\
+                    |${if (matrices.strongDependencyRelations.isNotBlank())
+                    "Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\\\ \\newline"
+                else
+                    "Выделенный на прошлой итерации групповой оператор не образует сильных связей."
+                }
+                    |$relations
+                    |%
+                    |${iterationType(iteration)}
+                """.trimMargin()
+            }
 
-    protected val LatexConverter.Iteration.sets
-        get() = """
-        |Множества упоминаемых, изменяемых, выходных и входных переменных: \\
-        |\begin{math}\breakingcomma
-        |${program.toLatex()}
-        |\end{math}\\
-    """.trimMargin()
 
     protected val LatexConverter.Iteration.relations
-        get() = """
-        |Отношения между операторами: \\ \newline
-        |${matrices.toLatex()}\\ \newline
-    """.trimMargin()
+        get() =
+            """
+                |${matrices.toLatex()}\\ \newline
+            """.trimMargin()
 
     protected val LatexConverter.Iteration.cpfChecks
         get() = """
@@ -147,22 +145,20 @@ open class ByIterationTemplate(val content: List<LatexConverter.Iteration>) : La
         )} из ${cpfCheck.size}): \\
         |\begin{math}\breakingcomma
         |${cpfCheck.take(MAX_NUMBER_OF_CPF_CHECK).toLatex()}
-        |\end{math}\\
+        |\end{math}
+        |${LatexConverter.singleLineBreak}
         """.trimMargin()
 
 
-    protected
-
-    fun iterationType(iteration: LatexConverter.Iteration) = iteration.run {
+    protected fun iterationType(iteration: LatexConverter.Iteration) = iteration.run {
         (if (parallelIteration) "паралллельный" else "последовательный")
                 .let {
                     """
-            |На текущей итерации был выделен $it групповой оператор $$resultOfIteration$${LatexConverter.singleLineBreak}
-        """.trimMargin()
+                        |На текущей итерации был выделен $it групповой оператор $$resultOfIteration$
+                    """.trimMargin()
                 }
     }
 
-    private fun String.wrapInMath() = "\\text{$this}"
 }
 
 class FullLatexGenerator(content: List<LatexConverter.Iteration>) : LatexReportTemplate() {
