@@ -68,10 +68,8 @@ private fun String.highlight(size: String = "\\LARGE") = "$$size \\boldmath$$thi
 
 
 fun Int.sizeModifier() = when {
-    this >= 30 -> "\\resizebox{\\linewidth}{!}"
-//    this >= 30 -> "\\let\\quad\\thinspace\\tiny"
-    this >= 25 -> "\\let\\quad\\thinspace\\scriptize"
-    this >= 15 -> "\\let\\quad\\thinspace\\footnotesize"
+    this >= 25 -> "\\let\\quad\\thinspace\\footnotesize"
+    this >= 15 -> "\\let\\quad\\thinspace\\scriptize"
     else -> "\\let\\quad\\thinspace\\normalsize"
 }
 
