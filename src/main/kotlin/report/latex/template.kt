@@ -53,7 +53,7 @@ class TwoAppendixTemplate(val content: List<LatexConverter.Iteration>) : LatexRe
             \setlength{\tabcolsep}{15pt}
             \renewcommand{\arraystretch}{1.5}
 
-            \begin{tabular}{|l|p{0.3\linewidth}|l|p{0.3\linewidth}|}
+            \begin{tabular}{|p{0.03\linewidth}|p{0.25\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
                 \hline
                 S & Оператор & C(S) & R(S) \\ \hline
                 $it
@@ -67,7 +67,7 @@ class TwoAppendixTemplate(val content: List<LatexConverter.Iteration>) : LatexRe
             get() = """
                 |\begin{center} ПРИЛОЖЕНИЕ А \end{center}\\ \vspace{5mm}
                 |
-                |Таблица А.1 – Представление программы по операторам \\
+                |Таблица А.1 – Представление программы в виде последовательности операторов\\
                 |$programTable
             """.trimMargin()
     }
