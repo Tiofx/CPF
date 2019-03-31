@@ -155,7 +155,7 @@ class CPFExecutionGraphTemplate : LatexReportTemplate() {
     \begin{sidewaysfigure}
         \centering
         \includegraphics[width=\textwidth,height=\textheight-20,keepaspectratio]{execution_graph.png}
-        \caption{Рисунок Б.2 – Граф параллельного выполнения программы}
+        \caption{Рисунок Г.2 – Граф параллельного выполнения программы}
     \end{sidewaysfigure}
         """.trimIndent()
 

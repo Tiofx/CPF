@@ -168,12 +168,12 @@ class CPFUnfoldingTemplate : LatexReportTemplate() {
     override val documentBody: String
         get() = """
 
-\begin{center} ПРИЛОЖЕНИЕ Б \end{center}
+\begin{center} ПРИЛОЖЕНИЕ Г \end{center}
 
 \hskip 0.15\textheight
 \rotatebox{90}{\begin{minipage}{0.95\textheight}
     \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{unfolding.png}
-    \captionof{figure}{Рисунок Б.1 – Представление ППФ}
+    \captionof{figure}{Рисунок Г.1 – Представление ППФ}
 \end{minipage}}
 
         """.trimIndent()
