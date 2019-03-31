@@ -4,6 +4,6 @@ Researches of the program results method to a complete parallel form in pareling
 Forming result of research in LaTeX formulas and dot graphs.
 
 # What does it do?
-raw_program.txt -> [assets/report.pdf, assets/cpf/report.pdf]
+[raw_program.txt, start_page.txt] -> [report.tex, report.pdf, assets]
 
 [Example](src/main/resources)
