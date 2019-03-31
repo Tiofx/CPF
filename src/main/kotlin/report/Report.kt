@@ -3,7 +3,8 @@ package report
 import report.latex.LatexReportTemplate
 import java.nio.file.Path
 
-class Report : LatexReportTemplate() {
+class Report(val startPage: Int) : LatexReportTemplate() {
+
     override val preamble: String
         get() = super.preamble + """
 \usepackage{fancyhdr}
@@ -20,6 +21,8 @@ class Report : LatexReportTemplate() {
 }
 
 \usepackage[final]{pdfpages}
+\setcounter{page}{$startPage}
+
         """.trimIndent()
 
     override val documentBody: String
