@@ -184,7 +184,7 @@ class LatexConverter(val cpfResults: List<CPF.Iteration>) {
 
             return temp.run {
                 """
-                    |1) $Si\xrightarrow[]{\  _*  \ }$Sj
+                    |1) $Si \nrightarrow $Sj
                     |2) $Sk
                     |$Ei
                     |$Ej
