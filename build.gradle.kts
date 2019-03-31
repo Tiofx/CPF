@@ -50,6 +50,7 @@ tasks {
             .resolve("resources")
 
     val ASSETS_FOLDER = RESOURCES_FOLDER.resolve("assets")
+    val CPF_FOLDER = ASSETS_FOLDER.resolve("cpf")
 
 
     val makeCPFIterationGraphImages by registerTaskByMainFile("buildtask.report.cpf.iteration.Make_graph_imagesKt")
@@ -63,27 +64,31 @@ tasks {
     val makeCPFExecutionGraphTeXReport by registerTaskByMainFile("buildtask.report.cpf.executiongraph.Make_tex_reportKt")
     val makeCPFTeXReport by registerTaskByMainFile("buildtask.report.cpf.Make_tex_reportKt")
     val makeTeXReport by registerTaskByMainFile("buildtask.report.Make_tex_reportKt")
+    val makeFullTeXReport by registerTaskByMainFile("buildtask.report.Make_full_tex_reportKt")
 
 
     val makeCPFIterationTeXToPdfReport = xelatexTask(
             "makeCPFIterationTeXToPdfReport",
-            ASSETS_FOLDER.resolve("cpf").absoluteFile,
+            CPF_FOLDER.absoluteFile,
             "iterations.tex")
 
     val makeCPFUnfoldingTeXToPdfReport = xelatexTask(
             "makeCPFUnfoldingTeXToPdfReport",
-            ASSETS_FOLDER.resolve("cpf").absoluteFile,
+            CPF_FOLDER.absoluteFile,
             "unfolding.tex")
 
     val makeCPFExecutionGraphTeXToPdfReport = xelatexTask(
             "makeCPFExecutionGraphTeXToPdfReport",
-            ASSETS_FOLDER.resolve("cpf").absoluteFile,
+            CPF_FOLDER.absoluteFile,
             "execution_graph.tex")
 
     val makeCPFTeXToPdfReport = xelatexTask(
             "makeCPFTeXToPdfReport",
-            ASSETS_FOLDER.resolve("cpf").absoluteFile,
+            CPF_FOLDER.absoluteFile,
             "report.tex")
+
+    val teXToPdfReport = xelatexTask("teXToPdfReport", ASSETS_FOLDER.absoluteFile, "report.tex")
+    val fullTeXToPdfReport = xelatexTask("fullTeXToPdfReport", RESOURCES_FOLDER.absoluteFile, "report.tex")
 
     val remakeCPFReport by registering {
         group = "application"
@@ -105,6 +110,42 @@ tasks {
                 makeCPFTeXToPdfReport
         )
     }
+
+
+    val clearPlainDirectories by registering {
+        doFirst {
+            delete(fileTree(ASSETS_FOLDER.resolve("cpf").resolve("plain").absoluteFile))
+        }
+    }
+
+    val makeTempPlainResult by registering {
+        group = "application"
+
+        dependsOn(clearPlainDirectories,
+                makeCPFIterationPlainGraph,
+                makeCPFUnfoldingPlain,
+                makeCPFExecutionGraphPlain)
+    }
+
+    val makeFullReport by registering {
+        group = "Custom tasks"
+
+        dependsOn(makeFullTeXReport, fullTeXToPdfReport)
+    }
+
+
+    val remakeReport by registering {
+        group = "application"
+
+        dependsOn(makeTeXReport, teXToPdfReport)
+    }
+
+    val remakeFullReport by registering {
+        group = "application"
+
+        dependsOn(remakeCPFReport, remakeReport, makeFullReport)
+    }
+
 
     val orders = listOf(
             listOf(
@@ -133,46 +174,27 @@ tasks {
             listOf(
                     makeCPFTeXReport,
                     makeCPFTeXToPdfReport
+            ),
+            listOf(
+                    makeTeXReport,
+                    teXToPdfReport
+            ),
+            listOf(
+                    makeFullTeXReport,
+                    fullTeXToPdfReport
+            ),
+            listOf(
+                    remakeCPFReport,
+                    fullTeXToPdfReport
+            ),
+            listOf(
+                    remakeReport,
+                    fullTeXToPdfReport
             )
     )
     orders.forEach {
         it.zipWithNext().forEach { it.second.get().mustRunAfter(it.first) }
     }
-
-    val teXToPdf = xelatexTask("teXToPdf", ASSETS_FOLDER.absoluteFile, "report.tex")
-
-
-    val clearPlainDirectories by registering {
-        doFirst {
-            delete(fileTree(ASSETS_FOLDER.resolve("cpf").resolve("plain").absoluteFile))
-        }
-    }
-
-    val makeTempPlainResult by registering {
-        group = "application"
-
-        dependsOn(clearPlainDirectories,
-                makeCPFIterationPlainGraph,
-                makeCPFUnfoldingPlain,
-                makeCPFExecutionGraphPlain)
-    }
-
-
-    val makePdfReport by registering {
-        group = "application"
-
-        dependsOn(makeTeXReport)
-        dependsOn(teXToPdf)
-    }
-
-    val runAndMakeFullReport by registering {
-        group = "application"
-
-        dependsOn(makeCPFIterationGraphImages)
-        dependsOn(makeCPFUnfoldingImage)
-        dependsOn(makePdfReport)
-    }
-
 }
 
 fun TaskContainerScope.registerTaskByMainFile(mainPath: String) = registering(JavaExec::class) {
