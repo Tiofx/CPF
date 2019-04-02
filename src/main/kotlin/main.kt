@@ -1,3 +1,3 @@
 fun main() {
-    TODO()
+   program.main()
 }
