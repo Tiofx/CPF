@@ -242,14 +242,11 @@ infix fun Operator.and(second: Operator) =
 
 
 object Log {
-    var simpleOperatorNumber = 1
     private val log = mutableListOf<String>()
     val content get() = log.joinToString("\n")
 
-    fun reset() {
-        simpleOperatorNumber = 1
-        log.clear()
-    }
+    var simpleOperatorNumber = 1
+
 
     fun SimpleOperator.logIn() {
         log += " ${"-".repeat(2 * depth)}> $operatorName"
@@ -257,5 +254,10 @@ object Log {
 
     fun SimpleOperator.logOut() {
         log += "<${"-".repeat(2 * depth)}  $operatorName"
+    }
+
+    fun reset() {
+        simpleOperatorNumber = 1
+        log.clear()
     }
 }
