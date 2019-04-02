@@ -4,8 +4,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.runBlocking
-import java.time.Duration
-import java.time.LocalTime
 import java.util.*
 
 
@@ -166,7 +164,6 @@ abstract class InvMatrixProgram(val a: Array<FloatArray>) {
 
     fun execute(): Array<FloatArray> {
         preExecute()
-        SimpleOperator.start()
         runBlocking { executeOrder.execute() }
         SimpleOperator.printLog()
 
@@ -184,26 +181,19 @@ sealed class Operator
 
 class SequentialGroupOperator(val operators: List<Operator>) : Operator()
 class ParallelGroupOperator(val operators: List<Operator>) : Operator()
+
 class SimpleOperator(val action: suspend () -> Unit) : Operator() {
     val operatorName = "S$counter".also { counter++ }
     var depth: Int = -1
 
     companion object {
-
-        private var startTime: LocalTime? = null
         private var counter = 1
-        private val passedTime get() = Duration.between(startTime, LocalTime.now()).toMillis()
         private val log = mutableListOf<String>()
 
         fun reset() {
-            startTime = null
             counter = 1
             counter = 1
             log.clear()
-        }
-
-        fun start() {
-            startTime = LocalTime.now()
         }
 
         fun printLog() {
@@ -212,11 +202,11 @@ class SimpleOperator(val action: suspend () -> Unit) : Operator() {
     }
 
     fun logIn() {
-        log += String.format("[%4d] ", passedTime) + " ${"-".repeat(2 * depth)}> $operatorName"
+        log += " ${"-".repeat(2 * depth)}> $operatorName"
     }
 
     fun logOut() {
-        log += String.format("[%4d] ", passedTime) + "<${"-".repeat(2 * depth)}  $operatorName"
+        log += "<${"-".repeat(2 * depth)}  $operatorName"
     }
 
 }
