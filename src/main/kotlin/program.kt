@@ -1,6 +1,8 @@
 package program
 
 import kotlinx.coroutines.*
+import program.Log.logIn
+import program.Log.logOut
 import java.util.*
 
 
@@ -11,15 +13,26 @@ fun main() {
     val sequentialProgram = SequentialInvMatrixProgram(a)
     val parallelProgram = ParallelInvMatrixProgram(a)
 
+
     val sequentialResult = sequentialProgram.execute()
-    println()
+    val sequentialLog = Log.content
+
     val parallelResult = parallelProgram.execute()
-    println()
+    val parallelLog = Log.content
+
     val parallelResultWithDelay = parallelProgram.execute(true)
+    val parallelWithDelayLog = Log.content
 
 
     assert(Arrays.deepEquals(sequentialResult, parallelResult))
     assert(Arrays.deepEquals(parallelResultWithDelay, parallelResult))
+
+    println("Последовательное выполнение:")
+    println(sequentialLog)
+    println("Параллельное выполнение:")
+    println(parallelLog)
+    println("Параллельное выполнение (c задержкой):")
+    println(parallelWithDelayLog)
 
     println()
     println("матрица A")
@@ -87,11 +100,6 @@ class ParallelInvMatrixProgram(a: Array<FloatArray>) : InvMatrixProgram(a) {
 
 class SequentialInvMatrixProgram(a: Array<FloatArray>) : InvMatrixProgram(a) {
     override val executeOrder: Operator by lazy { operators.reduce { acc, o -> acc before o } }
-
-    override fun preExecute(withDelay: Boolean) {
-        println("Последовательное выполнение:")
-        super.preExecute(withDelay)
-    }
 }
 
 abstract class InvMatrixProgram(val a: Array<FloatArray>) {
@@ -165,13 +173,12 @@ abstract class InvMatrixProgram(val a: Array<FloatArray>) {
     fun execute(withDelay: Boolean = false): Array<FloatArray> {
         preExecute(withDelay)
         runBlocking { executeOrder.execute(withDelay) }
-        SimpleOperator.printLog()
 
         return invA
     }
 
     protected open fun preExecute(withDelay: Boolean) {
-        SimpleOperator.reset()
+        Log.reset()
         executeOrder.setDepth()
     }
 }
@@ -183,32 +190,8 @@ class SequentialGroupOperator(val operators: List<Operator>) : Operator()
 class ParallelGroupOperator(val operators: List<Operator>) : Operator()
 
 class SimpleOperator(val action: suspend () -> Unit) : Operator() {
-    val operatorName = "S$counter".also { counter++ }
+    val operatorName = Log.run { "S$simpleOperatorCount".also { simpleOperatorCount++ } }
     var depth: Int = -1
-
-    companion object {
-        private var counter = 1
-        private val log = mutableListOf<String>()
-
-        fun reset() {
-            counter = 1
-            counter = 1
-            log.clear()
-        }
-
-        fun printLog() {
-            println(log.joinToString("\n"))
-        }
-    }
-
-    fun logIn() {
-        log += " ${"-".repeat(2 * depth)}> $operatorName"
-    }
-
-    fun logOut() {
-        log += "<${"-".repeat(2 * depth)}  $operatorName"
-    }
-
 }
 
 
@@ -260,3 +243,23 @@ infix fun Operator.and(second: Operator) =
 
             else -> ParallelGroupOperator(listOf(this, second))
         }
+
+
+object Log {
+    var simpleOperatorCount = 1
+    private val log = mutableListOf<String>()
+    val content get() = log.joinToString("\n")
+
+    fun reset() {
+        simpleOperatorCount = 1
+        log.clear()
+    }
+
+    fun SimpleOperator.logIn() {
+        log += " ${"-".repeat(2 * depth)}> $operatorName"
+    }
+
+    fun SimpleOperator.logOut() {
+        log += "<${"-".repeat(2 * depth)}  $operatorName"
+    }
+}
