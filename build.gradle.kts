@@ -18,7 +18,7 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation("guru.nidi:graphviz-java:0.8.3")
     implementation("ch.qos.logback:logback-classic:1.2.3")
-
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.0-alpha")
 }
 
 val compileKotlin: KotlinCompile by tasks
