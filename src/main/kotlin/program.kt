@@ -9,6 +9,29 @@ import java.time.LocalTime
 import java.util.*
 
 
+fun main() {
+    fun Array<FloatArray>.toMatrixString() = joinToString("\n") { it.joinToString(" ") { String.format("% f", it) } }
+
+    val a = Array(3) { i -> FloatArray(3) { j -> (i * j + i % 2 + j % 3 + ((i + 1) * (j + 1)) % 2).toFloat() } }
+    val sequentialProgram = SequentialInvMatrixProgram(a)
+    val parallelProgram = ParallelInvMatrixProgram(a)
+
+    val sequentialResult = sequentialProgram.execute()
+    println()
+    val parallelResult = parallelProgram.execute()
+
+
+    assert(Arrays.deepEquals(sequentialResult, parallelResult))
+
+    println()
+    println("матрица A")
+    println(a.toMatrixString())
+    println()
+
+    println("матрица A^(-1)")
+    println(parallelResult.toMatrixString())
+}
+
 class ParallelInvMatrixProgram(a: Array<FloatArray>) : InvMatrixProgram(a) {
     override val executeOrder: Operator by lazy {
         (
