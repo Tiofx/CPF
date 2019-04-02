@@ -1,9 +1,6 @@
 package program
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import java.util.*
 
 
@@ -17,9 +14,12 @@ fun main() {
     val sequentialResult = sequentialProgram.execute()
     println()
     val parallelResult = parallelProgram.execute()
+    println()
+    val parallelResultWithDelay = parallelProgram.execute(true)
 
 
     assert(Arrays.deepEquals(sequentialResult, parallelResult))
+    assert(Arrays.deepEquals(parallelResultWithDelay, parallelResult))
 
     println()
     println("матрица A")
@@ -45,9 +45,9 @@ class ParallelInvMatrixProgram(a: Array<FloatArray>) : InvMatrixProgram(a) {
                 (s29 and s30 before s31) before s32 before s33
     }
 
-    override fun preExecute() {
-        println("Параллельное выполнение:")
-        super.preExecute()
+    override fun preExecute(withDelay: Boolean) {
+        println("Параллельное выполнение${if (withDelay) " (с задержкой)" else ""}:")
+        super.preExecute(withDelay)
     }
 
     private inline val s1 get() = operators[0]
@@ -88,9 +88,9 @@ class ParallelInvMatrixProgram(a: Array<FloatArray>) : InvMatrixProgram(a) {
 class SequentialInvMatrixProgram(a: Array<FloatArray>) : InvMatrixProgram(a) {
     override val executeOrder: Operator by lazy { operators.reduce { acc, o -> acc before o } }
 
-    override fun preExecute() {
+    override fun preExecute(withDelay: Boolean) {
         println("Последовательное выполнение:")
-        super.preExecute()
+        super.preExecute(withDelay)
     }
 }
 
@@ -162,15 +162,15 @@ abstract class InvMatrixProgram(val a: Array<FloatArray>) {
 
     protected abstract val executeOrder: Operator
 
-    fun execute(): Array<FloatArray> {
-        preExecute()
-        runBlocking { executeOrder.execute() }
+    fun execute(withDelay: Boolean = false): Array<FloatArray> {
+        preExecute(withDelay)
+        runBlocking { executeOrder.execute(withDelay) }
         SimpleOperator.printLog()
 
         return invA
     }
 
-    protected open fun preExecute() {
+    protected open fun preExecute(withDelay: Boolean) {
         SimpleOperator.reset()
         executeOrder.setDepth()
     }
@@ -212,10 +212,13 @@ class SimpleOperator(val action: suspend () -> Unit) : Operator() {
 }
 
 
-suspend fun Operator.execute() {
+suspend fun Operator.execute(withDelay: Boolean = false) {
     when (this) {
         is SimpleOperator -> {
             logIn()
+            if (withDelay) {
+                delay(333)
+            }
             action()
             logOut()
         }
