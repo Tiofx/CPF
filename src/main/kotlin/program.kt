@@ -225,12 +225,12 @@ suspend fun Operator.execute(withDelay: Boolean = false) {
 
         is SequentialGroupOperator -> {
             operators.forEach {
-                GlobalScope.async { it.execute() }.await()
+                GlobalScope.async { it.execute(withDelay) }.await()
             }
         }
 
         is ParallelGroupOperator -> {
-            operators.map { GlobalScope.async { it.execute() } }.awaitAll()
+            operators.map { GlobalScope.async { it.execute(withDelay) } }.awaitAll()
         }
     }
 }
