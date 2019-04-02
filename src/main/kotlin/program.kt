@@ -29,16 +29,17 @@ fun main() {
 
     println("Последовательное выполнение:")
     println(sequentialLog)
+    println()
     println("Параллельное выполнение:")
     println(parallelLog)
+    println()
     println("Параллельное выполнение (c задержкой):")
     println(parallelWithDelayLog)
-
     println()
+
     println("матрица A")
     println(a.toMatrixString())
     println()
-
     println("матрица A^(-1)")
     println(parallelResult.toMatrixString())
 }
@@ -56,11 +57,6 @@ class ParallelInvMatrixProgram(a: Array<FloatArray>) : InvMatrixProgram(a) {
                 (s23 and s24 before s25) and
                 (s26 and s27 before s28) and
                 (s29 and s30 before s31) before s32 before s33
-    }
-
-    override fun preExecute(withDelay: Boolean) {
-        println("Параллельное выполнение${if (withDelay) " (с задержкой)" else ""}:")
-        super.preExecute(withDelay)
     }
 
     private inline val s1 get() = operators[0]
@@ -190,7 +186,7 @@ class SequentialGroupOperator(val operators: List<Operator>) : Operator()
 class ParallelGroupOperator(val operators: List<Operator>) : Operator()
 
 class SimpleOperator(val action: suspend () -> Unit) : Operator() {
-    val operatorName = Log.run { "S$simpleOperatorCount".also { simpleOperatorCount++ } }
+    val operatorName = Log.run { "S$simpleOperatorNumber".also { simpleOperatorNumber++ } }
     var depth: Int = -1
 }
 
@@ -246,12 +242,12 @@ infix fun Operator.and(second: Operator) =
 
 
 object Log {
-    var simpleOperatorCount = 1
+    var simpleOperatorNumber = 1
     private val log = mutableListOf<String>()
     val content get() = log.joinToString("\n")
 
     fun reset() {
-        simpleOperatorCount = 1
+        simpleOperatorNumber = 1
         log.clear()
     }
 
