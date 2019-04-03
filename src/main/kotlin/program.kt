@@ -10,17 +10,14 @@ fun main() {
     fun Array<FloatArray>.toMatrixString() = joinToString("\n") { it.joinToString(" ") { String.format("% f", it) } }
 
     val a = Array(3) { i -> FloatArray(3) { j -> (i * j + i % 2 + j % 3 + ((i + 1) * (j + 1)) % 2).toFloat() } }
-    val sequentialProgram = SequentialInvMatrixProgram(a)
-    val parallelProgram = ParallelInvMatrixProgram(a)
 
-
-    val sequentialResult = sequentialProgram.execute()
+    val sequentialResult = SequentialInvMatrixProgram(a).execute()
     val sequentialLog = Log.content
 
-    val parallelResult = parallelProgram.execute()
+    val parallelResult = ParallelInvMatrixProgram(a).execute()
     val parallelLog = Log.content
 
-    val parallelResultWithDelay = parallelProgram.execute(true)
+    val parallelResultWithDelay = ParallelInvMatrixProgram(a).execute(true)
     val parallelWithDelayLog = Log.content
 
 

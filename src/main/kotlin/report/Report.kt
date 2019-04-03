@@ -29,6 +29,7 @@ class Report(val startPage: Int) : LatexReportTemplate() {
         get() = """
 \includepdf[offset=0mm 8mm, pages=-,pagecommand={}]{assets/report.pdf}
 \includepdf[offset=0mm 8mm, pages=-,pagecommand={}]{assets/cpf/report.pdf}
+\includepdf[offset=0mm 8mm, pages=-,pagecommand={}]{assets/program_code_report.pdf}
         """.trimIndent()
 
     override fun Path.configResourcesPath() = resolve("report.tex")
