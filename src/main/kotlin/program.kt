@@ -11,7 +11,11 @@ fun main() {
         it.joinToString(" ") { String.format("% f", it) }
     }
 
-    val a = Array(3) { i -> FloatArray(3) { j -> (i * j + i % 2 + j % 3 + ((i + 1) * (j + 1)) % 2).toFloat() } }
+    val a = arrayOf(
+            floatArrayOf(1F, 2F, 3F),
+            floatArrayOf(2F, 4F, 8F),
+            floatArrayOf(1F, 4F, 9F)
+    )
 
     val sequentialResult = SequentialInvMatrixProgram(a).execute()
     val sequentialLog = Log.content
