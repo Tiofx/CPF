@@ -63,6 +63,7 @@ tasks {
     val makeCPFExecutionGraphPlain by registerTaskByMainFile("buildtask.report.cpf.executiongraph.Make_plainKt")
     val makeCPFExecutionGraphTeXReport by registerTaskByMainFile("buildtask.report.cpf.executiongraph.Make_tex_reportKt")
     val makeCPFTeXReport by registerTaskByMainFile("buildtask.report.cpf.Make_tex_reportKt")
+    val makeProgramCodeTeXReport by registerTaskByMainFile("buildtask.report.Make_program_code_tex_reportKt")
     val makeTeXReport by registerTaskByMainFile("buildtask.report.Make_tex_reportKt")
     val makeFullTeXReport by registerTaskByMainFile("buildtask.report.Make_full_tex_reportKt")
 
@@ -88,6 +89,7 @@ tasks {
             "report.tex")
 
     val teXToPdfReport = xelatexTask("teXToPdfReport", ASSETS_FOLDER.absoluteFile, "report.tex")
+    val programCodeTeXToPdfReport = xelatexTask("programCodeteXToPdfReport", ASSETS_FOLDER.absoluteFile, "program_code_report.tex")
     val fullTeXToPdfReport = xelatexTask("fullTeXToPdfReport", RESOURCES_FOLDER.absoluteFile, "report.tex")
 
     val remakeCPFReport by registering {
@@ -133,6 +135,12 @@ tasks {
         dependsOn(makeFullTeXReport, fullTeXToPdfReport)
     }
 
+    val remakeProgramCodeReport by registering {
+        group = "application"
+
+        dependsOn(makeProgramCodeTeXReport, programCodeTeXToPdfReport)
+    }
+
 
     val remakeReport by registering {
         group = "application"
@@ -174,6 +182,10 @@ tasks {
             listOf(
                     makeCPFTeXReport,
                     makeCPFTeXToPdfReport
+            ),
+            listOf(
+                    makeProgramCodeTeXReport,
+                    programCodeTeXToPdfReport
             ),
             listOf(
                     makeTeXReport,
