@@ -2,6 +2,7 @@ package report
 
 import report.latex.LatexReportTemplate
 import java.io.File
+import java.nio.file.Path
 
 
 class ProgramCodeTemplate(val codeFilePath: File) : LatexReportTemplate() {
@@ -53,4 +54,6 @@ inputencoding=utf8
         \lstinputlisting[language=Kotlin]{$codeFilePath}
     }
         """.trimIndent()
+
+    override fun Path.configResourcesPath() = resolve("program_code_report.tex")
 }
