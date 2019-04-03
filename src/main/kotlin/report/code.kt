@@ -8,6 +8,7 @@ class ProgramCodeTemplate(val codeFilePath: File) : LatexReportTemplate() {
 
     override val preamble: String
         get() = super.preamble + """
+
 \usepackage[dvipsnames]{xcolor}
 \usepackage{verbatim}
 \usepackage{listings}
@@ -36,6 +37,9 @@ inputencoding=utf8
   showstringspaces=false,
   stringstyle={\color{ForestGreen}\ttfamily},
 }
+
+\pagenumbering{gobble}
+
         """.trimIndent()
 
     override val documentBody: String
