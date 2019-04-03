@@ -151,7 +151,7 @@ tasks {
     val remakeFullReport by registering {
         group = "application"
 
-        dependsOn(remakeCPFReport, remakeReport, makeFullReport)
+        dependsOn(remakeCPFReport, remakeReport, remakeProgramCodeReport, makeFullReport)
     }
 
 
@@ -201,6 +201,10 @@ tasks {
             ),
             listOf(
                     remakeReport,
+                    fullTeXToPdfReport
+            ),
+            listOf(
+                    remakeProgramCodeReport,
                     fullTeXToPdfReport
             )
     )
