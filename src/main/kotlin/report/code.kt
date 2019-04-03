@@ -51,9 +51,9 @@ inputencoding=utf8
         \fontsize{8}{10}
         \setmainfont{Courier New}
 
-        \lstinputlisting[language=Kotlin]{$codeFilePath}
+        \lstinputlisting[language=Kotlin]{"${codeFilePath.absoluteFile}"}
     }
         """.trimIndent()
 
-    override fun Path.configResourcesPath() = resolve("program_code_report.tex")
+    override fun Path.configResourcesPath() = resolve("assets").resolve("program_code_report.tex")
 }
