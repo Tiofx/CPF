@@ -7,7 +7,9 @@ import java.util.*
 
 
 fun main() {
-    fun Array<FloatArray>.toMatrixString() = joinToString("\n") { it.joinToString(" ") { String.format("% f", it) } }
+    fun Array<FloatArray>.toMatrixString() = joinToString("\n") {
+        it.joinToString(" ") { String.format("% f", it) }
+    }
 
     val a = Array(3) { i -> FloatArray(3) { j -> (i * j + i % 2 + j % 3 + ((i + 1) * (j + 1)) % 2).toFloat() } }
 

@@ -13,6 +13,7 @@ class ProgramCodeTemplate(val codeFilePath: File) : LatexReportTemplate() {
 \usepackage[dvipsnames]{xcolor}
 \usepackage{verbatim}
 \usepackage{listings}
+\usepackage{courier}
 
 \lstset{
 columns=flexible,
@@ -22,6 +23,7 @@ inputencoding=utf8
 }
 
 \lstdefinelanguage{Kotlin}{
+  basicstyle=\ttfamily,
   comment=[l]{//},
   commentstyle={\color{gray}\ttfamily},
   emph={delegate, filter, first, firstOrNull, forEach, lazy, map, mapNotNull, println, return@},
