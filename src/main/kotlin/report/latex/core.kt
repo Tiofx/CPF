@@ -76,6 +76,7 @@ class LatexConverter(val cpfResults: List<CPF.Iteration>) {
     }
 
     inner class RelationsMatrixLatex(
+            val iterationNumber:Int,
             val strongDependencyRelations: String,
             val weekIndependencyMatrix: String,
             val isParallel: Boolean
@@ -90,6 +91,7 @@ class LatexConverter(val cpfResults: List<CPF.Iteration>) {
                 isParallel: Boolean
         ) :
                 this(
+                        iterationNumber,
                         if (iterationNumber > 0)
                             matrices.strongDependencyMatrix.mapIndexed { i, row ->
                                 row.mapIndexed { j, el ->
@@ -105,6 +107,7 @@ class LatexConverter(val cpfResults: List<CPF.Iteration>) {
                 )
 
         constructor(
+                iterationNumber:Int,
                 strongDependency: Matrix,
                 weekIndependency: Matrix,
                 header: List<String>,
@@ -112,6 +115,7 @@ class LatexConverter(val cpfResults: List<CPF.Iteration>) {
                 isParallel: Boolean
         ) :
                 this(
+                        iterationNumber,
                         strongDependency.toLatexAsRelations(header, """\rightarrow"""),
                         "C = ${weekIndependency.toLatex(header, header, highlight)}",
                         isParallel
@@ -119,13 +123,13 @@ class LatexConverter(val cpfResults: List<CPF.Iteration>) {
 
         fun toLatex() =
                 when {
-                    isParallel && strongDependencyRelations.isNotBlank() -> listOf(
+                    iterationNumber == 0 && isParallel && strongDependencyRelations.isNotBlank() -> listOf(
                             strongDependencyRelations,
                             weekIndependencyMatrix
                     ).joinToString(tripleLineBreak)
 
                     isParallel -> weekIndependencyMatrix
-                    else -> strongDependencyRelations
+                    else -> ""
                 }
     }
 
