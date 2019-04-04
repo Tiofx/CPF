@@ -258,11 +258,15 @@ object Log {
 
 
     fun SimpleOperator.logIn() {
-        log += " ${"-".repeat(2 * depth)}> $operatorName"
+        synchronized(log) {
+            log += " ${"-".repeat(2 * depth)}> $operatorName"
+        }
     }
 
     fun SimpleOperator.logOut() {
-        log += "<${"-".repeat(2 * depth)}  $operatorName"
+        synchronized(log) {
+            log += "<${"-".repeat(2 * depth)}  $operatorName"
+        }
     }
 
     fun reset() {
