@@ -208,11 +208,17 @@ suspend fun Operator.execute(withDelay: Boolean = false) {
         is SequentialGroupOperator -> {
             operators.forEach {
                 GlobalScope.async { it.execute(withDelay) }.await()
+                if (withDelay) {
+                    delay(333)
+                }
             }
         }
 
         is ParallelGroupOperator -> {
             operators.map { GlobalScope.async { it.execute(withDelay) } }.awaitAll()
+            if (withDelay) {
+                delay(333)
+            }
         }
     }
 }
