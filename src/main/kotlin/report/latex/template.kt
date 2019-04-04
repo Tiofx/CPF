@@ -113,7 +113,6 @@ open class ByIterationTemplate(val content: List<LatexConverter.Iteration>) : La
             iteration.run {
                 """
                     |Отношения между операторами: \\
-                    |Отношения сильной зависимости: \\ \newline
                     |$relations
                     |%
                     |$cpfChecks
@@ -149,6 +148,7 @@ open class ByIterationTemplate(val content: List<LatexConverter.Iteration>) : La
             if (matrices.toLatex().isBlank()) "\\\\"
             else
                 """
+                |\\
                 |${matrices.toLatex()}\\ \newline
             """.trimMargin()
 
@@ -169,7 +169,7 @@ open class ByIterationTemplate(val content: List<LatexConverter.Iteration>) : La
         (if (parallelIteration) "паралллельный" else "последовательный")
                 .let {
                     """
-                        |${if (!parallelIteration) reason() else ""} \\ \newline
+                        |${if (!parallelIteration) reason() else "%"} \\ \newline
                         |На текущей итерации был выделен $it групповой оператор $$resultOfIteration$
                         |${matrices.newRelations()}
                     """.trimMargin()
