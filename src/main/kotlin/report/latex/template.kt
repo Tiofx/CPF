@@ -162,10 +162,49 @@ open class ByIterationTemplate(val content: List<LatexConverter.Iteration>) : La
         (if (parallelIteration) "паралллельный" else "последовательный")
                 .let {
                     """
+                        |${if (!parallelIteration) reason() else ""} \\ \newline
                         |На текущей итерации был выделен $it групповой оператор $$resultOfIteration$
                     """.trimMargin()
                 }
     }
+
+    private fun LatexConverter.Iteration.reason() =
+            if (parallelIteration)
+                throw Exception("no parallel reason here")
+            else
+                operatorsGroup
+                        .zipWithNext()
+                        .map { """${it.first} \rightarrow ${it.second}""" }
+                        .run {
+                            val groupFirst = operatorsGroup.first()
+                            val allNames = program.names
+
+                            if (groupFirst != allNames.first())
+                                plus(
+                                        (allNames.toList()[allNames.indexOf(groupFirst) - 1] to groupFirst).run {
+                                            "$first \\nrightarrow $second"
+                                        }
+                                )
+                            else
+                                this
+                        }
+                        .run {
+                            val groupLast = operatorsGroup.last()
+                            val allNames = program.names
+
+                            if (groupLast != allNames.last())
+                                plus(
+                                        (groupLast to allNames.toList()[allNames.indexOf(groupLast) + 1]).run {
+                                            "$first \\nrightarrow $second"
+                                        }
+                                )
+                            else
+                                this
+                        }
+                        .joinToString(", \\ ")
+                        .let { "$it => ${groupedOperator.replace("y", "\\alpha")} = ${operatorsGroup.toLatex()}" }
+                        .let { "$it;\\  ${groupedOperator.replace("y", "\\alpha")} \\sim $groupedOperator" }
+                        .let { "\\begin{math}\\breakingcomma $it \\end{math}" }
 
 }
 
