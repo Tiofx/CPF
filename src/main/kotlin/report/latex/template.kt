@@ -103,7 +103,6 @@ open class ByIterationTemplate(val content: List<LatexConverter.Iteration>) : La
                     .mapIndexed { i, it -> if (i == 0) toLatexFirstIteration(it) else toLatex(i) }
                     .mapIndexed { i, it ->
                         """
-                        |\\
                         |\begin{center} Итерация №${i + 1} \end{center}
                         |$it
                         """.trimMargin()
