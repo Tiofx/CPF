@@ -92,10 +92,9 @@ $S_{33}$ &$A^{-1} = A^T / \Delta$ &$\{A^{-1}\}$ &$\{A^T, \Delta\}$
                 \\ \hline
             \end{tabular}
 \begin{center} ПРИЛОЖЕНИЕ Б \end{center}\\
-\\
 \begin{center} Итерация №1 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости: \\ \newline
+\\
 \begin{math}
     S_{1} \rightarrow S_{3} \\ 
 S_{2} \rightarrow S_{3} \\ 
@@ -231,25 +230,20 @@ N_1(S_{1}, S_{9}) \subseteq E(S_{3}) - \text{выполняется} \\
  \\ 
 
 %
+% \\ \newline
 На текущей итерации был выделен паралллельный групповой оператор $\bar{\bar{y}}_{1} = \{S_{1}, S_{2}\}$
-\\
+
 \begin{center} Итерация №2 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\ \newline
-\begin{math}
-    \bar{\bar{y}}_{1} \rightarrow S_{3}
-\end{math}\\ \newline
-%
-На текущей итерации был выделен последовательный групповой оператор $\bar{y}_{1} = \{\bar{\bar{y}}_{1}, S_{3}, S_{4}\}$
 \\
+%
+\begin{math}\breakingcomma \bar{\bar{y}}_{1} \rightarrow S_{3}, \ S_{3} \rightarrow S_{4}, \ S_{4} \nrightarrow S_{5} => \bar{\alpha}_{1} = \{\bar{\bar{y}}_{1}, S_{3}, S_{4}\};\  \bar{\alpha}_{1} \sim \bar{y}_{1} \end{math} \\ \newline
+На текущей итерации был выделен последовательный групповой оператор $\bar{y}_{1} = \{\bar{\bar{y}}_{1}, S_{3}, S_{4}\}$
+ \\ \newline
+$\bar{y}_{1} \rightarrow S_{13}, \ \bar{y}_{1} \rightarrow S_{32}$
 \begin{center} Итерация №3 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\ \newline
-\begin{math}
-    \bar{y}_{1} \rightarrow S_{13} \\ 
-\bar{y}_{1} \rightarrow S_{32}
-\end{math} \\ \\ \\ 
-%
+\\
 C = {\let\quad\thinspace\footnotesize{$\bbordermatrix{
    & \bar{y}_{1} & $\normalsize \boldmath$S_{5}$$  & $\normalsize \boldmath$S_{6}$$  & S_{7} & S_{8} & S_{9} & S_{10} & S_{11} & S_{12} & S_{13} & S_{14} & S_{15} & S_{16} & S_{17} & S_{18} & S_{19} & S_{20} & S_{21} & S_{22} & S_{23} & S_{24} & S_{25} & S_{26} & S_{27} & S_{28} & S_{29} & S_{30} & S_{31} & S_{32} & S_{33}\cr
 \bar{y}_{1} & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 \cr
@@ -284,25 +278,21 @@ S_{32} & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 &
 S_{33} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
 }$}}\\ \newline
 %
+% \\ \newline
 На текущей итерации был выделен паралллельный групповой оператор $\bar{\bar{y}}_{2} = \{S_{5}, S_{6}\}$
-\\
+ \\ \newline
+$\bar{\bar{y}}_{2} \rightarrow S_{7}$
 \begin{center} Итерация №4 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\ \newline
-\begin{math}
-    \bar{\bar{y}}_{2} \rightarrow S_{7}
-\end{math}\\ \newline
-%
-На текущей итерации был выделен последовательный групповой оператор $\bar{y}_{2} = \{\bar{\bar{y}}_{2}, S_{7}, S_{8}\}$
 \\
+%
+\begin{math}\breakingcomma \bar{\bar{y}}_{2} \rightarrow S_{7}, \ S_{7} \rightarrow S_{8}, \ \bar{y}_{1} \nrightarrow \bar{\bar{y}}_{2}, \ S_{8} \nrightarrow S_{9} => \bar{\alpha}_{2} = \{\bar{\bar{y}}_{2}, S_{7}, S_{8}\};\  \bar{\alpha}_{2} \sim \bar{y}_{2} \end{math} \\ \newline
+На текущей итерации был выделен последовательный групповой оператор $\bar{y}_{2} = \{\bar{\bar{y}}_{2}, S_{7}, S_{8}\}$
+ \\ \newline
+$\bar{y}_{2} \rightarrow S_{13}, \ \bar{y}_{2} \rightarrow S_{32}$
 \begin{center} Итерация №5 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\ \newline
-\begin{math}
-    \bar{y}_{2} \rightarrow S_{13} \\ 
-\bar{y}_{2} \rightarrow S_{32}
-\end{math} \\ \\ \\ 
-%
+\\
 C = {\let\quad\thinspace\footnotesize{$\bbordermatrix{
    & \bar{y}_{1} & \bar{y}_{2} & $\normalsize \boldmath$S_{9}$$  & $\normalsize \boldmath$S_{10}$$  & S_{11} & S_{12} & S_{13} & S_{14} & S_{15} & S_{16} & S_{17} & S_{18} & S_{19} & S_{20} & S_{21} & S_{22} & S_{23} & S_{24} & S_{25} & S_{26} & S_{27} & S_{28} & S_{29} & S_{30} & S_{31} & S_{32} & S_{33}\cr
 \bar{y}_{1} & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 \cr
@@ -334,25 +324,21 @@ S_{32} & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 &
 S_{33} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
 }$}}\\ \newline
 %
+% \\ \newline
 На текущей итерации был выделен паралллельный групповой оператор $\bar{\bar{y}}_{3} = \{S_{9}, S_{10}\}$
-\\
+ \\ \newline
+$\bar{\bar{y}}_{3} \rightarrow S_{11}$
 \begin{center} Итерация №6 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\ \newline
-\begin{math}
-    \bar{\bar{y}}_{3} \rightarrow S_{11}
-\end{math}\\ \newline
-%
-На текущей итерации был выделен последовательный групповой оператор $\bar{y}_{3} = \{\bar{\bar{y}}_{3}, S_{11}, S_{12}\}$
 \\
+%
+\begin{math}\breakingcomma \bar{\bar{y}}_{3} \rightarrow S_{11}, \ S_{11} \rightarrow S_{12}, \ \bar{y}_{2} \nrightarrow \bar{\bar{y}}_{3}, \ S_{12} \nrightarrow S_{13} => \bar{\alpha}_{3} = \{\bar{\bar{y}}_{3}, S_{11}, S_{12}\};\  \bar{\alpha}_{3} \sim \bar{y}_{3} \end{math} \\ \newline
+На текущей итерации был выделен последовательный групповой оператор $\bar{y}_{3} = \{\bar{\bar{y}}_{3}, S_{11}, S_{12}\}$
+ \\ \newline
+$\bar{y}_{3} \rightarrow S_{13}, \ \bar{y}_{3} \rightarrow S_{32}$
 \begin{center} Итерация №7 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\ \newline
-\begin{math}
-    \bar{y}_{3} \rightarrow S_{13} \\ 
-\bar{y}_{3} \rightarrow S_{32}
-\end{math} \\ \\ \\ 
-%
+\\
 C = {\let\quad\thinspace\scriptize{$\bbordermatrix{
    & $\normalsize \boldmath$\bar{y}_{1}$$  & $\normalsize \boldmath$\bar{y}_{2}$$  & $\normalsize \boldmath$\bar{y}_{3}$$  & S_{13} & S_{14} & S_{15} & S_{16} & S_{17} & S_{18} & S_{19} & S_{20} & S_{21} & S_{22} & S_{23} & S_{24} & S_{25} & S_{26} & S_{27} & S_{28} & S_{29} & S_{30} & S_{31} & S_{32} & S_{33}\cr
 $\normalsize \boldmath$\bar{y}_{1}$$  & $\LARGE \boldmath$1$$  & $\LARGE \boldmath$1$$  & $\LARGE \boldmath$1$$  & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 \cr
@@ -381,26 +367,21 @@ S_{32} & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 &
 S_{33} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
 }$}}\\ \newline
 %
+% \\ \newline
 На текущей итерации был выделен паралллельный групповой оператор $\bar{\bar{y}}_{4} = \{\bar{y}_{1}, \bar{y}_{2}, \bar{y}_{3}\}$
-\\
+ \\ \newline
+$\bar{\bar{y}}_{4} \rightarrow S_{13}, \ \bar{\bar{y}}_{4} \rightarrow S_{32}$
 \begin{center} Итерация №8 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\ \newline
-\begin{math}
-    \bar{\bar{y}}_{4} \rightarrow S_{13} \\ 
-\bar{\bar{y}}_{4} \rightarrow S_{32}
-\end{math}\\ \newline
-%
-На текущей итерации был выделен последовательный групповой оператор $\bar{y}_{4} = \{\bar{\bar{y}}_{4}, S_{13}\}$
 \\
+%
+\begin{math}\breakingcomma \bar{\bar{y}}_{4} \rightarrow S_{13}, \ S_{13} \nrightarrow S_{14} => \bar{\alpha}_{4} = \{\bar{\bar{y}}_{4}, S_{13}\};\  \bar{\alpha}_{4} \sim \bar{y}_{4} \end{math} \\ \newline
+На текущей итерации был выделен последовательный групповой оператор $\bar{y}_{4} = \{\bar{\bar{y}}_{4}, S_{13}\}$
+ \\ \newline
+$\bar{y}_{4} \rightarrow S_{32}, \ \bar{y}_{4} \rightarrow S_{33}$
 \begin{center} Итерация №9 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\ \newline
-\begin{math}
-    \bar{y}_{4} \rightarrow S_{32} \\ 
-\bar{y}_{4} \rightarrow S_{33}
-\end{math} \\ \\ \\ 
-%
+\\
 C = {\let\quad\thinspace\scriptize{$\bbordermatrix{
    & \bar{y}_{4} & $\normalsize \boldmath$S_{14}$$  & $\normalsize \boldmath$S_{15}$$  & S_{16} & S_{17} & S_{18} & S_{19} & S_{20} & S_{21} & S_{22} & S_{23} & S_{24} & S_{25} & S_{26} & S_{27} & S_{28} & S_{29} & S_{30} & S_{31} & S_{32} & S_{33}\cr
 \bar{y}_{4} & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 \cr
@@ -426,24 +407,21 @@ S_{32} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 &
 S_{33} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
 }$}}\\ \newline
 %
+% \\ \newline
 На текущей итерации был выделен паралллельный групповой оператор $\bar{\bar{y}}_{5} = \{S_{14}, S_{15}\}$
-\\
+ \\ \newline
+$\bar{\bar{y}}_{5} \rightarrow S_{16}$
 \begin{center} Итерация №10 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\ \newline
-\begin{math}
-    \bar{\bar{y}}_{5} \rightarrow S_{16}
-\end{math}\\ \newline
-%
-На текущей итерации был выделен последовательный групповой оператор $\bar{y}_{5} = \{\bar{\bar{y}}_{5}, S_{16}\}$
 \\
+%
+\begin{math}\breakingcomma \bar{\bar{y}}_{5} \rightarrow S_{16}, \ \bar{y}_{4} \nrightarrow \bar{\bar{y}}_{5}, \ S_{16} \nrightarrow S_{17} => \bar{\alpha}_{5} = \{\bar{\bar{y}}_{5}, S_{16}\};\  \bar{\alpha}_{5} \sim \bar{y}_{5} \end{math} \\ \newline
+На текущей итерации был выделен последовательный групповой оператор $\bar{y}_{5} = \{\bar{\bar{y}}_{5}, S_{16}\}$
+ \\ \newline
+$\bar{y}_{5} \rightarrow S_{32}$
 \begin{center} Итерация №11 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\ \newline
-\begin{math}
-    \bar{y}_{5} \rightarrow S_{32}
-\end{math} \\ \\ \\ 
-%
+\\
 C = {\let\quad\thinspace\scriptize{$\bbordermatrix{
    & \bar{y}_{4} & \bar{y}_{5} & $\normalsize \boldmath$S_{17}$$  & $\normalsize \boldmath$S_{18}$$  & S_{19} & S_{20} & S_{21} & S_{22} & S_{23} & S_{24} & S_{25} & S_{26} & S_{27} & S_{28} & S_{29} & S_{30} & S_{31} & S_{32} & S_{33}\cr
 \bar{y}_{4} & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 \cr
@@ -467,24 +445,21 @@ S_{32} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 &
 S_{33} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
 }$}}\\ \newline
 %
+% \\ \newline
 На текущей итерации был выделен паралллельный групповой оператор $\bar{\bar{y}}_{6} = \{S_{17}, S_{18}\}$
-\\
+ \\ \newline
+$\bar{\bar{y}}_{6} \rightarrow S_{19}$
 \begin{center} Итерация №12 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\ \newline
-\begin{math}
-    \bar{\bar{y}}_{6} \rightarrow S_{19}
-\end{math}\\ \newline
-%
-На текущей итерации был выделен последовательный групповой оператор $\bar{y}_{6} = \{\bar{\bar{y}}_{6}, S_{19}\}$
 \\
+%
+\begin{math}\breakingcomma \bar{\bar{y}}_{6} \rightarrow S_{19}, \ \bar{y}_{5} \nrightarrow \bar{\bar{y}}_{6}, \ S_{19} \nrightarrow S_{20} => \bar{\alpha}_{6} = \{\bar{\bar{y}}_{6}, S_{19}\};\  \bar{\alpha}_{6} \sim \bar{y}_{6} \end{math} \\ \newline
+На текущей итерации был выделен последовательный групповой оператор $\bar{y}_{6} = \{\bar{\bar{y}}_{6}, S_{19}\}$
+ \\ \newline
+$\bar{y}_{6} \rightarrow S_{32}$
 \begin{center} Итерация №13 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\ \newline
-\begin{math}
-    \bar{y}_{6} \rightarrow S_{32}
-\end{math} \\ \\ \\ 
-%
+\\
 C = {\let\quad\thinspace\scriptize{$\bbordermatrix{
    & \bar{y}_{4} & \bar{y}_{5} & \bar{y}_{6} & $\normalsize \boldmath$S_{20}$$  & $\normalsize \boldmath$S_{21}$$  & S_{22} & S_{23} & S_{24} & S_{25} & S_{26} & S_{27} & S_{28} & S_{29} & S_{30} & S_{31} & S_{32} & S_{33}\cr
 \bar{y}_{4} & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 \cr
@@ -506,24 +481,21 @@ S_{32} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \cr
 S_{33} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
 }$}}\\ \newline
 %
+% \\ \newline
 На текущей итерации был выделен паралллельный групповой оператор $\bar{\bar{y}}_{7} = \{S_{20}, S_{21}\}$
-\\
+ \\ \newline
+$\bar{\bar{y}}_{7} \rightarrow S_{22}$
 \begin{center} Итерация №14 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\ \newline
-\begin{math}
-    \bar{\bar{y}}_{7} \rightarrow S_{22}
-\end{math}\\ \newline
-%
-На текущей итерации был выделен последовательный групповой оператор $\bar{y}_{7} = \{\bar{\bar{y}}_{7}, S_{22}\}$
 \\
+%
+\begin{math}\breakingcomma \bar{\bar{y}}_{7} \rightarrow S_{22}, \ \bar{y}_{6} \nrightarrow \bar{\bar{y}}_{7}, \ S_{22} \nrightarrow S_{23} => \bar{\alpha}_{7} = \{\bar{\bar{y}}_{7}, S_{22}\};\  \bar{\alpha}_{7} \sim \bar{y}_{7} \end{math} \\ \newline
+На текущей итерации был выделен последовательный групповой оператор $\bar{y}_{7} = \{\bar{\bar{y}}_{7}, S_{22}\}$
+ \\ \newline
+$\bar{y}_{7} \rightarrow S_{32}$
 \begin{center} Итерация №15 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\ \newline
-\begin{math}
-    \bar{y}_{7} \rightarrow S_{32}
-\end{math} \\ \\ \\ 
-%
+\\
 C = {\let\quad\thinspace\scriptize{$\bbordermatrix{
    & \bar{y}_{4} & \bar{y}_{5} & \bar{y}_{6} & \bar{y}_{7} & $\normalsize \boldmath$S_{23}$$  & $\normalsize \boldmath$S_{24}$$  & S_{25} & S_{26} & S_{27} & S_{28} & S_{29} & S_{30} & S_{31} & S_{32} & S_{33}\cr
 \bar{y}_{4} & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 \cr
@@ -543,24 +515,21 @@ S_{32} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \cr
 S_{33} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
 }$}}\\ \newline
 %
+% \\ \newline
 На текущей итерации был выделен паралллельный групповой оператор $\bar{\bar{y}}_{8} = \{S_{23}, S_{24}\}$
-\\
+ \\ \newline
+$\bar{\bar{y}}_{8} \rightarrow S_{25}$
 \begin{center} Итерация №16 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\ \newline
-\begin{math}
-    \bar{\bar{y}}_{8} \rightarrow S_{25}
-\end{math}\\ \newline
-%
-На текущей итерации был выделен последовательный групповой оператор $\bar{y}_{8} = \{\bar{\bar{y}}_{8}, S_{25}\}$
 \\
+%
+\begin{math}\breakingcomma \bar{\bar{y}}_{8} \rightarrow S_{25}, \ \bar{y}_{7} \nrightarrow \bar{\bar{y}}_{8}, \ S_{25} \nrightarrow S_{26} => \bar{\alpha}_{8} = \{\bar{\bar{y}}_{8}, S_{25}\};\  \bar{\alpha}_{8} \sim \bar{y}_{8} \end{math} \\ \newline
+На текущей итерации был выделен последовательный групповой оператор $\bar{y}_{8} = \{\bar{\bar{y}}_{8}, S_{25}\}$
+ \\ \newline
+$\bar{y}_{8} \rightarrow S_{32}$
 \begin{center} Итерация №17 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\ \newline
-\begin{math}
-    \bar{y}_{8} \rightarrow S_{32}
-\end{math} \\ \\ \\ 
-%
+\\
 C = {\let\quad\thinspace\normalsize{$\bbordermatrix{
    & \bar{y}_{4} & \bar{y}_{5} & \bar{y}_{6} & \bar{y}_{7} & \bar{y}_{8} & $\normalsize \boldmath$S_{26}$$  & $\normalsize \boldmath$S_{27}$$  & S_{28} & S_{29} & S_{30} & S_{31} & S_{32} & S_{33}\cr
 \bar{y}_{4} & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 \cr
@@ -578,24 +547,21 @@ S_{32} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \cr
 S_{33} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
 }$}}\\ \newline
 %
+% \\ \newline
 На текущей итерации был выделен паралллельный групповой оператор $\bar{\bar{y}}_{9} = \{S_{26}, S_{27}\}$
-\\
+ \\ \newline
+$\bar{\bar{y}}_{9} \rightarrow S_{28}$
 \begin{center} Итерация №18 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\ \newline
-\begin{math}
-    \bar{\bar{y}}_{9} \rightarrow S_{28}
-\end{math}\\ \newline
-%
-На текущей итерации был выделен последовательный групповой оператор $\bar{y}_{9} = \{\bar{\bar{y}}_{9}, S_{28}\}$
 \\
+%
+\begin{math}\breakingcomma \bar{\bar{y}}_{9} \rightarrow S_{28}, \ \bar{y}_{8} \nrightarrow \bar{\bar{y}}_{9}, \ S_{28} \nrightarrow S_{29} => \bar{\alpha}_{9} = \{\bar{\bar{y}}_{9}, S_{28}\};\  \bar{\alpha}_{9} \sim \bar{y}_{9} \end{math} \\ \newline
+На текущей итерации был выделен последовательный групповой оператор $\bar{y}_{9} = \{\bar{\bar{y}}_{9}, S_{28}\}$
+ \\ \newline
+$\bar{y}_{9} \rightarrow S_{32}$
 \begin{center} Итерация №19 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\ \newline
-\begin{math}
-    \bar{y}_{9} \rightarrow S_{32}
-\end{math} \\ \\ \\ 
-%
+\\
 C = {\let\quad\thinspace\normalsize{$\bbordermatrix{
    & \bar{y}_{4} & \bar{y}_{5} & \bar{y}_{6} & \bar{y}_{7} & \bar{y}_{8} & \bar{y}_{9} & $\normalsize \boldmath$S_{29}$$  & $\normalsize \boldmath$S_{30}$$  & S_{31} & S_{32} & S_{33}\cr
 \bar{y}_{4} & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 \cr
@@ -611,24 +577,21 @@ S_{32} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \cr
 S_{33} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
 }$}}\\ \newline
 %
+% \\ \newline
 На текущей итерации был выделен паралллельный групповой оператор $\bar{\bar{y}}_{10} = \{S_{29}, S_{30}\}$
-\\
+ \\ \newline
+$\bar{\bar{y}}_{10} \rightarrow S_{31}$
 \begin{center} Итерация №20 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\ \newline
-\begin{math}
-    \bar{\bar{y}}_{10} \rightarrow S_{31}
-\end{math}\\ \newline
-%
-На текущей итерации был выделен последовательный групповой оператор $\bar{y}_{10} = \{\bar{\bar{y}}_{10}, S_{31}\}$
 \\
+%
+\begin{math}\breakingcomma \bar{\bar{y}}_{10} \rightarrow S_{31}, \ \bar{y}_{9} \nrightarrow \bar{\bar{y}}_{10}, \ S_{31} \nrightarrow S_{32} => \bar{\alpha}_{10} = \{\bar{\bar{y}}_{10}, S_{31}\};\  \bar{\alpha}_{10} \sim \bar{y}_{10} \end{math} \\ \newline
+На текущей итерации был выделен последовательный групповой оператор $\bar{y}_{10} = \{\bar{\bar{y}}_{10}, S_{31}\}$
+ \\ \newline
+$\bar{y}_{10} \rightarrow S_{32}$
 \begin{center} Итерация №21 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\ \newline
-\begin{math}
-    \bar{y}_{10} \rightarrow S_{32}
-\end{math} \\ \\ \\ 
-%
+\\
 C = {\let\quad\thinspace\normalsize{$\bbordermatrix{
    & $\normalsize \boldmath$\bar{y}_{4}$$  & $\normalsize \boldmath$\bar{y}_{5}$$  & $\normalsize \boldmath$\bar{y}_{6}$$  & $\normalsize \boldmath$\bar{y}_{7}$$  & $\normalsize \boldmath$\bar{y}_{8}$$  & $\normalsize \boldmath$\bar{y}_{9}$$  & $\normalsize \boldmath$\bar{y}_{10}$$  & S_{32} & S_{33}\cr
 $\normalsize \boldmath$\bar{y}_{4}$$  & $\LARGE \boldmath$1$$  & $\LARGE \boldmath$1$$  & $\LARGE \boldmath$1$$  & $\LARGE \boldmath$1$$  & $\LARGE \boldmath$1$$  & $\LARGE \boldmath$1$$  & $\LARGE \boldmath$1$$  & 0 & 0 \cr
@@ -642,15 +605,16 @@ S_{32} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \cr
 S_{33} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
 }$}}\\ \newline
 %
+% \\ \newline
 На текущей итерации был выделен паралллельный групповой оператор $\bar{\bar{y}}_{11} = \{\bar{y}_{4}, \bar{y}_{5}, \bar{y}_{6}, \bar{y}_{7}, \bar{y}_{8}, \bar{y}_{9}, \bar{y}_{10}\}$
-\\
+ \\ \newline
+$\bar{\bar{y}}_{11} \rightarrow S_{32}, \ \bar{\bar{y}}_{11} \rightarrow S_{33}$
 \begin{center} Итерация №22 \end{center}
 Отношения между операторами: \\
-Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\ \newline
-\begin{math}
-    \bar{\bar{y}}_{11} \rightarrow S_{32} \\ 
-\bar{\bar{y}}_{11} \rightarrow S_{33}
-\end{math}\\ \newline
+\\
 %
+\begin{math}\breakingcomma \bar{\bar{y}}_{11} \rightarrow S_{32}, \ S_{32} \rightarrow S_{33} => \bar{\alpha}_{11} = \{\bar{\bar{y}}_{11}, S_{32}, S_{33}\};\  \bar{\alpha}_{11} \sim \bar{y}_{11} \end{math} \\ \newline
 На текущей итерации был выделен последовательный групповой оператор $\bar{y}_{11} = \{\bar{\bar{y}}_{11}, S_{32}, S_{33}\}$
+ \\ \newline
+$$
 \end{document}

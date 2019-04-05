@@ -100,10 +100,9 @@ open class ByIterationTemplate(val content: List<LatexConverter.Iteration>) : La
     override val documentBody: String =
             content
                     .dropLast(1)
-                    .mapIndexed { i, it -> if (i == 0) toLatexFirstIteration(it) else toLatex(it) }
+                    .mapIndexed { i, it -> if (i == 0) toLatexFirstIteration(it) else toLatex(i) }
                     .mapIndexed { i, it ->
                         """
-                        |\\
                         |\begin{center} Итерация №${i + 1} \end{center}
                         |$it
                         """.trimMargin()
@@ -114,7 +113,6 @@ open class ByIterationTemplate(val content: List<LatexConverter.Iteration>) : La
             iteration.run {
                 """
                     |Отношения между операторами: \\
-                    |Отношения сильной зависимости: \\ \newline
                     |$relations
                     |%
                     |$cpfChecks
@@ -123,25 +121,34 @@ open class ByIterationTemplate(val content: List<LatexConverter.Iteration>) : La
                 """.trimMargin()
             }
 
-    protected open fun toLatex(iteration: LatexConverter.Iteration) =
-            iteration.run {
+    protected open fun toLatex(iterationNumber: Int) =
+            content[iterationNumber].run {
                 """
                     |Отношения между операторами: \\
-                    |${if (matrices.strongDependencyRelations.isNotBlank())
-                    "Отношения сильной зависимости с выделенным на прошлой итерации групповым оператором: \\\\ \\newline"
-                else
-                    "Выделенный на прошлой итерации групповой оператор не образует сильных связей."
-                }
                     |$relations
                     |%
-                    |${iterationType(iteration)}
+                    |${iterationType(this)} \\ \newline
+                    |${if (iterationNumber < content.lastIndex)
+                    content[iterationNumber + 1].matrices.strongDependencyRelations
+                            .split("\n")
+                            .drop(1).dropLast(1)
+                            .map { it.trim().removeSuffix("\\\\") }
+                            .map { it.trim() }
+                            .joinToString(", \\ ")
+                            .let { "$$it$" }
+                            .let { if (it.isBlank()) "Выделенный групповой оператор не образует сильных связей." else it }
+                else
+                    ""}
                 """.trimMargin()
             }
 
 
     protected val LatexConverter.Iteration.relations
         get() =
-            """
+            if (matrices.toLatex().isBlank()) "\\\\"
+            else
+                """
+                |\\
                 |${matrices.toLatex()}\\ \newline
             """.trimMargin()
 
@@ -162,10 +169,52 @@ open class ByIterationTemplate(val content: List<LatexConverter.Iteration>) : La
         (if (parallelIteration) "паралллельный" else "последовательный")
                 .let {
                     """
+                        |${if (!parallelIteration) reason() else "%"} \\ \newline
                         |На текущей итерации был выделен $it групповой оператор $$resultOfIteration$
+                        |${matrices.newRelations()}
                     """.trimMargin()
                 }
     }
+
+    private fun LatexConverter.RelationsMatrixLatex.newRelations() = ""
+
+    private fun LatexConverter.Iteration.reason() =
+            if (parallelIteration)
+                throw Exception("no parallel reason here")
+            else
+                operatorsGroup
+                        .zipWithNext()
+                        .map { """${it.first} \rightarrow ${it.second}""" }
+                        .run {
+                            val groupFirst = operatorsGroup.first()
+                            val allNames = program.names
+
+                            if (groupFirst != allNames.first())
+                                plus(
+                                        (allNames.toList()[allNames.indexOf(groupFirst) - 1] to groupFirst).run {
+                                            "$first \\nrightarrow $second"
+                                        }
+                                )
+                            else
+                                this
+                        }
+                        .run {
+                            val groupLast = operatorsGroup.last()
+                            val allNames = program.names
+
+                            if (groupLast != allNames.last())
+                                plus(
+                                        (groupLast to allNames.toList()[allNames.indexOf(groupLast) + 1]).run {
+                                            "$first \\nrightarrow $second"
+                                        }
+                                )
+                            else
+                                this
+                        }
+                        .joinToString(", \\ ")
+                        .let { "$it => ${groupedOperator.replace("y", "\\alpha")} = ${operatorsGroup.toLatex()}" }
+                        .let { "$it;\\  ${groupedOperator.replace("y", "\\alpha")} \\sim $groupedOperator" }
+                        .let { "\\begin{math}\\breakingcomma $it \\end{math}" }
 
 }
 
