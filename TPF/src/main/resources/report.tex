@@ -1,0 +1,100 @@
+\documentclass[a4paper,14pt]{article}
+\usepackage{geometry}
+\geometry{letterpaper}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=25mm,
+ right=10mm,
+ top=20mm,
+ bottom=20mm,
+ }
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1,T2A]{fontenc}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+
+\usepackage{breqn}
+\setkeys{breqn}{breakdepth={1}}
+\newcommand{\breakingcomma}{%
+  \begingroup\lccode`~=`,
+  \lowercase{\endgroup\expandafter\def\expandafter~\expandafter{~\penalty0 }}}
+
+\makeatletter
+\def\bbordermatrix#1{\begingroup \m@th
+  \@tempdima 4.75\p@
+  \setbox\z@\vbox{%
+    \def\cr{\crcr\noalign{\kern2\p@\global\let\cr\endline}}%
+    \ialign{$##$\hfil\kern2\p@\kern\@tempdima&\thinspace\hfil$##$\hfil
+      &&\quad\hfil$##$\hfil\crcr
+      \omit\strut\hfil\crcr\noalign{\kern-\baselineskip}%
+      #1\crcr\omit\strut\cr}}%
+  \setbox\tw@\vbox{\unvcopy\z@\global\setbox\@ne\lastbox}%
+  \setbox\tw@\hbox{\unhbox\@ne\unskip\global\setbox\@ne\lastbox}%
+  \setbox\tw@\hbox{$\kern\wd\@ne\kern-\@tempdima\left[\kern-\wd\@ne
+    \global\setbox\@ne\vbox{\box\@ne\kern2\p@}%
+    \vcenter{\kern-\ht\@ne\unvbox\z@\kern-\baselineskip}\,\right]$}%
+  \null\;\vbox{\kern\ht\@ne\box\tw@}\endgroup}
+\makeatother
+
+\pagenumbering{gobble}
+
+
+\begin{document}
+    \begin{center} ПРИЛОЖЕНИЕ А \end{center}\\ \vspace{5mm}
+
+Таблица А.1 – Представление программы в виде последовательности операций\\
+        \setlength{\tabcolsep}{10pt}
+        \renewcommand{\arraystretch}{1.4}
+
+        %\begin{tabular}{|p{0.03\linewidth}|p{0.25\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
+        %\begin{tabular}{|c|c|c|c|c|c|c|}
+        \breakingcomma
+        \begin{tabular}{|c|p{0.16\linewidth}|c|p{0.14\linewidth}|c|p{0.1\linewidth}|p{0.05\linewidth}|p{0.025\linewidth}|}
+            \hline
+            \textnumero &Операция &$\theta_j$ &$in\,a_j$ &$out\,a_j$ &$w_j$ &$|in\,a_j|$ &$|w_j|$\\ \hline
+            $1$ &$a_{0} = 5$ &0-арная &$\varnothing$ &$\{a_{0}\}$ &$\{28\}$ &$0$ &$1$ \\ \hline
+$2$ &$a_{1} = 4$ &0-арная &$\varnothing$ &$\{a_{1}\}$ &$\{29\}$ &$0$ &$1$ \\ \hline
+$3$ &$a_{2} = 3$ &0-арная &$\varnothing$ &$\{a_{2}\}$ &$\{30\}$ &$0$ &$1$ \\ \hline
+$4$ &$a_{3} = 2$ &0-арная &$\varnothing$ &$\{a_{3}\}$ &$\{31\}$ &$0$ &$1$ \\ \hline
+$5$ &$a_{4} = 1$ &0-арная &$\varnothing$ &$\{a_{4}\}$ &$\{32\}$ &$0$ &$1$ \\ \hline
+$6$ &$a_{5} = 0.5$ &0-арная &$\varnothing$ &$\{a_{5}\}$ &$\{33\}$ &$0$ &$1$ \\ \hline
+$7$ &$n = 5$ &0-арная &$\varnothing$ &$\{n\}$ &$\{10, 13, 17, 21, 25\}$ &$0$ &$5$ \\ \hline
+$8$ &$x = 3$ &0-арная &$\varnothing$ &$\{x\}$ &$\{11\}$ &$0$ &$1$ \\ \hline
+$9$ &$\phi_{0} = 1$ &0-арная &$\varnothing$ &$\{\phi_{0}\}$ &$\{14, 28\}$ &$0$ &$2$ \\ \hline
+$10$ &$t_{1} = (n + 1) / 2$ &унарная &$\{n\}$ &$\{t_{1}\}$ &$\{11\}$ &$1$ &$1$ \\ \hline
+$11$ &$\phi_{1} = x - t_{1}$ &бинарная &$\{x, t_{1}\}$ &$\{\phi_{1}\}$ &$\{12, 16, 18, 20, 24, 29\}$ &$2$ &$6$ \\ \hline
+$12$ &$t_{2} = \phi_{1} * \phi_{1}$ &унарная &$\{\phi_{1}\}$ &$\{t_{2}\}$ &$\{15\}$ &$1$ &$1$ \\ \hline
+$13$ &$n^2_{1} = n*n - 1$ &унарная &$\{n\}$ &$\{n^2_{1}\}$ &$\{14\}$ &$1$ &$1$ \\ \hline
+$14$ &$t_{3} = \phi_{0} * n^2_{1} / 12$ &бинарная &$\{\phi_{0}, n^2_{1}\}$ &$\{t_{3}\}$ &$\{15\}$ &$2$ &$1$ \\ \hline
+$15$ &$\phi_{2} = t_{2} - t_{3}$ &бинарная &$\{t_{2}, t_{3}\}$ &$\{\phi_{2}\}$ &$\{16, 22, 30\}$ &$2$ &$3$ \\ \hline
+$16$ &$t_{4} = \phi_{1} * \phi_{2}$ &бинарная &$\{\phi_{1}, \phi_{2}\}$ &$\{t_{4}\}$ &$\{19\}$ &$2$ &$1$ \\ \hline
+$17$ &$n^2_{2} = n*n - 4$ &унарная &$\{n\}$ &$\{n^2_{2}\}$ &$\{18\}$ &$1$ &$1$ \\ \hline
+$18$ &$t_{5} = \phi_{1} * n^2_{2} / 15$ &бинарная &$\{\phi_{1}, n^2_{2}\}$ &$\{t_{5}\}$ &$\{19\}$ &$2$ &$1$ \\ \hline
+$19$ &$\phi_{3} = t_{4} - t_{5}$ &бинарная &$\{t_{4}, t_{5}\}$ &$\{\phi_{3}\}$ &$\{20, 26, 31\}$ &$2$ &$3$ \\ \hline
+$20$ &$t_{6} = \phi_{1} * \phi_{3}$ &бинарная &$\{\phi_{1}, \phi_{3}\}$ &$\{t_{6}\}$ &$\{23\}$ &$2$ &$1$ \\ \hline
+$21$ &$n^2_{3} = n*n - 9$ &унарная &$\{n\}$ &$\{n^2_{3}\}$ &$\{22\}$ &$1$ &$1$ \\ \hline
+$22$ &$t_{7} = 9 * \phi_{2} * n^2_{3} / 140$ &бинарная &$\{\phi_{2}, n^2_{3}\}$ &$\{t_{7}\}$ &$\{23\}$ &$2$ &$1$ \\ \hline
+$23$ &$\phi_{4} = t_{7} - t_{6}$ &бинарная &$\{t_{7}, t_{6}\}$ &$\{\phi_{4}\}$ &$\{24, 32\}$ &$2$ &$2$ \\ \hline
+$24$ &$t_{8} = \phi_{1} * \phi_{4}$ &бинарная &$\{\phi_{1}, \phi_{4}\}$ &$\{t_{8}\}$ &$\{27\}$ &$2$ &$1$ \\ \hline
+$25$ &$n^2_{4} = n*n - 16$ &унарная &$\{n\}$ &$\{n^2_{4}\}$ &$\{26\}$ &$1$ &$1$ \\ \hline
+$26$ &$t_{9} = 4 * \phi_{3} * n^2_{4} / 63$ &бинарная &$\{\phi_{3}, n^2_{4}\}$ &$\{t_{9}\}$ &$\{27\}$ &$2$ &$1$ \\ \hline
+$27$ &$\phi_{5} = t_{9} - t_{8}$ &бинарная &$\{t_{9}, t_{8}\}$ &$\{\phi_{5}\}$ &$\{33\}$ &$2$ &$1$ \\ \hline
+$28$ &$temp_{0} = a_{0} * \phi_{0}$ &бинарная &$\{a_{0}, \phi_{0}\}$ &$\{temp_{0}\}$ &$\{34\}$ &$2$ &$1$ \\ \hline
+$29$ &$temp_{1} = a_{1} * \phi_{1}$ &бинарная &$\{a_{1}, \phi_{1}\}$ &$\{temp_{1}\}$ &$\{34\}$ &$2$ &$1$ \\ \hline
+$30$ &$temp_{2} = a_{2} * \phi_{2}$ &бинарная &$\{a_{2}, \phi_{2}\}$ &$\{temp_{2}\}$ &$\{34\}$ &$2$ &$1$ \\ \hline
+$31$ &$temp_{3} = a_{3} * \phi_{3}$ &бинарная &$\{a_{3}, \phi_{3}\}$ &$\{temp_{3}\}$ &$\{34\}$ &$2$ &$1$ \\ \hline
+$32$ &$temp_{4} = a_{4} * \phi_{4}$ &бинарная &$\{a_{4}, \phi_{4}\}$ &$\{temp_{4}\}$ &$\{34\}$ &$2$ &$1$ \\ \hline
+$33$ &$temp_{5} = a_{5} * \phi_{5}$ &бинарная &$\{a_{5}, \phi_{5}\}$ &$\{temp_{5}\}$ &$\{34\}$ &$2$ &$1$ \\ \hline
+$34$ &$Y = temp_{0} + temp_{1} + temp_{2} + temp_{3} + temp_{4} + temp_{5}$ &6-арная &$\{temp_{0}, temp_{1}, temp_{2}, temp_{3}, temp_{4}, temp_{5}\}$ &$\{Y\}$ &$\varnothing$ &$6$ &$0$
+            \\ \hline
+        \end{tabular}
+\end{document}
