@@ -1,0 +1,145 @@
+digraph G{
+    rankdir = LR
+    style=dashed;    
+    compound=true
+
+    edge [style=invis];
+    nodesep = 0.1
+    ranksep = 0.2
+    node [shape=circle, fontsize=14, fontname="Times New Roman", margin=".1,.01", fixedsize=true]
+    pad = 0
+    margin = 0
+    
+
+    subgraph cluster_12 {
+        label = "12"
+        margin = 10
+        node[style=invis]
+        a34[style=black]
+        
+        ga1->ga2->ga3->ga4->a34->ga5->ga6->ga7->ga8
+    }
+    
+    subgraph cluster_11 {
+        label = "11"
+        margin = 10
+        node[style=invis]
+        a33[style=black]
+        
+        gb1->gb2->gb3->gb4->a33->gb5->gb6->gb7->gb8
+    }
+    
+    subgraph cluster_10 {
+        label = "10"
+        margin = 10
+        node[style=invis]
+        a27[style=black]
+        
+        g1->g2->g3->g4->a27->g5->g6->g7->g8
+    }
+    
+    subgraph cluster_9 {
+        label = "9"
+        margin = 10
+        node[style=invis]
+        a24[style=black]
+        a32[style=black]
+        
+        ed1->ed2->ed3->a24->ed5->a32->ed6->ed7->ed8
+    }
+
+    subgraph cluster_8 {
+        label = "8"
+        margin = 10
+        node[style=invis]
+        a23[style=black]
+        
+        ec1->ec2->ec3->ec4->a23->ec5->ec6->ec7->ec8
+    }
+
+    subgraph cluster_7 {
+        label = "7"
+        margin = 10
+        node[style=invis]
+        a20[style=black]
+        a26[style=black]
+        a31[style=black]
+        
+        eb1->eb2->eb3->a20->a26->a31->eb6->eb7->eb8
+    }
+    
+    subgraph cluster_6 {
+        label = "6"
+        margin = 10
+        node[style=invis]
+        a19[style=black]
+        
+        ea1->ea2->ea3->ea4->a19->ea5->ea6->ea7->ea8
+    }
+    
+    subgraph cluster_5 {
+        label = "5"
+        margin = 10
+        node[style=invis]
+        a16[style=black]
+        a22[style=black]
+        a30[style=black]
+        
+        f1 -> f2 -> f3 -> a16 -> a22 -> a30 -> f4 -> f5 -> f6
+    }
+    
+    subgraph cluster_4 {
+        label = "4"
+        margin = 10
+        node[style=invis]
+        a15[style=black]
+        
+        e1->e2->e3->e4->a15->e5->e6->e7->e8
+    }
+    
+    subgraph cluster_3 {
+        label = "3"
+        margin = 10
+        d1[style=invis]
+        d2[style=invis]
+        d3[style=invis]
+        d4[style=invis]
+        d5[style=invis]
+        d6[style=invis]
+        
+        d1 -> d2 -> d3 -> a12 -> a18 -> a29 -> d4 -> d5 -> d6
+    }
+
+    subgraph cluster_2 {
+        label = "2"
+        margin = 10
+        c1[style=invis]
+        c2[style=invis]
+        c3[style=invis]
+        c4[style=invis]
+        c5[style=invis]
+        c6[style=invis]
+        
+        
+        c1 -> c2 -> c3 -> a11 -> a14 -> a28 -> c4 -> c5 -> c6
+    }
+    
+    subgraph cluster_1 {
+        label = "1"
+        margin = 10
+        b1[style=invis]
+        b2[style=invis]
+        b3[style=invis]
+        
+        b1 -> a9 -> a10 -> a13 -> b3 -> a17 -> a21 -> a25 -> b2
+    }
+  
+    subgraph cluster_0 {
+        label = "0"
+        margin = 10
+        _a0[style=invis]
+        
+        a1 -> a2 -> a3 -> a4 -> _a0 -> a5 -> a6 -> a7 -> a8
+  }
+  
+}
